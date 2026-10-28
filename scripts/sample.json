@@ -1,0 +1,19 @@
+[
+  {
+    "slug": "sample",
+    "title": "샘플 프로젝트",
+    "summary": "Supabase를 연결하기 전까지 보이는 예시 페이지예요.",
+    "category": "일상",
+    "client": "",
+    "role": "기획 · UI/UX 디자인",
+    "period": "",
+    "type": "개인 프로젝트",
+    "tags": [],
+    "thumbnail": null,
+    "sections": [
+      { "id": "s1", "heading": "섹션 제목", "body": "관리자 페이지에서 등록한 내용이 이렇게 보여요.", "layout": "1", "images": [] }
+    ],
+    "published": true,
+    "sort_order": 0
+  }
+]

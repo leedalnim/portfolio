@@ -1,0 +1,54 @@
+name: 사이트 배포
+
+on:
+  push:
+    branches: [main]
+  repository_dispatch:
+    types: [publish] # 관리자 페이지의 '사이트에 반영' 버튼
+  workflow_dispatch: # 깃헙에서 직접 실행
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # 한 번 줄인 이미지는 보관해 두고, 새로 올린 이미지만 Supabase에서 받는다
+      - uses: actions/cache@v4
+        with:
+          path: .cache
+          key: img-${{ github.run_id }}
+          restore-keys: img-
+      - run: npm run build
+        env:
+          SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ vars.SUPABASE_ANON_KEY }}
+          VITE_SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ vars.SUPABASE_ANON_KEY }}
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
