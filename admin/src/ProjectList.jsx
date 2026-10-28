@@ -52,6 +52,15 @@ export default function ProjectList({ projects, loading, onNew, onEdit, onToggle
         </div>
       ) : (
         <ul className="rows">
+          <li className="row row-head" aria-hidden="true">
+            <span />
+            <span>썸네일</span>
+            <span>프로젝트</span>
+            <span>챕터</span>
+            <span>유형</span>
+            <span>수정일</span>
+            <span>공개</span>
+          </li>
           {shown.map((p) => (
             <li
               key={p.id}
