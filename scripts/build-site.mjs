@@ -116,6 +116,16 @@ function menu(count) {
 const footer = () => `<footer class="ft"><div><a class="logo" href="${BASE}" data-nav>DALNIM</a><small>© 2026 이달님. All rights reserved.</small></div><div class="r"><a href="__PDF__" target="_blank" rel="noopener">PDF Download ↓</a><button type="button" data-top>Top ↑</button></div></footer>`;
 
 // 큰 제목: 줄마다 같은 글자 두 장(선명 + 흐림)을 겹쳐 끝부분만 흐려 보이게
+// 큰 제목: 피그마의 점진 블러를 그대로 살린 이미지 (site/title, scripts/make-titles.py 로 생성)
+const TITLE_META = JSON.parse(await fs.readFile(path.join(ROOT, 'site/title/meta.json'), 'utf8'));
+function imgTitle(name, alt) {
+  const keys = Object.keys(TITLE_META).filter((k) => k === `pc-${name}` || k.startsWith(`pc-${name}-`) || k === `mo-${name}` || k.startsWith(`mo-${name}-`));
+  const img = (k, i) => {
+    const m = TITLE_META[k];
+    return `<img class="${k.slice(0, 2)}" src="${BASE}assets/title/${k}.webp?v=${V}" alt="" width="${m.w}" height="${m.h}" style="--x:${m.x};--y:${m.y};--w:${m.w};--i:${i}" decoding="async" fetchpriority="high">`;
+  };
+  return `<h1 class="ttl ti"><span class="sr">${esc(alt)}</span>${keys.map((k) => img(k, +(k.split('-')[2] || 1) - 1)).join('')}</h1>`;
+}
 function title(lines, o = {}) {
   return `<h1 class="ttl"${o.style ? ` style="${o.style}"` : ''}><span class="sr">${esc(lines.join(''))}</span>${lines
     .map((t, i) => `<span class="ln" aria-hidden="true"><span class="bt" style="--i:${i}${o.fs ? `;--fs:${o.fs[i] ?? o.fs[0]}` : ''}"><span class="a">${esc(t)}</span><span class="b">${esc(t)}</span></span></span>`)
@@ -182,11 +192,11 @@ const WALL = [
 ];
 
 function home(projects, s, counts) {
-  const wall = projects.filter((p) => p.show_on_wall && p._thumb).slice(0, WALL.length);
+  const wall = projects.filter((p) => p.show_on_wall && p._thumb).sort((a, b) => (a.wall_order ?? 99) - (b.wall_order ?? 99)).slice(0, WALL.length);
   const arc = projects.filter((p) => p.show_on_archive).slice(0, 10);
   const pos = { 'UX DESIGN': [1101, 159], 'VISUAL DESIGN': [1210, 211], 'AI WORKFLOW': [300, 230], 'SOLO BUILD': [150, 282] };
   return `<section class="hero grid" style="${cs({ hh: 380, mh: 274, mtop: 72, mfs: 94, mlh: 88, mtt: 112, mtb: 213, mbl: 154 })}">
-${title(['PORT', '-FOLIO'], { fs: ['78%', '80%'] })}${chips(pos, counts)}</section>
+${imgTitle('home', 'PORTFOLIO')}${chips(pos, counts)}</section>
 <section class="m-search">${askBox(s, { id: 'home' })}<div class="m-intro"><b>${esc(s.hero.intro_title)}</b><span>${esc(s.hero.intro_sub)}</span></div></section>
 <section class="wall grid" aria-label="대표 작업" style="--rows:4;--mrows:8">
 ${wall
@@ -195,7 +205,7 @@ ${wall
     return `<a class="w rv" href="${href(p)}" data-detail data-s="${sz}" style="--x:${x};--y:${y};--s:${sz};--mx:${mx};--my:${my};--ms:${ms};--d:${i}">${pic(p._thumb, p.title, `(max-width: 1023px) 50vw, ${Math.round(sz / 19.2)}vw`)}<span class="ov"><i>${esc(p.kind)}</i><span><strong>${esc(p.title)}</strong><small>${[p.platform, ...(p.filters || [])].filter(Boolean).map(nb).join(' · ')}</small></span></span></a>`;
   })
   .join('')}
-<p class="note" style="--x:1536;--y:16;--w:368">${esc(s.hero.wall_year)}</p><p class="note" style="--x:1152;--y:204;--w:180">${esc(s.hero.wall_note)}</p></section>
+<p class="note" style="--x:0;--y:696;--w:180">${esc(s.hero.wall_note2)}</p><p class="note" style="--x:1152;--y:204;--w:180">${esc(s.hero.wall_note)}</p></section>
 <section class="arc" aria-labelledby="arc-h"><div class="arc-head"><h2 class="h-en" id="arc-h">ARCHIVE<sup>${projects.length}</sup></h2>${kindTabs(arc, 'home')}</div>
 <ul class="rows" data-list="home"><li class="th" aria-hidden="true"><span>NO.</span><span>프로젝트</span><span>필터</span></li>${arc.map((p, i) => rowItem(p, i)).join('')}</ul>
 <div class="more"><a href="${BASE}projects/" data-nav>전체 보기 <span aria-hidden="true">→</span></a></div></section>
@@ -204,7 +214,7 @@ ${wall
 
 function projectsPage(projects, s, counts) {
   const pos = { 'UX DESIGN': [1378, 100], 'VISUAL DESIGN': [1487, 152], 'AI WORKFLOW': [300, 250], 'SOLO BUILD': [150, 302] };
-  return `<section class="hero grid" style="${cs({ hh: 380, mh: 220, mtop: 102, mfs: 76, mlh: 72, mtt: 72, mtb: 160, mbl: 16 })}">${title(['PROJECTS'], { fs: ['82%'] })}${chips(pos, counts)}</section>
+  return `<section class="hero grid" style="${cs({ hh: 380, mh: 220, mtop: 102, mfs: 76, mlh: 72, mtt: 72, mtb: 160, mbl: 16 })}">${imgTitle('projects', 'PROJECTS')}${chips(pos, counts)}</section>
 <div class="p-bar">${kindTabs(projects, 'cards')}<div class="sel" data-sel><span class="pill blue" data-sel-name></span><button class="clear" type="button" data-clear>전체 해제</button></div><button class="sort" type="button" data-sort aria-label="정렬 순서 바꾸기">최신순 ↓</button></div>
 <div class="cards" data-list="cards">${projects
     .map(
@@ -250,7 +260,7 @@ function about(s) {
   const a = s.about;
   const pos = { 'UX DESIGN': [910, 110], 'VISUAL DESIGN': [1019, 162], 'AI WORKFLOW': [300, 270], 'SOLO BUILD': [150, 322] };
   const lines = (arr) => `<ul class="lines">${arr.map((r) => `<li><span class="p">${esc(r.period)}</span><b>${esc(r.place)}</b><span>${esc(r.role)}</span><em>${esc(r.note)}</em></li>`).join('')}</ul>`;
-  return `<section class="hero grid" style="${cs({ hh: 480, mh: 253, mtop: 102, mfs: 104, mlh: 96, mtt: 72, mtb: 184, mbl: 16 })}">${title(['ABOUT'], { fs: ['76%'] })}${chips(pos, null)}<p class="a-top">${esc(s.hero.wall_year)}</p></section>
+  return `<section class="hero grid" style="${cs({ hh: 480, mh: 253, mtop: 102, mfs: 104, mlh: 96, mtt: 72, mtb: 184, mbl: 16 })}">${imgTitle('about', 'ABOUT')}${chips(pos, null)}<p class="a-top">${esc(s.hero.wall_year)}</p></section>
 <section class="a-intro"><h2 class="rv">${esc(a.title)}</h2><p class="rv" style="--d:2">${esc(a.body)}</p></section>
 <section class="a-sec"><h2 class="h-en">HOW I WORK</h2><div class="how">${a.how.map((h, i) => `<div class="rv" style="--d:${i}"><span class="tag">${esc(h.chip)}</span><h3>${esc(h.title)}</h3><p>${esc(h.desc)}</p></div>`).join('')}</div></section>
 <section class="a-sec"><h2 class="h-en">EXPERIENCE</h2>${lines(a.experience)}</section>
@@ -262,7 +272,7 @@ function about(s) {
 function askPage(s) {
   const pos = { 'UX DESIGN': [1502, 100], 'VISUAL DESIGN': [1611, 152], 'AI WORKFLOW': [300, 250], 'SOLO BUILD': [150, 302] };
   const words = s.chat.title.split(' ');
-  return `<section class="hero grid" style="${cs({ hh: 470, mh: 380, mtop: 72, mfs: 104, mlh: 96, mfs2: 92, mlh2: 88, mtt: 100, mtb: 242, mbl: 16 })}">${title([s.chat.title], { fs: ['84%'] }).replace('class="ttl"', 'class="ttl k-pc"')}${title(words, { fs: ['70%', '78%'] }).replace('class="ttl"', 'class="ttl k-mo"')}${chips(pos, null)}<p class="k-sub">${esc(s.chat.subtitle)}</p></section>
+  return `<section class="hero grid" style="${cs({ hh: 470, mh: 380, mtop: 72, mfs: 104, mlh: 96, mfs2: 92, mlh2: 88, mtt: 100, mtb: 242, mbl: 16 })}">${s.chat.title === 'ASK DALNIM' ? imgTitle('ask', 'ASK DALNIM') : title([s.chat.title], { fs: ['84%'] }).replace('class="ttl"', 'class="ttl k-pc"') + title(words, { fs: ['70%', '78%'] }).replace('class="ttl"', 'class="ttl k-mo"')}${chips(pos, null)}<p class="k-sub">${esc(s.chat.subtitle)}</p></section>
 <div class="chat-wrap"><section class="chat" aria-live="polite"><div class="chat-log" data-log></div>
 <div class="chat-in">${askBox(s, { id: 'ask', placeholder: '이어서 물어보세요', live: true })}</div></section></div>`;
 }
@@ -277,6 +287,7 @@ async function main() {
   await fs.copyFile(path.join(ROOT, 'node_modules/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css'), path.join(DIST, 'fonts/pretendardvariable-dynamic-subset.css'));
   for (const f of ['figtree-latin-wght-normal.woff2', 'figtree-latin-ext-wght-normal.woff2'])
     await fs.copyFile(path.join(ROOT, 'node_modules/@fontsource-variable/figtree/files', f), path.join(DIST, 'fonts', f));
+  await fs.cp(path.join(ROOT, 'site/title'), path.join(DIST, 'assets/title'), { recursive: true, filter: (f) => !f.endsWith('.json') });
   await fs.copyFile(path.join(ROOT, 'site/style.css'), path.join(DIST, 'assets/style.css'));
   await fs.copyFile(path.join(ROOT, 'site/app.js'), path.join(DIST, 'assets/app.js'));
 

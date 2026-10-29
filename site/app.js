@@ -126,6 +126,9 @@
       const a = e.target.closest('a[data-peek]');
       if (!a || !a.dataset.peek) return peek.classList.remove('on');
       if (peek.dataset.src !== a.dataset.peek) {
+        // 줄마다 조금씩 다른 각도로 기울여서 보여 준다
+        const n = [...homeList.querySelectorAll('a[data-peek]')].indexOf(a);
+        peek.style.setProperty('--rot', [-4, 3, -2, 5, -6, 2, -3, 6, -1, 4][n % 10] + 'deg');
         peek.dataset.src = a.dataset.peek;
         peek.style.backgroundImage = `url("${a.dataset.peek}")`;
       }

@@ -1,462 +1,474 @@
 [
- {
-  "slug": "jg-motion",
-  "title": "중구청 모션",
-  "summary": "",
-  "description": "",
-  "category": "",
-  "client": "",
-  "role": "",
-  "period": "",
-  "type": "구축",
-  "tags": [],
-  "kind": "WORK",
-  "platform": "RESPONSIVE WEB",
-  "extra_tags": [
-   "INTERACTION"
-  ],
-  "filters": [
-   "VISUAL DESIGN",
-   "AI WORKFLOW"
-  ],
-  "contribution": "",
-  "show_on_wall": true,
-  "show_on_archive": true,
-  "thumbnail": "local:scripts/sample-img/t-jgmotion.webp",
-  "sections": [],
-  "published": true,
-  "sort_order": 0
- },
- {
-  "slug": "jungwon",
-  "title": "정원처방",
-  "summary": "",
-  "description": "",
-  "category": "",
-  "client": "",
-  "role": "",
-  "period": "",
-  "type": "구축",
-  "tags": [],
-  "kind": "WORK",
-  "platform": "RESPONSIVE WEB",
-  "extra_tags": [],
-  "filters": [
-   "UX DESIGN",
-   "VISUAL DESIGN",
-   "AI WORKFLOW"
-  ],
-  "contribution": "",
-  "show_on_wall": true,
-  "show_on_archive": true,
-  "thumbnail": "local:scripts/sample-img/t-jungwon.webp",
-  "sections": [],
-  "published": true,
-  "sort_order": 1
- },
- {
-  "slug": "gungjung",
-  "title": "궁중문화축전",
-  "summary": "",
-  "description": "",
-  "category": "",
-  "client": "",
-  "role": "",
-  "period": "",
-  "type": "구축",
-  "tags": [],
-  "kind": "WORK",
-  "platform": "RESPONSIVE WEB",
-  "extra_tags": [],
-  "filters": [
-   "VISUAL DESIGN"
-  ],
-  "contribution": "",
-  "show_on_wall": true,
-  "show_on_archive": true,
-  "thumbnail": "local:scripts/sample-img/t-gungjung.webp",
-  "sections": [],
-  "published": true,
-  "sort_order": 2
- },
- {
-  "slug": "banwol-ax",
-  "title": "반월시화 AX 통합지원플랫폼",
-  "summary": "",
-  "description": "",
-  "category": "",
-  "client": "",
-  "role": "",
-  "period": "",
-  "type": "구축",
-  "tags": [],
-  "kind": "WORK",
-  "platform": "WEB",
-  "extra_tags": [],
-  "filters": [
-   "UX DESIGN",
-   "AI WORKFLOW"
-  ],
-  "contribution": "",
-  "show_on_wall": true,
-  "show_on_archive": true,
-  "thumbnail": "local:scripts/sample-img/t-banwol.webp",
-  "sections": [],
-  "published": true,
-  "sort_order": 3
- },
- {
-  "slug": "jawon-maru",
-  "title": "자원순환마루",
-  "summary": "",
-  "description": "",
-  "category": "",
-  "client": "",
-  "role": "",
-  "period": "",
-  "type": "구축",
-  "tags": [],
-  "kind": "WORK",
-  "platform": "RESPONSIVE WEB",
-  "extra_tags": [],
-  "filters": [
-   "UX DESIGN",
-   "VISUAL DESIGN"
-  ],
-  "contribution": "",
-  "show_on_wall": true,
-  "show_on_archive": true,
-  "thumbnail": "local:scripts/sample-img/t-jawon.webp",
-  "sections": [],
-  "published": true,
-  "sort_order": 4
- },
- {
-  "slug": "junggu-main",
-  "title": "중구청 메인 개편",
-  "summary": "",
-  "description": "",
-  "category": "",
-  "client": "",
-  "role": "",
-  "period": "",
-  "type": "구축",
-  "tags": [],
-  "kind": "WORK",
-  "platform": "RESPONSIVE WEB",
-  "extra_tags": [],
-  "filters": [
-   "UX DESIGN",
-   "VISUAL DESIGN",
-   "AI WORKFLOW"
-  ],
-  "contribution": "",
-  "show_on_wall": true,
-  "show_on_archive": true,
-  "thumbnail": "local:scripts/sample-img/t-jgmain.webp",
-  "sections": [],
-  "published": true,
-  "sort_order": 5
- },
- {
-  "slug": "youth-info",
-  "title": "청년몽땅정보통",
-  "summary": "",
-  "description": "",
-  "category": "",
-  "client": "",
-  "role": "",
-  "period": "",
-  "type": "구축",
-  "tags": [],
-  "kind": "WORK",
-  "platform": "RESPONSIVE WEB",
-  "extra_tags": [],
-  "filters": [
-   "UX DESIGN"
-  ],
-  "contribution": "",
-  "show_on_wall": true,
-  "show_on_archive": true,
-  "thumbnail": "local:scripts/sample-img/t-youth.webp",
-  "sections": [],
-  "published": true,
-  "sort_order": 6
- },
- {
-  "slug": "seoul-youngtech",
-  "title": "서울영테크",
-  "summary": "",
-  "description": "",
-  "category": "",
-  "client": "",
-  "role": "",
-  "period": "",
-  "type": "구축",
-  "tags": [],
-  "kind": "WORK",
-  "platform": "RESPONSIVE WEB",
-  "extra_tags": [],
-  "filters": [
-   "UX DESIGN"
-  ],
-  "contribution": "",
-  "show_on_wall": true,
-  "show_on_archive": true,
-  "thumbnail": "local:scripts/sample-img/t-yeongtech.webp",
-  "sections": [],
-  "published": true,
-  "sort_order": 7
- },
- {
-  "slug": "yamyamlog",
-  "title": "얌얌로그",
-  "summary": "고양이 네 마리가\n어떤 간식을 잘 먹는지\n기록하는 앱입니다.",
-  "description": "숫자 대신 고양이 표정으로 반응을 남기도록 디자인 규칙부터 정했고, 구현은 AI와 함께 진행했습니다.\n\n폰 홈 화면에 설치해 직접 쓰고 있는 앱입니다.",
-  "category": "",
-  "client": "",
-  "role": "기획 · 디자인\n구현은 AI와 함께",
-  "period": "",
-  "type": "개인 프로젝트",
-  "tags": [
-   "React",
-   "TypeScript",
-   "Vite",
-   "PWA",
-   "IndexedDB + Supabase"
-  ],
-  "kind": "NOT WORK",
-  "platform": "APP",
-  "extra_tags": [],
-  "filters": [
-   "UX DESIGN",
-   "VISUAL DESIGN",
-   "AI WORKFLOW",
-   "SOLO BUILD"
-  ],
-  "contribution": "100%",
-  "show_on_wall": true,
-  "show_on_archive": true,
-  "thumbnail": "local:scripts/sample-img/t-yamyam.webp",
-  "sections": [
-   {
-    "id": "s0",
-    "label": "",
-    "heading": "",
-    "body": "",
-    "layout": "1",
-    "images": [
-     {
-      "path": "local:scripts/sample-img/d-mock.webp",
-      "caption": ""
-     }
-    ]
-   },
-   {
-    "id": "s1",
-    "label": "기획",
-    "heading": "표정 하나로\n기호도를 읽게 했습니다.",
-    "body": "숫자 대신 고양이 표정으로 반응을 남기도록 디자인 규칙부터 정했습니다. 잘 먹음·보통·안 먹음 3단계, 간식 종류·베이스별 색 구분, 네 마리 취향을 기록으로 남겨 함께 공유합니다.",
-    "layout": "1",
-    "images": [
-     {
-      "path": "local:scripts/sample-img/d-rule.webp",
-      "caption": ""
-     },
-     {
-      "path": "local:scripts/sample-img/d-v1.webp",
-      "caption": ""
-     }
-    ]
-   },
-   {
-    "id": "s2",
-    "label": "구현",
-    "heading": "디자인은 직접,\n구현은 AI와 함께 했습니다.",
-    "body": "디자인 가이드를 기준으로 화면을 설계하고, 구현은 AI와 함께 진행했습니다. 폰 홈 화면에 설치해 직접 쓰고 있는 앱입니다.",
-    "layout": "1",
-    "points": [
-     [
-      "AI와 일한 방식",
-      "디자인 가이드를 기준으로 넘겨\n모든 화면을 같은 규칙으로"
-     ],
-     [
-      "구조",
-      "데이터 접근을 한 곳에 모아\n기기 저장 → 클라우드 공유로 교체 가능"
-     ],
-     [
-      "기술",
-      "React · TypeScript · Vite\nPWA, IndexedDB + Supabase"
-     ]
+  {
+    "slug": "jg-motion",
+    "title": "중구청 모션",
+    "summary": "",
+    "description": "",
+    "category": "",
+    "client": "",
+    "role": "",
+    "period": "",
+    "type": "구축",
+    "tags": [],
+    "kind": "WORK",
+    "platform": "RESPONSIVE WEB",
+    "extra_tags": [
+      "INTERACTION"
     ],
-    "images": [
-     {
-      "path": "local:scripts/sample-img/d-v2.webp",
-      "caption": ""
-     }
-    ]
-   }
-  ],
-  "published": true,
-  "sort_order": 8
- },
- {
-  "slug": "med-tracker",
-  "title": "복약 트래커",
-  "summary": "",
-  "description": "",
-  "category": "",
-  "client": "",
-  "role": "",
-  "period": "",
-  "type": "개인 프로젝트",
-  "tags": [],
-  "kind": "NOT WORK",
-  "platform": "APP",
-  "extra_tags": [],
-  "filters": [
-   "UX DESIGN",
-   "AI WORKFLOW",
-   "SOLO BUILD"
-  ],
-  "contribution": "",
-  "show_on_wall": true,
-  "show_on_archive": true,
-  "thumbnail": "local:scripts/sample-img/t-bokyak.webp",
-  "sections": [],
-  "published": true,
-  "sort_order": 9
- },
- {
-  "slug": "relic-workshop",
-  "title": "유물 복원 공방",
-  "summary": "",
-  "description": "",
-  "category": "",
-  "client": "",
-  "role": "",
-  "period": "",
-  "type": "개인 프로젝트",
-  "tags": [],
-  "kind": "NOT WORK",
-  "platform": "",
-  "extra_tags": [
-   "GAME"
-  ],
-  "filters": [
-   "AI WORKFLOW",
-   "SOLO BUILD"
-  ],
-  "contribution": "",
-  "show_on_wall": true,
-  "show_on_archive": false,
-  "thumbnail": "local:scripts/sample-img/t-relic.webp",
-  "sections": [],
-  "published": true,
-  "sort_order": 10
- },
- {
-  "slug": "ggac",
-  "title": "경기아트센터",
-  "summary": "",
-  "description": "",
-  "category": "",
-  "client": "",
-  "role": "",
-  "period": "",
-  "type": "구축",
-  "tags": [],
-  "kind": "WORK",
-  "platform": "RESPONSIVE WEB",
-  "extra_tags": [],
-  "filters": [
-   "VISUAL DESIGN"
-  ],
-  "contribution": "",
-  "show_on_wall": true,
-  "show_on_archive": false,
-  "thumbnail": "local:scripts/sample-img/t-ggac.webp",
-  "sections": [],
-  "published": true,
-  "sort_order": 11
- },
- {
-  "slug": "sangsang-2023",
-  "title": "2023 상상마당 제안시안",
-  "summary": "",
-  "description": "",
-  "category": "",
-  "client": "",
-  "role": "",
-  "period": "",
-  "type": "구축",
-  "tags": [],
-  "kind": "WORK",
-  "platform": "RESPONSIVE WEB",
-  "extra_tags": [
-   "PROPOSAL"
-  ],
-  "filters": [
-   "VISUAL DESIGN"
-  ],
-  "contribution": "",
-  "show_on_wall": true,
-  "show_on_archive": false,
-  "thumbnail": "local:scripts/sample-img/t-sangsang.webp",
-  "sections": [],
-  "published": true,
-  "sort_order": 12
- },
- {
-  "slug": "weekly-chest",
-  "title": "Weekly Chest Cases",
-  "summary": "",
-  "description": "",
-  "category": "",
-  "client": "",
-  "role": "",
-  "period": "",
-  "type": "구축",
-  "tags": [],
-  "kind": "WORK",
-  "platform": "APP",
-  "extra_tags": [],
-  "filters": [
-   "UX DESIGN",
-   "VISUAL DESIGN"
-  ],
-  "contribution": "",
-  "show_on_wall": true,
-  "show_on_archive": false,
-  "thumbnail": "local:scripts/sample-img/t-wcc.webp",
-  "sections": [],
-  "published": true,
-  "sort_order": 13
- },
- {
-  "slug": "kocom-wallpad",
-  "title": "Kocom 월패드",
-  "summary": "",
-  "description": "",
-  "category": "",
-  "client": "",
-  "role": "",
-  "period": "",
-  "type": "개인 프로젝트",
-  "tags": [],
-  "kind": "NOT WORK",
-  "platform": "",
-  "extra_tags": [],
-  "filters": [
-   "UX DESIGN",
-   "VISUAL DESIGN"
-  ],
-  "contribution": "",
-  "show_on_wall": false,
-  "show_on_archive": false,
-  "thumbnail": null,
-  "sections": [],
-  "published": true,
-  "sort_order": 14
- }
+    "filters": [
+      "VISUAL DESIGN",
+      "AI WORKFLOW"
+    ],
+    "contribution": "",
+    "show_on_wall": false,
+    "show_on_archive": true,
+    "thumbnail": "local:scripts/sample-img/t-jgmotion.webp",
+    "sections": [],
+    "published": true,
+    "sort_order": 0
+  },
+  {
+    "slug": "jungwon",
+    "title": "정원처방",
+    "summary": "",
+    "description": "",
+    "category": "",
+    "client": "",
+    "role": "",
+    "period": "",
+    "type": "구축",
+    "tags": [],
+    "kind": "WORK",
+    "platform": "RESPONSIVE WEB",
+    "extra_tags": [],
+    "filters": [
+      "UX DESIGN",
+      "VISUAL DESIGN",
+      "AI WORKFLOW"
+    ],
+    "contribution": "",
+    "show_on_wall": true,
+    "show_on_archive": true,
+    "thumbnail": "local:scripts/sample-img/t-jungwon.webp",
+    "sections": [],
+    "published": true,
+    "sort_order": 1,
+    "wall_order": 7
+  },
+  {
+    "slug": "gungjung",
+    "title": "궁중문화축전",
+    "summary": "",
+    "description": "",
+    "category": "",
+    "client": "",
+    "role": "",
+    "period": "",
+    "type": "구축",
+    "tags": [],
+    "kind": "WORK",
+    "platform": "RESPONSIVE WEB",
+    "extra_tags": [],
+    "filters": [
+      "VISUAL DESIGN"
+    ],
+    "contribution": "",
+    "show_on_wall": true,
+    "show_on_archive": true,
+    "thumbnail": "local:scripts/sample-img/t-gungjung.webp",
+    "sections": [],
+    "published": true,
+    "sort_order": 2,
+    "wall_order": 8
+  },
+  {
+    "slug": "banwol-ax",
+    "title": "반월시화 AX 통합지원플랫폼",
+    "summary": "",
+    "description": "",
+    "category": "",
+    "client": "",
+    "role": "",
+    "period": "",
+    "type": "구축",
+    "tags": [],
+    "kind": "WORK",
+    "platform": "WEB",
+    "extra_tags": [],
+    "filters": [
+      "UX DESIGN",
+      "AI WORKFLOW"
+    ],
+    "contribution": "",
+    "show_on_wall": true,
+    "show_on_archive": true,
+    "thumbnail": "local:scripts/sample-img/t-banwol.webp",
+    "sections": [],
+    "published": true,
+    "sort_order": 3,
+    "wall_order": 11
+  },
+  {
+    "slug": "jawon-maru",
+    "title": "자원순환마루",
+    "summary": "",
+    "description": "",
+    "category": "",
+    "client": "",
+    "role": "",
+    "period": "",
+    "type": "구축",
+    "tags": [],
+    "kind": "WORK",
+    "platform": "RESPONSIVE WEB",
+    "extra_tags": [],
+    "filters": [
+      "UX DESIGN",
+      "VISUAL DESIGN"
+    ],
+    "contribution": "",
+    "show_on_wall": true,
+    "show_on_archive": true,
+    "thumbnail": "local:scripts/sample-img/t-jawon.webp",
+    "sections": [],
+    "published": true,
+    "sort_order": 4,
+    "wall_order": 5
+  },
+  {
+    "slug": "junggu-main",
+    "title": "중구청 메인 개편",
+    "summary": "",
+    "description": "",
+    "category": "",
+    "client": "",
+    "role": "",
+    "period": "",
+    "type": "구축",
+    "tags": [],
+    "kind": "WORK",
+    "platform": "RESPONSIVE WEB",
+    "extra_tags": [],
+    "filters": [
+      "UX DESIGN",
+      "VISUAL DESIGN",
+      "AI WORKFLOW"
+    ],
+    "contribution": "",
+    "show_on_wall": false,
+    "show_on_archive": true,
+    "thumbnail": "local:scripts/sample-img/t-jgmain.webp",
+    "sections": [],
+    "published": true,
+    "sort_order": 5
+  },
+  {
+    "slug": "youth-info",
+    "title": "청년몽땅정보통",
+    "summary": "",
+    "description": "",
+    "category": "",
+    "client": "",
+    "role": "",
+    "period": "",
+    "type": "구축",
+    "tags": [],
+    "kind": "WORK",
+    "platform": "RESPONSIVE WEB",
+    "extra_tags": [],
+    "filters": [
+      "UX DESIGN"
+    ],
+    "contribution": "",
+    "show_on_wall": true,
+    "show_on_archive": true,
+    "thumbnail": "local:scripts/sample-img/t-youth.webp",
+    "sections": [],
+    "published": true,
+    "sort_order": 6,
+    "wall_order": 10
+  },
+  {
+    "slug": "seoul-youngtech",
+    "title": "서울영테크",
+    "summary": "",
+    "description": "",
+    "category": "",
+    "client": "",
+    "role": "",
+    "period": "",
+    "type": "구축",
+    "tags": [],
+    "kind": "WORK",
+    "platform": "RESPONSIVE WEB",
+    "extra_tags": [],
+    "filters": [
+      "UX DESIGN"
+    ],
+    "contribution": "",
+    "show_on_wall": true,
+    "show_on_archive": true,
+    "thumbnail": "local:scripts/sample-img/t-yeongtech.webp",
+    "sections": [],
+    "published": true,
+    "sort_order": 7,
+    "wall_order": 12
+  },
+  {
+    "slug": "yamyamlog",
+    "title": "얌얌로그",
+    "summary": "고양이 네 마리가\n어떤 간식을 잘 먹는지\n기록하는 앱입니다.",
+    "description": "숫자 대신 고양이 표정으로 반응을 남기도록 디자인 규칙부터 정했고, 구현은 AI와 함께 진행했습니다.\n\n폰 홈 화면에 설치해 직접 쓰고 있는 앱입니다.",
+    "category": "",
+    "client": "",
+    "role": "기획 · 디자인\n구현은 AI와 함께",
+    "period": "",
+    "type": "개인 프로젝트",
+    "tags": [
+      "React",
+      "TypeScript",
+      "Vite",
+      "PWA",
+      "IndexedDB + Supabase"
+    ],
+    "kind": "NOT WORK",
+    "platform": "APP",
+    "extra_tags": [],
+    "filters": [
+      "UX DESIGN",
+      "VISUAL DESIGN",
+      "AI WORKFLOW",
+      "SOLO BUILD"
+    ],
+    "contribution": "100%",
+    "show_on_wall": true,
+    "show_on_archive": true,
+    "thumbnail": "local:scripts/sample-img/t-yamyam.webp",
+    "sections": [
+      {
+        "id": "s0",
+        "label": "",
+        "heading": "",
+        "body": "",
+        "layout": "1",
+        "images": [
+          {
+            "path": "local:scripts/sample-img/d-mock.webp",
+            "caption": ""
+          }
+        ]
+      },
+      {
+        "id": "s1",
+        "label": "기획",
+        "heading": "표정 하나로\n기호도를 읽게 했습니다.",
+        "body": "숫자 대신 고양이 표정으로 반응을 남기도록 디자인 규칙부터 정했습니다. 잘 먹음·보통·안 먹음 3단계, 간식 종류·베이스별 색 구분, 네 마리 취향을 기록으로 남겨 함께 공유합니다.",
+        "layout": "1",
+        "images": [
+          {
+            "path": "local:scripts/sample-img/d-rule.webp",
+            "caption": ""
+          },
+          {
+            "path": "local:scripts/sample-img/d-v1.webp",
+            "caption": ""
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "label": "구현",
+        "heading": "디자인은 직접,\n구현은 AI와 함께 했습니다.",
+        "body": "디자인 가이드를 기준으로 화면을 설계하고, 구현은 AI와 함께 진행했습니다. 폰 홈 화면에 설치해 직접 쓰고 있는 앱입니다.",
+        "layout": "1",
+        "points": [
+          [
+            "AI와 일한 방식",
+            "디자인 가이드를 기준으로 넘겨\n모든 화면을 같은 규칙으로"
+          ],
+          [
+            "구조",
+            "데이터 접근을 한 곳에 모아\n기기 저장 → 클라우드 공유로 교체 가능"
+          ],
+          [
+            "기술",
+            "React · TypeScript · Vite\nPWA, IndexedDB + Supabase"
+          ]
+        ],
+        "images": [
+          {
+            "path": "local:scripts/sample-img/d-v2.webp",
+            "caption": ""
+          }
+        ]
+      }
+    ],
+    "published": true,
+    "sort_order": 8,
+    "wall_order": 4
+  },
+  {
+    "slug": "med-tracker",
+    "title": "복약 트래커",
+    "summary": "",
+    "description": "",
+    "category": "",
+    "client": "",
+    "role": "",
+    "period": "",
+    "type": "개인 프로젝트",
+    "tags": [],
+    "kind": "NOT WORK",
+    "platform": "APP",
+    "extra_tags": [],
+    "filters": [
+      "UX DESIGN",
+      "AI WORKFLOW",
+      "SOLO BUILD"
+    ],
+    "contribution": "",
+    "show_on_wall": true,
+    "show_on_archive": true,
+    "thumbnail": "local:scripts/sample-img/t-bokyak.webp",
+    "sections": [],
+    "published": true,
+    "sort_order": 9,
+    "wall_order": 6
+  },
+  {
+    "slug": "relic-workshop",
+    "title": "유물 복원 공방",
+    "summary": "",
+    "description": "",
+    "category": "",
+    "client": "",
+    "role": "",
+    "period": "",
+    "type": "개인 프로젝트",
+    "tags": [],
+    "kind": "NOT WORK",
+    "platform": "",
+    "extra_tags": [
+      "GAME"
+    ],
+    "filters": [
+      "AI WORKFLOW",
+      "SOLO BUILD"
+    ],
+    "contribution": "",
+    "show_on_wall": true,
+    "show_on_archive": false,
+    "thumbnail": "local:scripts/sample-img/t-relic.webp",
+    "sections": [],
+    "published": true,
+    "sort_order": 10,
+    "wall_order": 1
+  },
+  {
+    "slug": "ggac",
+    "title": "경기아트센터",
+    "summary": "",
+    "description": "",
+    "category": "",
+    "client": "",
+    "role": "",
+    "period": "",
+    "type": "구축",
+    "tags": [],
+    "kind": "WORK",
+    "platform": "RESPONSIVE WEB",
+    "extra_tags": [],
+    "filters": [
+      "VISUAL DESIGN"
+    ],
+    "contribution": "",
+    "show_on_wall": true,
+    "show_on_archive": false,
+    "thumbnail": "local:scripts/sample-img/t-ggac.webp",
+    "sections": [],
+    "published": true,
+    "sort_order": 11,
+    "wall_order": 9
+  },
+  {
+    "slug": "sangsang-2023",
+    "title": "2023 상상마당 제안시안",
+    "summary": "",
+    "description": "",
+    "category": "",
+    "client": "",
+    "role": "",
+    "period": "",
+    "type": "구축",
+    "tags": [],
+    "kind": "WORK",
+    "platform": "RESPONSIVE WEB",
+    "extra_tags": [
+      "PROPOSAL"
+    ],
+    "filters": [
+      "VISUAL DESIGN"
+    ],
+    "contribution": "",
+    "show_on_wall": true,
+    "show_on_archive": false,
+    "thumbnail": "local:scripts/sample-img/t-sangsang.webp",
+    "sections": [],
+    "published": true,
+    "sort_order": 12,
+    "wall_order": 2
+  },
+  {
+    "slug": "weekly-chest",
+    "title": "Weekly Chest Cases",
+    "summary": "",
+    "description": "",
+    "category": "",
+    "client": "",
+    "role": "",
+    "period": "",
+    "type": "구축",
+    "tags": [],
+    "kind": "WORK",
+    "platform": "APP",
+    "extra_tags": [],
+    "filters": [
+      "UX DESIGN",
+      "VISUAL DESIGN"
+    ],
+    "contribution": "",
+    "show_on_wall": true,
+    "show_on_archive": false,
+    "thumbnail": "local:scripts/sample-img/t-wcc.webp",
+    "sections": [],
+    "published": true,
+    "sort_order": 13,
+    "wall_order": 3
+  },
+  {
+    "slug": "kocom-wallpad",
+    "title": "Kocom 월패드",
+    "summary": "",
+    "description": "",
+    "category": "",
+    "client": "",
+    "role": "",
+    "period": "",
+    "type": "개인 프로젝트",
+    "tags": [],
+    "kind": "NOT WORK",
+    "platform": "",
+    "extra_tags": [],
+    "filters": [
+      "UX DESIGN",
+      "VISUAL DESIGN"
+    ],
+    "contribution": "",
+    "show_on_wall": false,
+    "show_on_archive": false,
+    "thumbnail": null,
+    "sections": [],
+    "published": true,
+    "sort_order": 14
+  }
 ]

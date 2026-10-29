@@ -86,8 +86,9 @@ export default function SettingsPage({ onSaved, onError }) {
           <div className="grid2">
             <Text label="소개 제목 (모바일 검색창 아래)" rows={2} value={s.hero.intro_title} onChange={(v) => set('hero', { intro_title: v })} />
             <Text label="소개 보조 문장" rows={2} value={s.hero.intro_sub} onChange={(v) => set('hero', { intro_sub: v })} />
-            <Text label="썸네일 벽 문구" rows={3} value={s.hero.wall_note} onChange={(v) => set('hero', { wall_note: v })} />
-            <Text label="썸네일 벽 오른쪽 위 (연도·이름)" rows={2} value={s.hero.wall_year} onChange={(v) => set('hero', { wall_year: v })} />
+            <Text label="썸네일 벽 문구 (가운데)" rows={3} value={s.hero.wall_note} onChange={(v) => set('hero', { wall_note: v })} />
+            <Text label="썸네일 벽 문구 (왼쪽 아래)" rows={3} value={s.hero.wall_note2} onChange={(v) => set('hero', { wall_note2: v })} />
+            <Text label="About 오른쪽 위 (연도·이름)" rows={2} value={s.hero.wall_year} onChange={(v) => set('hero', { wall_year: v })} />
           </div>
         </div>
       )}
