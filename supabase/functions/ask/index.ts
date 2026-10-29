@@ -16,6 +16,7 @@ const MODEL = Deno.env.get('GEMINI_MODEL') ?? 'gemini-3.5-flash-lite';
 const SITE_LIMIT = Number(Deno.env.get('CHAT_SITE_DAILY_LIMIT') ?? 300);
 
 const FALLBACK = {
+  private_answer: '해당 내용은 비공개 정보라 답변할 수 없어요. 궁금한 점은 면접에서 직접 이야기 나누고 싶어요.',
   fallback: '그 부분은 포트폴리오에 담지 않았어요. 자세한 이야기는 면접에서 직접 나누고 싶어요.',
   limit_message: '오늘은 질문을 모두 받았어요. 내일 다시 물어봐 주세요.',
   daily_limit: 10,
@@ -32,7 +33,7 @@ const POLICY = `너는 UI/UX 디자이너 이달님의 포트폴리오 사이트
 - 프로젝트의 개요 (무엇을 만든 작업인지, 역할, 기간, 플랫폼, 어떤 성격의 작업인지)
 - AI를 작업에 활용하는 큰 흐름
 
-답하지 않는 것 (정중하게 한두 문장으로 거절하고, 포트폴리오나 면접에서 이야기 나누자고 안내):
+답하지 않는 것 (아래 [비공개 답변]을 그대로 쓴다. 포트폴리오와 상관없는 질문은 [모를 때 답변]을 쓴다):
 - 개인정보: 연락처, 이메일, 전화번호, 주소, 생년월일, 나이, 연봉·희망 연봉, 가족, 건강, 사생활
 - 프로젝트를 어떻게 만들었는지 처음부터 끝까지 단계별로 파고드는 질문, 사용한 프롬프트, 코드, 파일, 설정 값
 - 클라이언트 내부 정보, 계약·금액, 공개되지 않은 수치
@@ -152,7 +153,7 @@ Deno.serve(async (req) => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
     body: JSON.stringify({
-      systemInstruction: { parts: [{ text: `${POLICY}\n\n[모를 때 답변]\n${chat.fallback}\n\n[자료]\n${context}` }] },
+      systemInstruction: { parts: [{ text: `${POLICY}\n\n[비공개 답변]\n${chat.private_answer}\n\n[모를 때 답변]\n${chat.fallback}\n\n[자료]\n${context}` }] },
       contents: [...history, { role: 'user', parts: [{ text: q }] }],
       generationConfig: {
         temperature: 0.4,

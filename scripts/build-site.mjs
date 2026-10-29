@@ -221,7 +221,7 @@ function projectsPage(projects, s, counts) {
     .map(
       (p, i) => `<a class="card rv" href="${href(p)}" data-detail data-kind="${esc(p.kind)}" data-f="${(p.filters || []).map((f) => FILTER_KEYS[f]).join(' ')}" style="--d:${i % 4}">
 <span class="th">${p._thumb ? `${pic(p._thumb, '', '(max-width: 1023px) 50vw, 25vw')}<img class="px" src="${BASE}img/${p._thumb.id}-px.webp" alt="" aria-hidden="true" loading="lazy">` : '<span class="ph">이미지 넣기</span>'}</span>
-<span class="ov"><strong>${esc(p.title)}</strong><small>${tagLine(p).map(nb).join(' · ')}</small><em>자세히 보기 ↑</em></span>
+<span class="ov"><strong>${esc(p.title)}</strong><small>${tagLine(p).map(nb).join(' · ')}</small><em>자세히 보기 ↗</em></span>
 <span class="cap"><strong>${esc(p.title)}</strong><small>${tagLine(p).map(nb).join(' · ')}</small></span></a>`,
     )
     .join('')}<p class="empty" hidden data-empty>이 조건에 맞는 작업이 아직 없어요.</p></div>`;

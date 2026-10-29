@@ -187,7 +187,8 @@ export default function SettingsPage({ onSaved, onError }) {
               <Text label="추천 질문 (한 줄에 하나)" rows={3} value={c.suggestions.join('\n')} onChange={(v) => set('chat', { suggestions: v.split('\n').map((x) => x.trim()).filter(Boolean) })} span />
               <Text label="답변 뒤 이어서 물어볼 질문 (한 줄에 하나)" rows={3} value={(c.followups || []).join('\n')} onChange={(v) => set('chat', { followups: v.split('\n').map((x) => x.trim()).filter(Boolean) })} span />
               <Text label="입력창 아래 주의 문구" rows={2} value={c.notice} onChange={(v) => set('chat', { notice: v })} span />
-              <Text label="답할 수 없을 때" rows={2} value={c.fallback} onChange={(v) => set('chat', { fallback: v })} span />
+              <Text label="비공개 정보를 물었을 때 (개인정보·작업 세부 과정 등)" rows={2} value={c.private_answer || ''} onChange={(v) => set('chat', { private_answer: v })} span />
+              <Text label="포트폴리오에 없는 질문일 때" rows={2} value={c.fallback} onChange={(v) => set('chat', { fallback: v })} span />
               <Text label="하루 질문 수를 넘었을 때" rows={2} value={c.limit_message} onChange={(v) => set('chat', { limit_message: v })} span />
               <Text label="AI에게 더 알려 줄 내용 (사이트에는 안 보여요)" rows={5} value={c.extra_context} onChange={(v) => set('chat', { extra_context: v })} span hint="일하는 방식, 면접에서 자주 받는 질문의 답 등. 개인정보는 넣지 마세요." />
             </div>
