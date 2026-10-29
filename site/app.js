@@ -201,12 +201,15 @@
       c.addEventListener('click', (e) => {
         e.preventDefault();
         st.f = st.f === c.dataset.chip ? '' : c.dataset.chip;
-        apply();
+        c.classList.remove('tap');
+        void c.offsetWidth;
+        c.classList.add('tap');
+        fadeSwap(cards, apply, '.card');
       }),
     );
     $('[data-sel-name]').addEventListener('click', () => {
       st.f = '';
-      apply();
+      fadeSwap(cards, apply, '.card');
     });
     $('[data-clear]').addEventListener('click', () => {
       st.f = '';

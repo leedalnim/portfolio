@@ -64,12 +64,15 @@ img{display:block;max-width:100%}
 /* ---------- 파란 칩 ---------- */
 .chip{position:absolute;left:calc(var(--x) * var(--u));top:calc(var(--y) * var(--u));z-index:3;display:inline-flex;align-items:flex-start;
   background:var(--blue);color:#fff;border-radius:100px;padding:calc(12 * var(--u)) calc(26 * var(--u));font:500 calc(30 * var(--u))/calc(36 * var(--u)) var(--en);letter-spacing:0;white-space:nowrap;
-  transition:transform .35s var(--ease),opacity .3s,box-shadow .3s;animation:pop .7s var(--ease) both;animation-delay:calc(var(--i,0) * 70ms + 550ms)}
+  transition:transform .5s cubic-bezier(.34,1.56,.64,1),opacity .5s var(--ease),filter .5s var(--ease),box-shadow .5s var(--ease);animation:pop .7s var(--ease) backwards;animation-delay:calc(var(--i,0) * 70ms + 550ms)}
 .chip sup{font:600 calc(19 * var(--u))/1 var(--en);opacity:.85;margin:calc(4 * var(--u)) 0 0 calc(6 * var(--u));vertical-align:0}
 a.chip:hover{transform:translateY(-3px) rotate(-2deg)}
-.chip.dim{opacity:.3}
+.chip.dim{opacity:.32;filter:saturate(.5);transform:scale(.94)}
+.chip.dim:hover{opacity:.7}
 .cg{display:contents}
-.chip.on{box-shadow:0 calc(8 * var(--u)) calc(20 * var(--u)) rgba(20,47,178,.35)}
+.chip.on{box-shadow:0 calc(10 * var(--u)) calc(26 * var(--u)) rgba(20,47,178,.38);transform:translateY(calc(-4 * var(--u))) scale(1.05)}
+.chip.tap{animation:tap .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes tap{40%{transform:scale(.9)}}
 @keyframes pop{from{opacity:0;transform:translateY(30%) scale(.7) rotate(-6deg)}}
 
 /* ---------- 알약 버튼 (탭) ---------- */
@@ -147,7 +150,7 @@ a.chip:hover{transform:translateY(-3px) rotate(-2deg)}
 /* ---------- 프로젝트 목록 ---------- */
 .p-bar{position:relative;display:flex;align-items:center;gap:12px;padding:0 calc(16 * var(--u));height:calc(136 * var(--u));min-height:64px;border-bottom:1px solid var(--ink)}
 .p-bar .sel{display:none;align-items:center;gap:14px}
-.p-bar .sel.on{display:flex}
+.p-bar .sel.on{display:flex;animation:fi .45s var(--ease)}
 .p-bar .sel::before{content:'';width:1px;height:18px;background:rgba(17,17,17,.3);margin:0 6px}
 .p-bar .clear{font:500 14px/1 var(--ko);color:var(--g1)}
 .p-bar .sort{margin-left:auto;font:600 15px/1 var(--ko)}
