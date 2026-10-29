@@ -91,7 +91,7 @@ a.chip:hover{transform:translateY(-3px) rotate(-2deg)}
 
 /* ---------- 메인 ---------- */
 .m-search{position:relative;height:calc(308 * var(--u));background:#fff;z-index:2}
-.m-search .ask{position:absolute;left:calc(68 * var(--u));top:calc(120 * var(--u));width:calc(1104 * var(--u))}
+.m-search .ask{position:absolute;left:calc(194 * var(--u));top:calc(120 * var(--u));width:calc(1104 * var(--u))}
 @media (min-width:1024px){
   .m-search .ask-box{height:calc(64 * var(--u));padding:0 calc(8 * var(--u)) 0 calc(32 * var(--u));border-width:max(1.5px,calc(2 * var(--u)))}
   .m-search .ask-box input{font-size:max(13px,calc(19 * var(--u)))}
