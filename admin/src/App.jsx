@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
-import { store, isDemo, CATEGORIES } from './store.js';
+import { store, isDemo, KINDS } from './store.js';
 import Login from './Login.jsx';
 import ProjectList from './ProjectList.jsx';
 import ProjectEditor from './ProjectEditor.jsx';
+import SettingsPage from './SettingsPage.jsx';
 import { emptyProject } from './store.js';
-import { fmtDate, IconGrid, IconOut, IconUp } from './ui.jsx';
+import { fmtDate, IconGrid, IconOut, IconUp, IconSet } from './ui.jsx';
 
 const LAST_PUB = 'pf-last-published';
 
@@ -13,6 +14,8 @@ export default function App() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(null);
+  const [view, setView] = useState('projects');
+  const [settingsAt, setSettingsAt] = useState('');
   const [toast, setToast] = useState(null);
   const [pub, setPub] = useState({ state: 'idle', at: readLastPub() });
 
@@ -40,7 +43,7 @@ export default function App() {
     return () => clearTimeout(t);
   }, [toast]);
 
-  const latestEdit = useMemo(() => projects.reduce((m, p) => (p.updated_at && p.updated_at > m ? p.updated_at : m), ''), [projects]);
+  const latestEdit = useMemo(() => projects.reduce((m, p) => (p.updated_at && p.updated_at > m ? p.updated_at : m), settingsAt), [projects, settingsAt]);
   const needsPublish = latestEdit && (!pub.at || latestEdit > pub.at);
 
   async function publish() {
@@ -121,9 +124,12 @@ export default function App() {
           </div>
         </div>
         <nav className="side-nav">
-          <button className={!editing ? 'on' : ''} onClick={() => setEditing(null)}>
+          <button className={view === 'projects' && !editing ? 'on' : ''} onClick={() => { setView('projects'); setEditing(null); }}>
             <IconGrid /> 프로젝트
             <em>{projects.length}</em>
+          </button>
+          <button className={view === 'settings' ? 'on' : ''} onClick={() => { setView('settings'); setEditing(null); }}>
+            <IconSet /> 사이트 설정
           </button>
           <a href={import.meta.env.BASE_URL.replace(/admin\/$/, '')} target="_blank" rel="noreferrer">
             <IconOut /> 사이트 보기
@@ -163,7 +169,15 @@ export default function App() {
           </button>
         </header>
 
-        {editing ? (
+        {view === 'settings' ? (
+          <SettingsPage
+            onSaved={() => {
+              setSettingsAt(new Date().toISOString());
+              flash('설정을 저장했어요.');
+            }}
+            onError={(m) => flash(m, 'error')}
+          />
+        ) : editing ? (
           <ProjectEditor
             key={editing.id || 'new'}
             initial={editing}
@@ -180,7 +194,7 @@ export default function App() {
             onEdit={setEditing}
             onToggle={onTogglePublished}
             onReorder={onReorder}
-            categories={CATEGORIES}
+            categories={KINDS}
           />
         )}
       </main>

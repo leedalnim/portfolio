@@ -7,7 +7,7 @@ export default function ProjectList({ projects, loading, onNew, onEdit, onToggle
   const [dragId, setDragId] = useState(null);
   const [overId, setOverId] = useState(null);
 
-  const shown = filter === '전체' ? projects : projects.filter((p) => p.category === filter);
+  const shown = filter === '전체' ? projects : projects.filter((p) => p.kind === filter);
   const canDrag = filter === '전체';
 
   function drop(targetId) {
@@ -37,7 +37,7 @@ export default function ProjectList({ projects, loading, onNew, onEdit, onToggle
         {['전체', ...categories].map((c) => (
           <button key={c} role="tab" aria-selected={filter === c} className={filter === c ? 'on' : ''} onClick={() => setFilter(c)}>
             {c}
-            <em>{c === '전체' ? projects.length : projects.filter((p) => p.category === c).length}</em>
+            <em>{c === '전체' ? projects.length : projects.filter((p) => p.kind === c).length}</em>
           </button>
         ))}
       </div>
@@ -86,7 +86,7 @@ export default function ProjectList({ projects, loading, onNew, onEdit, onToggle
                 <strong>{p.title || '제목 없음'}</strong>
                 <span className="muted">{p.summary || '한 줄 요약이 비어 있어요'}</span>
               </button>
-              <span className="chip">{p.category}</span>
+              <span className="chip">{p.kind}</span>
               <span className="muted sm">{p.type}</span>
               <span className="muted sm nowrap">{fmtDate(p.updated_at)}</span>
               <button className={'pill ' + (p.published ? 'pub' : 'priv')} onClick={() => onToggle(p)} title="눌러서 공개 상태 바꾸기">

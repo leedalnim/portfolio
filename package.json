@@ -10,6 +10,7 @@
     "preview": "vite preview --config admin/vite.config.js --outDir dist"
   },
   "dependencies": {
+    "@fontsource-variable/figtree": "5.2.8",
     "@supabase/supabase-js": "2.117.3",
     "react": "19.3.0",
     "react-dom": "19.3.0"

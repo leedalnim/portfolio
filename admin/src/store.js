@@ -9,6 +9,22 @@ export const isDemo = !URL_ || !KEY;
 
 export const CATEGORIES = ['디자인 시스템', 'AI', '경험의 폭', '문제 해결', '일상'];
 export const TYPES = ['구축', '고도화', '개편', '제안', '개인 프로젝트'];
+export const KINDS = ['WORK', 'NOT WORK'];
+export const PLATFORMS = ['WEB', 'APP', 'RESPONSIVE WEB'];
+export const FILTERS = ['UX DESIGN', 'VISUAL DESIGN', 'AI WORKFLOW', 'SOLO BUILD'];
+export { DEFAULT_SETTINGS } from './defaults.js';
+import { DEFAULT_SETTINGS } from './defaults.js';
+
+// 저장된 설정에 빠진 칸이 있으면 기본값으로 채운다 (새 칸이 생겨도 화면이 깨지지 않게)
+export function withDefaults(data) {
+  const d = structuredClone(DEFAULT_SETTINGS);
+  const src = data || {};
+  for (const k of Object.keys(d)) {
+    if (src[k] === undefined) continue;
+    d[k] = d[k] && typeof d[k] === 'object' && !Array.isArray(d[k]) ? { ...d[k], ...src[k] } : src[k];
+  }
+  return d;
+}
 
 export function emptyProject() {
   return {
@@ -22,6 +38,14 @@ export function emptyProject() {
     period: '',
     type: TYPES[0],
     tags: [],
+    kind: 'WORK',
+    platform: 'WEB',
+    filters: [],
+    extra_tags: [],
+    description: '',
+    contribution: '',
+    show_on_wall: true,
+    show_on_archive: true,
     thumbnail: null,
     sections: [],
     published: false,
@@ -31,7 +55,7 @@ export function emptyProject() {
 }
 
 export function newSection() {
-  return { id: crypto.randomUUID(), heading: '', body: '', layout: '1', images: [] };
+  return { id: crypto.randomUUID(), label: '', heading: '', body: '', layout: '1', images: [] };
 }
 
 /* ---------------- Supabase ---------------- */
@@ -82,6 +106,16 @@ function supabaseStore() {
     imageUrl(path) {
       if (!path) return '';
       return sb.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+    },
+    async getSettings() {
+      const { data, error } = await sb.from('site_settings').select('data').eq('id', 1).maybeSingle();
+      if (error) throw new Error('사이트 설정 표가 없어요. 002_web_redesign.sql 을 먼저 실행해 주세요.');
+      return withDefaults(data?.data);
+    },
+    async saveSettings(next) {
+      const { error } = await sb.from('site_settings').upsert({ id: 1, data: next, updated_at: new Date().toISOString() });
+      if (error) throw new Error('설정을 저장하지 못했어요: ' + error.message);
+      return next;
     },
     async publish() {
       const { data, error } = await sb.functions.invoke('publish', { method: 'POST' });
@@ -172,6 +206,13 @@ function demoStore() {
     imageUrl(path) {
       if (!path) return '';
       return memImages[path] || read(KEY_I, {})[path] || '';
+    },
+    async getSettings() {
+      return withDefaults(read('pf-demo-settings', null));
+    },
+    async saveSettings(next) {
+      if (!write('pf-demo-settings', next)) throw new Error('브라우저 저장 공간이 부족해요.');
+      return next;
     },
     async publish() {
       await new Promise((r) => setTimeout(r, 900));

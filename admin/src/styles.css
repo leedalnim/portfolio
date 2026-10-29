@@ -224,3 +224,18 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent); box-sha
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }
+
+/* 웹 개편 추가 */
+.checks { display: flex; flex-wrap: wrap; gap: 8px; }
+.check { height: 32px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line-strong); background: var(--surface); color: var(--sub); font-size: 12.5px; font-weight: 650; letter-spacing: .02em; }
+.check.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+.l-input { width: 120px; flex: none; font-size: 13px; }
+.editor-side .switch + .switch { margin-top: 10px; }
+.editor-side .switch + .preview { margin-top: 16px; }
+.seg.big { margin-bottom: 20px; }
+.seg.big button { height: 34px; padding: 0 16px; font-size: 13.5px; }
+.list-edit { display: flex; flex-direction: column; gap: 12px; margin: 12px 0 14px; }
+.list-row { display: flex; gap: 12px; align-items: flex-start; padding: 14px; border: 1px solid var(--line); border-radius: 10px; }
+.list-fields { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 12px; }
+.list-row .section-tools { display: flex; gap: 4px; }
+@media (max-width: 720px) { .list-fields { grid-template-columns: 1fr; } .list-row { flex-direction: column; } }

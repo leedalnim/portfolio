@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { store, CATEGORIES, TYPES, newSection } from './store.js';
+import { store, TYPES, KINDS, PLATFORMS, FILTERS, newSection } from './store.js';
 import { compressImage, formatBytes } from './image.js';
 import { fmtDate, IconPlus, IconImage } from './ui.jsx';
 
@@ -11,7 +11,6 @@ export default function ProjectEditor({ initial, onBack, onSaved, onDelete, onEr
   const [saving, setSaving] = useState(false);
   const [confirmDel, setConfirmDel] = useState(false);
   const [leaving, setLeaving] = useState(false);
-  const [tagDraft, setTagDraft] = useState('');
 
   const set = (patch) => {
     setP((x) => ({ ...x, ...patch }));
@@ -54,12 +53,6 @@ export default function ProjectEditor({ initial, onBack, onSaved, onDelete, onEr
   function back() {
     if (dirty) setLeaving(true);
     else onBack();
-  }
-
-  function addTag(v) {
-    const t = v.trim();
-    if (!t || p.tags.includes(t)) return;
-    set({ tags: [...p.tags, t] });
   }
 
   return (
@@ -135,13 +128,17 @@ export default function ProjectEditor({ initial, onBack, onSaved, onDelete, onEr
                 <small className={p.slug && !SLUG_RE.test(p.slug) ? 'err' : 'muted'}>영문 소문자, 숫자, 하이픈(-)만 쓸 수 있어요.</small>
               </label>
               <label className="field span2">
-                <span>한 줄 요약</span>
-                <input id="f-summary" value={p.summary} onChange={(e) => set({ summary: e.target.value })} placeholder="목록과 상세 맨 위에 보이는 문장" />
+                <span>요약 (상세 오른쪽 큰 글씨)</span>
+                <textarea id="f-summary" rows={3} value={p.summary} onChange={(e) => set({ summary: e.target.value })} placeholder="줄바꿈 그대로 보여요" />
+              </label>
+              <label className="field span2">
+                <span>설명 (요약 옆 작은 글씨)</span>
+                <textarea id="f-desc" rows={3} value={p.description || ''} onChange={(e) => set({ description: e.target.value })} placeholder="어떤 작업인지 두세 문장" />
               </label>
               <label className="field">
-                <span>챕터</span>
-                <select id="f-category" value={p.category} onChange={(e) => set({ category: e.target.value })}>
-                  {CATEGORIES.map((c) => (
+                <span>구분</span>
+                <select id="f-kind" value={p.kind || 'WORK'} onChange={(e) => set({ kind: e.target.value })}>
+                  {KINDS.map((c) => (
                     <option key={c}>{c}</option>
                   ))}
                 </select>
@@ -153,6 +150,18 @@ export default function ProjectEditor({ initial, onBack, onSaved, onDelete, onEr
                     <option key={c}>{c}</option>
                   ))}
                 </select>
+              </label>
+              <label className="field">
+                <span>플랫폼</span>
+                <select id="f-platform" value={p.platform || 'WEB'} onChange={(e) => set({ platform: e.target.value })}>
+                  {PLATFORMS.map((c) => (
+                    <option key={c}>{c}</option>
+                  ))}
+                </select>
+              </label>
+              <label className="field">
+                <span>기여도</span>
+                <input id="f-contrib" value={p.contribution || ''} onChange={(e) => set({ contribution: e.target.value })} placeholder="예: 100%" />
               </label>
               <label className="field">
                 <span>클라이언트</span>
@@ -167,31 +176,25 @@ export default function ProjectEditor({ initial, onBack, onSaved, onDelete, onEr
                 <input id="f-role" value={p.role} onChange={(e) => set({ role: e.target.value })} placeholder="예: UI/UX 디자인 · AI 퍼블리싱" />
               </label>
               <div className="field span2">
-                <span>태그</span>
-                <div className="tags">
-                  {p.tags.map((t) => (
-                    <button key={t} className="tag" onClick={() => set({ tags: p.tags.filter((x) => x !== t) })} title="눌러서 지우기">
-                      {t} <b>×</b>
-                    </button>
-                  ))}
-                  <input
-                    id="f-tag"
-                    value={tagDraft}
-                    onChange={(e) => setTagDraft(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ',') {
-                        e.preventDefault();
-                        addTag(tagDraft);
-                        setTagDraft('');
-                      }
-                    }}
-                    onBlur={() => {
-                      addTag(tagDraft);
-                      setTagDraft('');
-                    }}
-                    placeholder={p.tags.length ? '' : 'Figma, React … 입력 후 Enter'}
-                  />
+                <span>필터 (첫 화면 칩과 프로젝트 목록 필터)</span>
+                <div className="checks">
+                  {FILTERS.map((f) => {
+                    const on = (p.filters || []).includes(f);
+                    return (
+                      <button key={f} type="button" className={'check' + (on ? ' on' : '')} aria-pressed={on} onClick={() => set({ filters: on ? p.filters.filter((x) => x !== f) : [...(p.filters || []), f] })}>
+                        {f}
+                      </button>
+                    );
+                  })}
                 </div>
+              </div>
+              <div className="field span2">
+                <span>목록 태그 (필터 외에 목록에 더 보일 말)</span>
+                <TagInput id="f-extra" value={p.extra_tags || []} onChange={(v) => set({ extra_tags: v })} placeholder="예: INTERACTION · 입력 후 Enter" />
+              </div>
+              <div className="field span2">
+                <span>기술</span>
+                <TagInput id="f-tag" value={p.tags} onChange={(v) => set({ tags: v })} placeholder="Figma, React … 입력 후 Enter" />
               </div>
             </div>
           </div>
@@ -213,6 +216,7 @@ export default function ProjectEditor({ initial, onBack, onSaved, onDelete, onEr
             <div className="card section" key={s.id}>
               <div className="section-top">
                 <span className="num">{String(i + 1).padStart(2, '0')}</span>
+                <input className="l-input" value={s.label || ''} onChange={(e) => setSection(s.id, { label: e.target.value })} placeholder="라벨 (예: 기획)" aria-label="섹션 라벨" />
                 <input className="h-input" value={s.heading} onChange={(e) => setSection(s.id, { heading: e.target.value })} placeholder="섹션 제목 (예: 필터 영역 개선)" />
                 <div className="section-tools">
                   <button className="icon-btn" onClick={() => moveSection(i, -1)} disabled={i === 0} aria-label="위로">
@@ -258,9 +262,19 @@ export default function ProjectEditor({ initial, onBack, onSaved, onDelete, onEr
               <span className="track" />
               <span>{p.published ? '공개 — 사이트 목록에 보여요' : '비공개 — 사이트에 안 보여요'}</span>
             </label>
+            <label className="switch">
+              <input type="checkbox" checked={p.show_on_wall !== false} onChange={(e) => set({ show_on_wall: e.target.checked })} />
+              <span className="track" />
+              <span>첫 화면 썸네일 벽에 보이기</span>
+            </label>
+            <label className="switch">
+              <input type="checkbox" checked={p.show_on_archive !== false} onChange={(e) => set({ show_on_archive: e.target.checked })} />
+              <span className="track" />
+              <span>첫 화면 ARCHIVE 목록에 보이기</span>
+            </label>
             <div className="preview">
               <div className="preview-img">{p.thumbnail ? <img src={store.imageUrl(p.thumbnail)} alt="" /> : <IconImage />}</div>
-              <span className="chip">{p.category}</span>
+              <span className="chip">{p.kind || 'WORK'}</span>
               <strong>{p.title || '제목'}</strong>
               <span className="muted sm">{p.summary || '한 줄 요약'}</span>
             </div>
@@ -397,6 +411,37 @@ function Gallery({ section, onChange, onError }) {
         </DropZone>
       </div>
       {note && <small className="muted">{note}</small>}
+    </div>
+  );
+}
+
+function TagInput({ id, value, onChange, placeholder }) {
+  const [draft, setDraft] = useState('');
+  const add = (v) => {
+    const t = v.trim();
+    if (t && !value.includes(t)) onChange([...value, t]);
+    setDraft('');
+  };
+  return (
+    <div className="tags">
+      {value.map((t) => (
+        <button key={t} type="button" className="tag" onClick={() => onChange(value.filter((x) => x !== t))} title="눌러서 지우기">
+          {t} <b>×</b>
+        </button>
+      ))}
+      <input
+        id={id}
+        value={draft}
+        onChange={(e) => setDraft(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ',') {
+            e.preventDefault();
+            add(draft);
+          }
+        }}
+        onBlur={() => add(draft)}
+        placeholder={value.length ? '' : placeholder}
+      />
     </div>
   );
 }

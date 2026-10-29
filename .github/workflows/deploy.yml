@@ -36,6 +36,8 @@ jobs:
         env:
           SUPABASE_URL: ${{ vars.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ vars.SUPABASE_ANON_KEY }}
+          # sample: 피그마 더미 데이터로 화면만 / live: 관리자에서 공개한 실제 프로젝트
+          SITE_DATA: ${{ vars.SITE_DATA || 'sample' }}
           VITE_SUPABASE_URL: ${{ vars.SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ vars.SUPABASE_ANON_KEY }}
       - uses: actions/configure-pages@v5
