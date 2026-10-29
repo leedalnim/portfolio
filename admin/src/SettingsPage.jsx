@@ -182,8 +182,10 @@ export default function SettingsPage({ onSaved, onError }) {
                 <input type="number" min={1} max={50} value={c.daily_limit} onChange={(e) => set('chat', { daily_limit: Math.max(1, +e.target.value || 1) })} />
               </label>
               <Text label="제목 아래 설명" rows={2} value={c.subtitle} onChange={(v) => set('chat', { subtitle: v })} span />
-              <Text label="입력창 안내 문구" rows={1} value={c.placeholder} onChange={(v) => set('chat', { placeholder: v })} span />
+              <Text label="입력창 안내 문구" rows={1} value={c.placeholder} onChange={(v) => set('chat', { placeholder: v })} />
+              <Text label="입력창 안내 문구 (모바일 메인)" rows={1} value={c.placeholder_mobile || ''} onChange={(v) => set('chat', { placeholder_mobile: v })} />
               <Text label="추천 질문 (한 줄에 하나)" rows={3} value={c.suggestions.join('\n')} onChange={(v) => set('chat', { suggestions: v.split('\n').map((x) => x.trim()).filter(Boolean) })} span />
+              <Text label="답변 뒤 이어서 물어볼 질문 (한 줄에 하나)" rows={3} value={(c.followups || []).join('\n')} onChange={(v) => set('chat', { followups: v.split('\n').map((x) => x.trim()).filter(Boolean) })} span />
               <Text label="입력창 아래 주의 문구" rows={2} value={c.notice} onChange={(v) => set('chat', { notice: v })} span />
               <Text label="답할 수 없을 때" rows={2} value={c.fallback} onChange={(v) => set('chat', { fallback: v })} span />
               <Text label="하루 질문 수를 넘었을 때" rows={2} value={c.limit_message} onChange={(v) => set('chat', { limit_message: v })} span />

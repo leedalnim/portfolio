@@ -104,7 +104,7 @@ const href = (p) => `${BASE}projects/${p.slug}/`;
 function header(active) {
   const a = (k) => (active === k ? ' aria-current="page"' : '');
   return `<header class="hd"><a class="logo" href="${BASE}" data-nav>DALNIM</a>
-<nav class="nav" aria-label="주 메뉴"><a href="${BASE}projects/"${a('projects')} data-nav>Projects</a><a href="${BASE}about/"${a('about')} data-nav>About</a><a class="pdf" href="__PDF__" target="_blank" rel="noopener">PDF Download ↓</a></nav>
+<nav class="nav" aria-label="주 메뉴">${active === 'ask' ? `<a class="back" href="${BASE}" data-back>← Back</a>` : ''}<a href="${BASE}projects/"${a('projects')} data-nav>Projects</a><a href="${BASE}about/"${a('about')} data-nav>About</a><a class="pdf" href="__PDF__" target="_blank" rel="noopener">PDF Download ↓</a></nav>
 <button class="menu-btn" type="button" aria-controls="menu" aria-expanded="false" data-menu>Menu <i aria-hidden="true"></i></button></header>`;
 }
 function menu(count) {
@@ -113,7 +113,8 @@ function menu(count) {
 <a class="btn-pdf light" href="__PDF__" target="_blank" rel="noopener">PDF Download ↓</a>
 <div class="foot"><b>${FILTERS.join(' · ')}</b>© 2026 이달님. All rights reserved.</div></div>`;
 }
-const footer = () => `<footer class="ft"><div><a class="logo" href="${BASE}" data-nav>DALNIM</a><small>© 2026 이달님. All rights reserved.</small></div><div class="r"><a href="__PDF__" target="_blank" rel="noopener">PDF Download ↓</a><button type="button" data-top>Top ↑</button></div></footer>`;
+const footer = () => `<footer class="ft"><div><a class="logo" href="${BASE}" data-nav>DALNIM</a><small>© 2026 이달님. All rights reserved.</small></div><div class="r"><a href="__PDF__" target="_blank" rel="noopener">PDF Download ↓</a></div></footer>
+<button class="to-top" type="button" data-top aria-label="맨 위로">Top ↑</button>`;
 
 // 큰 제목: 줄마다 같은 글자 두 장(선명 + 흐림)을 겹쳐 끝부분만 흐려 보이게
 // 큰 제목: 피그마의 점진 블러를 그대로 살린 이미지 (site/title, scripts/make-titles.py 로 생성)
@@ -149,7 +150,7 @@ function page({ title: t, body, active, settings, count, extra = '', desc }) {
     base: BASE,
     ask: SB_URL ? `${SB_URL}/functions/v1/ask` : '',
     key: SB_KEY || '',
-    chat: { fallback: settings.chat.fallback, limit: settings.chat.limit_message, faq: settings.chat.faq, enabled: settings.chat.enabled },
+    chat: { fallback: settings.chat.fallback, limit: settings.chat.limit_message, faq: settings.chat.faq, enabled: settings.chat.enabled, followups: settings.chat.followups || [] },
   };
   const html = `<!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -170,7 +171,7 @@ function askBox(settings, opts = {}) {
   const c = settings.chat;
   return `<form class="ask" action="${BASE}ask/" method="get" role="search" data-ask${opts.live ? ' data-live' : ''}>
 <label class="sr" for="q-${opts.id || 'm'}">AI에게 물어보기</label>
-<div class="ask-box"><input id="q-${opts.id || 'm'}" name="q" autocomplete="off" placeholder="${esc(opts.placeholder || c.placeholder)}" maxlength="300"><button type="submit" aria-label="보내기">↑</button></div>
+<div class="ask-box"><input id="q-${opts.id || 'm'}" name="q" autocomplete="off" placeholder="${esc(opts.placeholder || c.placeholder)}"${opts.phMo ? ` data-ph-mo="${esc(opts.phMo)}"` : ''} maxlength="300"><button type="submit" aria-label="보내기">↑</button></div>
 <div class="ask-sug">${(opts.suggestions || c.suggestions).map((s) => `<button type="button" data-q="${esc(s)}">${esc(s)}</button>`).join('')}</div>
 <p class="ask-note">${esc(c.notice)}</p></form>`;
 }
@@ -197,7 +198,7 @@ function home(projects, s, counts) {
   const pos = { 'UX DESIGN': [1101, 159], 'VISUAL DESIGN': [1210, 211], 'AI WORKFLOW': [300, 230], 'SOLO BUILD': [150, 282] };
   return `<section class="hero grid" style="${cs({ hh: 380, mh: 274, mtop: 72, mfs: 94, mlh: 88, mtt: 112, mtb: 213, mbl: 154 })}">
 ${imgTitle('home', 'PORTFOLIO')}${chips(pos, counts)}</section>
-<section class="m-search grid">${askBox(s, { id: 'home' })}<div class="m-intro"><b>${esc(s.hero.intro_title)}</b><span>${esc(s.hero.intro_sub)}</span></div></section>
+<section class="m-search grid">${askBox(s, { id: 'home', phMo: s.chat.placeholder_mobile })}<div class="m-intro"><b>${esc(s.hero.intro_title)}</b><span>${esc(s.hero.intro_sub)}</span></div></section>
 <section class="wall grid" aria-label="대표 작업" style="--rows:4;--mrows:8">
 ${wall
   .map((p, i) => {
@@ -316,7 +317,7 @@ async function main() {
     await write(`projects/${p.slug}/index.html`, page({ title: `${p.title} — DALNIM`, body: detail(p, next !== p ? next : null), active: 'projects', settings, count: n, desc: p.summary?.replace(/\n/g, ' ') }));
   }
   await write('about/index.html', page({ title: 'About — DALNIM', body: about(settings), active: 'about', settings, count: n }));
-  await write('ask/index.html', page({ title: 'Ask — DALNIM', body: askPage(settings), settings, count: n, extra: idx }));
+  await write('ask/index.html', page({ title: 'Ask — DALNIM', body: askPage(settings), active: 'ask', settings, count: n, extra: idx }));
   await write('404.html', page({ title: '페이지를 찾을 수 없어요 — DALNIM', body: `<section class="hero grid" style="--hh:600;--mh:400">${title(['404'])}<p class="k-sub">찾는 페이지가 없어요. <a href="${BASE}" style="text-decoration:underline">처음으로</a></p></section>`, settings, count: n }));
   await fs.writeFile(path.join(DIST, '.nojekyll'), '');
   console.log(`[site] ${live ? '실제' : '샘플'} 데이터 · 프로젝트 ${n}개, 이미지 ${[...done.values()].filter(Boolean).length}장으로 만들었어요.`);

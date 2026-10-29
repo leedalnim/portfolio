@@ -301,7 +301,11 @@ body.locked{overflow:hidden}
 .ft small{display:block;margin-top:12px;font:500 14px/1 var(--ko);color:var(--g1)}
 .ft .r{text-align:right;font:600 16px/1 var(--en)}
 .ft .r a{color:var(--blue)}
-.ft .r button{display:block;margin:14px 0 0 auto;font:500 14px/1 var(--en);color:var(--g1)}
+.to-top{position:fixed;right:max(16px,calc(24 * var(--u)));bottom:max(16px,calc(24 * var(--u)));z-index:40;height:44px;padding:0 18px;border:1px solid var(--ink);border-radius:100px;background:var(--paper);font:600 14px/1 var(--en);color:var(--ink);box-shadow:0 8px 24px rgba(17,17,17,.08);opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .35s,transform .45s cubic-bezier(.34,1.56,.64,1),background .2s,color .2s}
+.to-top.on{opacity:1;transform:none;pointer-events:auto}
+.to-top:hover{background:var(--ink);color:#fff}
+body.locked .to-top{opacity:0;pointer-events:none}
+.nav .back{color:var(--g1)}
 
 /* ---------- 나타나기 ---------- */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .9s var(--ease);transition-delay:calc(var(--d,0) * 60ms)}
@@ -420,6 +424,8 @@ body.locked{overflow:hidden}
   .chat-in .ask-sug{justify-content:flex-start}
   .ft{padding:28px 16px 40px;flex-wrap:wrap;gap:16px}
   .ft .r{font-size:13px}
+  .to-top{height:38px;padding:0 14px;font-size:13px}
+  body:has(.chat-in) .to-top{bottom:190px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important;transition-delay:0s!important}

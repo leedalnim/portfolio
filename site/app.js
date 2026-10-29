@@ -62,6 +62,30 @@
 
   /* ---------- 위로 ---------- */
   $$('[data-top]').forEach((b) => b.addEventListener('click', () => scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' })));
+  // 따라다니는 Top 버튼: 조금 내려가면 나타남
+  const toTop = $('.to-top');
+  if (toTop) {
+    const onScroll = () => toTop.classList.toggle('on', scrollY > innerHeight * 0.6);
+    addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+  // Back: 이 사이트에서 왔으면 뒤로, 아니면 처음으로
+  $$('[data-back]').forEach((b) =>
+    b.addEventListener('click', (e) => {
+      if (document.referrer.startsWith(location.origin) && history.length > 1) {
+        e.preventDefault();
+        history.back();
+      }
+    }),
+  );
+  // 모바일 메인 입력창은 짧은 안내 문구
+  const mq = matchMedia('(max-width: 1023px)');
+  const ph = () => $$('[data-ph-mo]').forEach((i) => {
+    i.dataset.phPc ??= i.placeholder;
+    i.placeholder = mq.matches ? i.dataset.phMo : i.dataset.phPc;
+  });
+  mq.addEventListener?.('change', ph);
+  ph();
 
   /* ---------- 모바일 전체 메뉴 ---------- */
   const menu = $('#menu');
@@ -318,12 +342,12 @@
 
   /* ---------- AI 질문 ---------- */
   $$('form[data-ask]').forEach((f) => {
-    $$('[data-q]', f).forEach((b) =>
-      b.addEventListener('click', () => {
-        f.q.value = b.dataset.q;
-        f.requestSubmit();
-      }),
-    );
+    f.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-q]');
+      if (!b) return;
+      f.q.value = b.dataset.q;
+      f.requestSubmit();
+    });
     if (f.hasAttribute('data-live'))
       f.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -383,6 +407,16 @@
     box.classList.remove('wait');
     box.textContent = res.answer;
     hist.push({ role: 'user', text: q }, { role: 'model', text: res.answer });
+    // 첫 답변 뒤에는 이어서 물어볼 질문으로 바꿔 준다
+    const sug = $('form[data-live] .ask-sug');
+    const fu = (S.chat?.followups || []).filter((x) => x !== q);
+    if (sug && fu.length && !sug.dataset.fu) {
+      sug.dataset.fu = '1';
+      sug.innerHTML = fu.map((x) => `<button type="button" data-q="${x.replace(/"/g, '&quot;')}">${x.replace(/</g, '&lt;')}</button>`).join('');
+      sug.classList.remove('fi');
+      void sug.offsetWidth;
+      sug.classList.add('fi');
+    }
     const rel = (res.related || []).map(card).filter(Boolean);
     if (rel.length) {
       const d = document.createElement('div');
