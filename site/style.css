@@ -215,7 +215,7 @@ a.chip:hover{transform:translateY(-3px) rotate(-2deg)}
 .layer .scroll{position:absolute;inset:0;overflow:auto;overscroll-behavior:contain;opacity:0;transition:opacity .35s}
 .layer.ready .scroll{opacity:1}
 .blinds{position:fixed;inset:0;z-index:60;display:grid;grid-template-columns:repeat(4,1fr);pointer-events:none}
-.blinds i{background:var(--bc,#fff);transform:scaleY(0);transform-origin:top;transition:transform .55s var(--ease)}
+.blinds i{background:var(--bc,var(--blue));transform:scaleY(0);transform-origin:top;transition:transform .55s var(--ease)}
 .blinds i:nth-child(2){transition-delay:.05s}.blinds i:nth-child(3){transition-delay:.1s}.blinds i:nth-child(4){transition-delay:.15s}
 .blinds.on i{transform:none}
 .blinds.out i{transform-origin:bottom;transform:scaleY(0)}

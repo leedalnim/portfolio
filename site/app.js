@@ -8,7 +8,7 @@
   const blinds = $('.blinds');
 
   /* ---------- 블라인드 (세로 막대 4개) ---------- */
-  async function cover(color = '#fff') {
+  async function cover(color = '#142FB2') {
     blinds.style.setProperty('--bc', color);
     blinds.classList.remove('out');
     blinds.classList.add('on');
@@ -270,6 +270,7 @@
   async function closeDetail(push = true) {
     if (!layer.classList.contains('open')) return;
     layer.classList.remove('ready');
+    blinds.style.setProperty('--bc', '#142FB2');
     blinds.classList.add('on');
     await wait(450);
     layer.classList.remove('open');
