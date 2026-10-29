@@ -215,7 +215,7 @@ ${wall
 function projectsPage(projects, s, counts) {
   const pos = { 'UX DESIGN': [1378, 100], 'VISUAL DESIGN': [1487, 152], 'AI WORKFLOW': [300, 250], 'SOLO BUILD': [150, 302] };
   return `<section class="hero grid" style="${cs({ hh: 380, mh: 220, mtop: 102, mfs: 76, mlh: 72, mtt: 72, mtb: 160, mbl: 16 })}">${imgTitle('projects', 'PROJECTS')}${chips(pos, counts)}</section>
-<div class="p-bar">${kindTabs(projects, 'cards')}<div class="sel" data-sel><span class="pill blue" data-sel-name></span><button class="clear" type="button" data-clear>전체 해제</button></div><button class="sort" type="button" data-sort aria-label="정렬 순서 바꾸기">최신순 ↓</button></div>
+<div class="p-bar">${kindTabs(projects, 'cards')}<div class="sel" data-sel><button class="pill blue" type="button" data-sel-name aria-label="선택한 필터 해제"></button><button class="clear" type="button" data-clear>전체 해제</button></div><button class="sort" type="button" data-sort aria-label="정렬 순서 바꾸기">최신순 ↓</button></div>
 <div class="cards" data-list="cards">${projects
     .map(
       (p, i) => `<a class="card rv" href="${href(p)}" data-detail data-kind="${esc(p.kind)}" data-f="${(p.filters || []).map((f) => FILTER_KEYS[f]).join(' ')}" style="--d:${i % 4}">

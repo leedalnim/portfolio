@@ -152,7 +152,12 @@ a.chip:hover{transform:translateY(-3px) rotate(-2deg)}
 .p-bar .sel{display:none;align-items:center;gap:14px}
 .p-bar .sel.on{display:flex;animation:fi .45s var(--ease)}
 .p-bar .sel::before{content:'';width:1px;height:18px;background:rgba(17,17,17,.3);margin:0 6px}
-.p-bar .clear{font:500 14px/1 var(--ko);color:var(--g1)}
+.p-bar .clear{font:500 14px/1 var(--ko);color:var(--g1);transition:color .2s}
+.p-bar .clear:hover{color:var(--ink)}
+.p-bar .pill.blue{transition:background .25s,transform .3s var(--ease)}
+.p-bar .pill.blue:hover{background:#0F2490;transform:translateY(-1px)}
+span.chip,.pill,.chip{-webkit-user-select:none;user-select:none}
+span.chip{cursor:default}
 .p-bar .sort{margin-left:auto;font:600 15px/1 var(--ko)}
 .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:calc(32 * var(--u));padding:calc(44 * var(--u)) calc(16 * var(--u)) 140px}
 .card{position:relative;display:block;aspect-ratio:448/320;overflow:hidden;background:#EEF0F6}
