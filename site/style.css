@@ -160,7 +160,7 @@ span.chip,.pill,.chip{-webkit-user-select:none;user-select:none}
 span.chip{cursor:default}
 .p-bar .sort{margin-left:auto;font:600 15px/1 var(--ko)}
 .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:calc(32 * var(--u));padding:calc(44 * var(--u)) calc(16 * var(--u)) 140px}
-.card{position:relative;display:block;aspect-ratio:448/320;overflow:hidden;background:#EEF0F6}
+.card{position:relative;display:block;aspect-ratio:1/1;overflow:hidden;background:#EEF0F6}
 .card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
 .card .px{image-rendering:pixelated;opacity:0;transition:opacity .25s}
 .card .ov{position:absolute;inset:0;background:rgba(0,0,0,.4);color:#fff;padding:calc(24 * var(--u));display:flex;flex-direction:column;justify-content:flex-end;opacity:0;transition:opacity .25s}
@@ -373,7 +373,7 @@ body.locked .to-top{opacity:0;pointer-events:none}
   .p-bar .sort{font-size:12px}
   .cards{grid-template-columns:1fr 1fr;gap:36px 16px;padding:20px 16px 80px}
   .card{aspect-ratio:auto;overflow:visible;background:none}
-  .card .th{display:block;position:relative;aspect-ratio:171/128;overflow:hidden;background:#EEF0F6}
+  .card .th{display:block;position:relative;aspect-ratio:1/1;overflow:hidden;background:#EEF0F6}
   .card .px,.card .ov{display:none}
   .card .cap{display:block;margin-top:16px}
   .card .cap strong{display:block;font:700 14px/1.3 var(--ko)}
