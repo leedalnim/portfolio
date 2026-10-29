@@ -12,11 +12,11 @@
     blinds.style.setProperty('--bc', color);
     blinds.classList.remove('out');
     blinds.classList.add('on');
-    await wait(700);
+    await wait(780);
   }
   async function uncover() {
     blinds.classList.add('out');
-    await wait(700);
+    await wait(780);
     blinds.classList.remove('on', 'out');
   }
 

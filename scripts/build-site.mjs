@@ -160,7 +160,7 @@ function page({ title: t, body, active, settings, count, extra = '', desc }) {
 <script>window.SITE=${JSON.stringify(cfg).replace(/</g, '\\u003c')}</script><script src="${BASE}assets/app.js?v=${V}" defer></script></head>
 <body>${header(active)}<main id="main">${body}</main>${footer()}${menu(count)}
 <div class="layer" id="layer" aria-hidden="true"><div class="scroll" role="dialog" aria-modal="true" aria-label="프로젝트 상세"></div></div>
-<div class="blinds" aria-hidden="true"><i></i><i></i><i></i><i></i></div>${extra}</body></html>`;
+<div class="blinds" aria-hidden="true">${Array.from({ length: 10 }, (_, k) => `<i style="--n:${k}"></i>`).join('')}</div>${extra}</body></html>`;
   // PDF를 아직 안 올렸으면 버튼은 그대로 두고 눌러도 아무 일 없게 (준비 중)
   if (!pdf) return html.replaceAll('href="__PDF__" target="_blank" rel="noopener"', 'href="#" aria-disabled="true" data-pdf-empty title="PDF 준비 중"');
   return html.replaceAll('__PDF__', esc(pdf));

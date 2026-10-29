@@ -214,9 +214,9 @@ a.chip:hover{transform:translateY(-3px) rotate(-2deg)}
 .layer.open{visibility:visible}
 .layer .scroll{position:absolute;inset:0;overflow:auto;overscroll-behavior:contain;opacity:0;transition:opacity .35s}
 .layer.ready .scroll{opacity:1}
-.blinds{position:fixed;inset:0;z-index:60;display:grid;grid-template-columns:repeat(4,1fr);pointer-events:none}
-.blinds i{background:var(--bc,var(--blue));transform:scaleY(0);transform-origin:top;transition:transform .55s var(--ease)}
-.blinds i:nth-child(2){transition-delay:.05s}.blinds i:nth-child(3){transition-delay:.1s}.blinds i:nth-child(4){transition-delay:.15s}
+.blinds{position:fixed;inset:0;z-index:60;display:grid;grid-template-columns:repeat(10,1fr);pointer-events:none}
+/* 세로 그리드 줄 수만큼 막대 (PC 10칸, 모바일 4칸) */
+.blinds i{background:var(--bc,var(--blue));transform:scaleY(0);transform-origin:top;transition:transform .5s var(--ease);transition-delay:calc(var(--n,0) * 28ms)}
 .blinds.on i{transform:none}
 .blinds.out i{transform-origin:bottom;transform:scaleY(0)}
 body.locked{overflow:hidden}
@@ -349,6 +349,8 @@ body.locked{overflow:hidden}
   .rows a{grid-template-columns:36px 1fr 20px;grid-template-areas:'no nm ar' '. tg .';height:auto;padding:16px 16px 18px;row-gap:8px;align-items:start}
   .rows .no{grid-area:no;font-size:13px;margin-top:2px}.rows .nm{grid-area:nm;font-size:16px}.rows .tg{grid-area:tg;font-size:11px}.rows .ar{grid-area:ar;font-size:15px}
   .peek{display:none}
+  .blinds{grid-template-columns:repeat(4,1fr)}.blinds i:nth-child(n+5){display:none}
+  .blinds i{transition-delay:calc(var(--n,0) * 50ms)}
   .m-search.grid::before{display:none}
   .more{padding:28px 16px 64px}.more a{width:100%;justify-content:center;height:52px;font-size:15px}
   .p-bar{height:auto;padding:0 16px 24px;flex-wrap:wrap}
