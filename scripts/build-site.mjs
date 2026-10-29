@@ -154,7 +154,7 @@ function page({ title: t, body, active, settings, count, extra = '', desc }) {
   const html = `<!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>${esc(t)}</title><meta name="description" content="${esc(desc || 'UI/UX 디자이너 이달님의 포트폴리오')}">
-<meta property="og:title" content="${esc(t)}"><meta property="og:description" content="${esc(desc || 'UI/UX 디자이너 이달님의 포트폴리오')}"><meta name="theme-color" content="#ffffff">
+<meta property="og:title" content="${esc(t)}"><meta property="og:description" content="${esc(desc || 'UI/UX 디자이너 이달님의 포트폴리오')}"><meta name="theme-color" content="#FAF9F7">
 <link rel="preload" href="${BASE}fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${BASE}fonts/pretendardvariable-dynamic-subset.css"><link rel="stylesheet" href="${BASE}assets/style.css?v=${V}">
 <script>window.SITE=${JSON.stringify(cfg).replace(/</g, '\\u003c')}</script><script src="${BASE}assets/app.js?v=${V}" defer></script></head>
