@@ -171,7 +171,7 @@ function askBox(settings, opts = {}) {
   return `<form class="ask" action="${BASE}ask/" method="get" role="search" data-ask${opts.live ? ' data-live' : ''}>
 <label class="sr" for="q-${opts.id || 'm'}">AI에게 물어보기</label>
 <div class="ask-box"><input id="q-${opts.id || 'm'}" name="q" autocomplete="off" placeholder="${esc(opts.placeholder || c.placeholder)}" maxlength="300"><button type="submit" aria-label="보내기">↑</button></div>
-<div class="ask-sug">${c.suggestions.map((s) => `<button type="button" data-q="${esc(s)}">${esc(s)}</button>`).join('')}</div>
+<div class="ask-sug">${(opts.suggestions || c.suggestions).map((s) => `<button type="button" data-q="${esc(s)}">${esc(s)}</button>`).join('')}</div>
 <p class="ask-note">${esc(c.notice)}</p></form>`;
 }
 
@@ -266,7 +266,7 @@ function about(s) {
 <section class="a-sec"><h2 class="h-en">EXPERIENCE</h2>${lines(a.experience)}</section>
 <section class="a-sec"><h2 class="h-en">EDUCATION</h2>${lines(a.education)}</section>
 <section class="a-sec"><h2 class="h-en">SKILLS</h2><div class="skills">${a.skills.map((k) => `<span>${esc(k)}</span>`).join('')}</div>${lines(a.certificates)}</section>
-<section class="a-cta"><div><h2>${esc(a.pdf_note)}</h2><a class="btn-pdf" href="__PDF__" target="_blank" rel="noopener">PDF Download ↓</a></div>${askBox(s, { id: 'about', placeholder: '이달님에 대해 무엇이든 물어보세요' })}</section>`;
+<section class="a-cta"><div><h2><span class="pc-only">${esc(a.pdf_title)}</span><span class="mo-only">${esc(a.pdf_note)}</span></h2><a class="btn-pdf" href="__PDF__" target="_blank" rel="noopener">PDF Download ↓</a></div>${askBox(s, { id: 'about', placeholder: '이달님에 대해 무엇이든 물어보세요', suggestions: a.ask_suggestions?.length ? a.ask_suggestions : null })}</section>`;
 }
 
 function askPage(s) {

@@ -100,7 +100,9 @@ export default function SettingsPage({ onSaved, onError }) {
             <div className="grid2">
               <Text label="제목" rows={2} value={a.title} onChange={(v) => set('about', { title: v })} span />
               <Text label="본문" rows={6} value={a.body} onChange={(v) => set('about', { body: v })} span />
-              <Text label="아래쪽 PDF 안내 문구" rows={2} value={a.pdf_note} onChange={(v) => set('about', { pdf_note: v })} span />
+              <Text label="아래쪽 PDF 제목 (PC)" rows={1} value={a.pdf_title || ''} onChange={(v) => set('about', { pdf_title: v })} />
+              <Text label="아래쪽 PDF 안내 문구 (모바일)" rows={2} value={a.pdf_note} onChange={(v) => set('about', { pdf_note: v })} />
+              <Text label="아래쪽 추천 질문 (한 줄에 하나)" rows={2} value={(a.ask_suggestions || []).join('\n')} onChange={(v) => set('about', { ask_suggestions: v.split('\n').map((x) => x.trim()).filter(Boolean) })} span />
             </div>
           </div>
           <ListCard
