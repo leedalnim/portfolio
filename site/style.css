@@ -226,6 +226,7 @@ span.chip{cursor:default}
 /* 세로 그리드 줄 수만큼 막대 (PC 10칸, 모바일 4칸) */
 .blinds i{background:var(--bc,var(--blue));transform:scaleY(0);transform-origin:top;transition:transform .5s var(--ease);transition-delay:calc(var(--n,0) * 28ms)}
 .blinds.on i{transform:none}
+.blinds.instant i{transition:none!important}
 .blinds.out i{transform-origin:bottom;transform:scaleY(0)}
 body.locked{overflow:hidden}
 
@@ -294,7 +295,7 @@ body.locked{overflow:hidden}
 .chat-in .ask-sug,.chat-in .ask-note{justify-content:center;text-align:center;margin-left:0}
 
 /* ---------- 푸터 ---------- */
-.ft{border-top:1px solid var(--ink);display:flex;justify-content:space-between;padding:40px calc(16 * var(--u)) 40px calc(24 * var(--u))}
+.ft{position:relative;z-index:2;background:var(--paper);border-top:1px solid var(--ink);display:flex;justify-content:space-between;padding:40px calc(16 * var(--u)) 40px calc(24 * var(--u))}
 .ft .logo{margin:0}
 .ft small{display:block;margin-top:12px;font:500 14px/1 var(--ko);color:var(--g1)}
 .ft .r{text-align:right;font:600 16px/1 var(--en)}

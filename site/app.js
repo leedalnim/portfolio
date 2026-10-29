@@ -23,7 +23,10 @@
   // 페이지 이동: 막대가 덮은 뒤 이동, 새 페이지에서는 막대가 걷히며 시작
   if (sessionStorage.getItem('pf-nav')) {
     sessionStorage.removeItem('pf-nav');
-    blinds.classList.add('on');
+    // 새 페이지는 막대가 이미 덮인 상태에서 시작 (다시 내려오는 움직임 없이 바로 걷히게)
+    blinds.classList.add('instant', 'on');
+    void blinds.offsetWidth;
+    blinds.classList.remove('instant');
     requestAnimationFrame(() => requestAnimationFrame(uncover));
   }
   document.addEventListener('click', async (e) => {
@@ -266,7 +269,7 @@
     $$('.rv', scroller).forEach((el) => el.classList.add('in'));
     if (push) history[replace ? 'replaceState' : 'pushState']({ detail: url }, '', url);
     document.title = (node.querySelector('.dt-ttl')?.textContent || '') + ' — DALNIM';
-    blinds.classList.remove('on', 'out');
+    if (blinds.classList.contains('on')) uncover(); // 덮을 때와 같은 방향으로 이어서 걷힘
     requestAnimationFrame(() => layer.classList.add('ready'));
     $('.dt-close', scroller)?.focus({ preventScroll: true });
   }
