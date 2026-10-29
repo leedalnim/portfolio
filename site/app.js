@@ -88,6 +88,23 @@
   $('[data-menu-close]')?.addEventListener('click', () => closeMenu());
 
   /* ---------- 구분 탭 (ALL / WORK / NOT WORK) ---------- */
+  // 목록 바꿀 때 잠깐 흐려졌다가 남은 항목이 차례로 떠오르게
+  function fadeSwap(box, change, sel) {
+    if (reduce) return change();
+    box.classList.add('fading');
+    setTimeout(() => {
+      change();
+      box.classList.remove('fading');
+      $$(sel, box)
+        .filter((el) => !el.hidden)
+        .forEach((el, k) => {
+          el.classList.remove('fi');
+          void el.offsetWidth;
+          el.style.setProperty('--k', Math.min(k, 12));
+          el.classList.add('fi');
+        });
+    }, 180);
+  }
   function setupList(scope, getItems, onChange) {
     const tabs = $(`[data-tabs="${scope}"]`);
     if (!tabs) return null;
@@ -106,7 +123,7 @@
   const homeList = $('[data-list="home"]');
   if (homeList) {
     setupList('home', null, ({ kind }) => {
-      $$('li[data-kind]', homeList).forEach((li) => (li.hidden = !!kind && li.dataset.kind !== kind));
+      fadeSwap(homeList, () => $$('li[data-kind]', homeList).forEach((li) => (li.hidden = !!kind && li.dataset.kind !== kind)), 'li[data-kind]');
     });
     // 마우스를 따라다니는 미리보기 사진
     const peek = $('.peek');
@@ -178,7 +195,7 @@
     };
     setupList('cards', null, ({ kind }) => {
       st.kind = kind;
-      apply();
+      fadeSwap(cards, apply, '.card');
     });
     $$('.chip[data-chip]').forEach((c) =>
       c.addEventListener('click', (e) => {

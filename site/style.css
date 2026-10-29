@@ -51,6 +51,10 @@ img{display:block;max-width:100%}
 .bt .a{-webkit-mask-image:linear-gradient(100deg,#000 var(--fs,80%),transparent calc(var(--fs,80%) + 16%));mask-image:linear-gradient(100deg,#000 var(--fs,80%),transparent calc(var(--fs,80%) + 16%))}
 .ttl .ln{display:inline-block}
 .ttl .ln>.bt{animation:rise 1s var(--ease) both;animation-delay:calc(var(--i,0) * 90ms + 150ms)}
+[data-list]{transition:opacity .18s}
+[data-list].fading{opacity:0}
+.fi{animation:fi .5s var(--ease) both;animation-delay:calc(var(--k,0) * 40ms)}
+@keyframes fi{from{opacity:0;transform:translateY(12px)}}
 @keyframes rise{from{transform:translateY(18%);opacity:0;filter:blur(8px)}}
 /* 이미지 제목 (피그마 점진 블러 그대로) */
 .ttl.ti{position:absolute;inset:0;left:0;top:0;display:block;pointer-events:none;font-size:0}
@@ -90,7 +94,7 @@ a.chip:hover{transform:translateY(-3px) rotate(-2deg)}
 .ask-note{margin:20px 0 0 32px;font:500 13px/1.5 var(--ko);color:var(--g4)}
 
 /* ---------- 메인 ---------- */
-.m-search{position:relative;height:calc(308 * var(--u));background:#fff;z-index:2}
+.m-search{position:relative;height:calc(422 * var(--u));background:#fff;z-index:2}
 .m-search .ask{position:absolute;left:calc(194 * var(--u));top:calc(120 * var(--u));width:calc(1104 * var(--u))}
 @media (min-width:1024px){
   .m-search .ask-box{height:calc(64 * var(--u));padding:0 calc(8 * var(--u)) 0 calc(32 * var(--u));border-width:max(1.5px,calc(2 * var(--u)))}
@@ -98,7 +102,6 @@ a.chip:hover{transform:translateY(-3px) rotate(-2deg)}
   .m-search .ask-box button{width:calc(48 * var(--u));height:calc(48 * var(--u));font-size:calc(26 * var(--u))}
   .m-search .ask-sug{margin:calc(28 * var(--u)) 0 0 calc(32 * var(--u));gap:calc(12 * var(--u)) calc(40 * var(--u));font-size:max(12px,calc(16 * var(--u)))}
   .m-search .ask-note{margin:calc(20 * var(--u)) 0 0 calc(32 * var(--u));font-size:max(11px,calc(13 * var(--u)))}
-  .wall{margin-top:calc(114 * var(--u))}
 }
 .m-intro{position:absolute;right:calc(192 * var(--u));top:calc(120 * var(--u));text-align:right;white-space:pre-line}
 .m-intro b{display:block;font:700 max(15px,calc(20 * var(--u)))/1.5 var(--ko)}
@@ -346,6 +349,7 @@ body.locked{overflow:hidden}
   .rows a{grid-template-columns:36px 1fr 20px;grid-template-areas:'no nm ar' '. tg .';height:auto;padding:16px 16px 18px;row-gap:8px;align-items:start}
   .rows .no{grid-area:no;font-size:13px;margin-top:2px}.rows .nm{grid-area:nm;font-size:16px}.rows .tg{grid-area:tg;font-size:11px}.rows .ar{grid-area:ar;font-size:15px}
   .peek{display:none}
+  .m-search.grid::before{display:none}
   .more{padding:28px 16px 64px}.more a{width:100%;justify-content:center;height:52px;font-size:15px}
   .p-bar{height:auto;padding:0 16px 24px;flex-wrap:wrap}
   .p-bar .sel{width:100%;order:3}

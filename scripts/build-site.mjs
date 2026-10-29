@@ -197,7 +197,7 @@ function home(projects, s, counts) {
   const pos = { 'UX DESIGN': [1101, 159], 'VISUAL DESIGN': [1210, 211], 'AI WORKFLOW': [300, 230], 'SOLO BUILD': [150, 282] };
   return `<section class="hero grid" style="${cs({ hh: 380, mh: 274, mtop: 72, mfs: 94, mlh: 88, mtt: 112, mtb: 213, mbl: 154 })}">
 ${imgTitle('home', 'PORTFOLIO')}${chips(pos, counts)}</section>
-<section class="m-search">${askBox(s, { id: 'home' })}<div class="m-intro"><b>${esc(s.hero.intro_title)}</b><span>${esc(s.hero.intro_sub)}</span></div></section>
+<section class="m-search grid">${askBox(s, { id: 'home' })}<div class="m-intro"><b>${esc(s.hero.intro_title)}</b><span>${esc(s.hero.intro_sub)}</span></div></section>
 <section class="wall grid" aria-label="대표 작업" style="--rows:4;--mrows:8">
 ${wall
   .map((p, i) => {
