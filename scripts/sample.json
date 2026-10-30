@@ -30,11 +30,11 @@
   {
     "slug": "jungwon",
     "title": "정원처방",
-    "summary": "",
-    "description": "",
+    "summary": "도시의 정원에서\n마음에게 쉼을 건네는\n서울형 정원처방 사이트입니다.",
+    "description": "정원 프로그램으로 마음 건강을 돌보는 정원도시서울의 신규 사이트입니다. 낯선 정원처방을 설명으로 끝내지 않고, 메인에서 바로 내 마음을 체크하고 가까운 기관을 찾을 수 있도록 구성했습니다.",
     "category": "",
     "client": "",
-    "role": "",
+    "role": "기획 · UX/UI 디자인\n인터랙션·퍼블리싱은 AI와 함께",
     "period": "",
     "type": "구축",
     "tags": [],
@@ -49,8 +49,114 @@
     "contribution": "",
     "show_on_wall": true,
     "show_on_archive": true,
-    "thumbnail": "local:scripts/sample-img/t-jungwon.webp",
-    "sections": [],
+    "thumbnail": "local:scripts/sample-img/jw-00.webp",
+    "sections": [
+      {
+        "id": "s0",
+        "label": "",
+        "heading": "",
+        "body": "",
+        "layout": "1",
+        "images": [
+          {
+            "path": "local:scripts/sample-img/jw-01.webp",
+            "caption": ""
+          }
+        ]
+      },
+      {
+        "id": "s1",
+        "label": "개요",
+        "heading": "사용자의 참여를 높이는\n메인으로 설계했습니다.",
+        "body": "전달받은 자료와 초안을 바탕으로 화면 구조와 카피를 직접 설계하고, UX·UI를 더해 완성했습니다. 인터랙션·모션과 퍼블리싱은 AI와 함께 구현해, 실제로 동작하는 화면까지 만들어 전달력을 높였습니다.",
+        "layout": "1",
+        "images": [
+          {
+            "path": "local:scripts/sample-img/jw-02.webp",
+            "caption": ""
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "label": "Point 01",
+        "heading": "척도별 카드에서\n바로 검사로 이동합니다.",
+        "body": "메인에서 바로 내 마음을 체크할 수 있도록, 척도별 카드를 누르면 해당 검사로 바로 이동합니다.",
+        "layout": "1",
+        "images": [
+          {
+            "path": "local:scripts/sample-img/jw-03.webp",
+            "caption": ""
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "label": "Point 02",
+        "heading": "자치구를 고르면\n기관 정보가 바로 보입니다.",
+        "body": "정원처방 기관 찾기는 자치구 지도와 칩으로 고를 수 있게 했습니다. 지도와 인터랙션은 AI와 함께 직접 그리고 구현했습니다.",
+        "layout": "1",
+        "images": [
+          {
+            "path": "local:scripts/sample-img/jw-04.webp",
+            "caption": ""
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "label": "서브 구현",
+        "heading": "AI가 디자인을 읽고\n서브까지 빠르게 구현했습니다.",
+        "body": "메인 시안을 바탕으로 디자인 가이드를 먼저 정리하고, 그 기준으로 서브 화면을 만들었습니다. 짧은 기간 안에 서브 15장을 일관된 톤으로 만들 수 있었습니다.",
+        "layout": "1",
+        "points": [
+          [
+            "AI가 메인 시안 읽기",
+            "컬러·타이포·카드 구조"
+          ],
+          [
+            "디자인 가이드 정리",
+            "서브에 쓸 기준"
+          ],
+          [
+            "가이드대로 서브 구현",
+            "일관성 유지 · 빠른 진행"
+          ]
+        ],
+        "images": [
+          {
+            "path": "local:scripts/sample-img/jw-05.webp",
+            "caption": ""
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "label": "",
+        "heading": "",
+        "body": "",
+        "layout": "1",
+        "images": [
+          {
+            "path": "local:scripts/sample-img/jw-06.webp",
+            "caption": ""
+          }
+        ]
+      },
+      {
+        "id": "s6",
+        "label": "디자인 가이드",
+        "heading": "메인 시안에서 뽑은 기준",
+        "body": "숲과 잎의 초록을 바탕으로, 강조가 필요한 곳에만 꽃 분홍과 햇살 주황을 썼습니다. 제목은 서울알림, 본문은 Pretendard, 버튼과 태그는 알약형으로 맞췄습니다.",
+        "layout": "1",
+        "images": [
+          {
+            "path": "local:scripts/sample-img/jw-07.webp",
+            "caption": ""
+          }
+        ]
+      }
+    ],
     "published": true,
     "sort_order": 1,
     "wall_order": 7
