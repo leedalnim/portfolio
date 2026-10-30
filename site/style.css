@@ -14,7 +14,8 @@
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--ko);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--ko);-webkit-font-smoothing:antialiased;overflow-x:hidden;letter-spacing:-.03em}
+button,input,textarea,select{letter-spacing:inherit}
 /* 줄바꿈 규칙: 본문은 단어 단위로 끊고 긴 영문·주소는 넘치지 않게, 제목은 줄 길이를 고르게, 버튼·태그는 한 줄 */
 body{word-break:keep-all;overflow-wrap:break-word;text-wrap:pretty}
 h1,h2,h3,h4,.dt-ttl,.nm,.card .ov strong,.wall .w .ov strong,.cap strong{word-break:keep-all;text-wrap:balance}
@@ -229,7 +230,7 @@ span.chip{cursor:default}
 .dt-next{display:flex;align-items:flex-end;gap:24px;border-top:1px solid var(--ink);padding:calc(32 * var(--u)) 0 calc(120 * var(--u))}
 .dt-next small{display:block;font:600 max(11px,calc(13 * var(--u)))/1.2 var(--ko);letter-spacing:0;color:var(--g1);margin-bottom:calc(10 * var(--u))}
 .dt-next strong{display:block;font:700 max(22px,calc(40 * var(--u)))/1.2 var(--ko);letter-spacing:0}
-.dt-next .ar{margin-left:auto;font:500 max(22px,calc(36 * var(--u)))/1.2 var(--ko);transition:transform .35s var(--ease)}
+.dt-next .ar{margin-left:auto;font:500 max(22px,calc(36 * var(--u)))/1.2 var(--ko);letter-spacing:0;transition:transform .35s var(--ease)}
 .dt-next:hover .ar{transform:translateX(8px)}
 
 /* ---------- 덮개 (상세 팝업 · 전체 메뉴) + 블라인드 ---------- */
