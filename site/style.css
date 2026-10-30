@@ -226,10 +226,10 @@ span.chip{cursor:default}
 .gal.c2{grid-template-columns:1fr 1fr}.gal.c3{grid-template-columns:repeat(3,1fr)}
 .gal figure{margin:0}.gal img{width:100%;height:auto}
 .gal figcaption{margin-top:8px;font:500 14px/1.5 var(--ko);color:var(--g1)}
-.dt-next{display:flex;align-items:flex-start;gap:24px;border-top:1px solid var(--ink);padding:calc(36 * var(--u)) 0 calc(120 * var(--u))}
-.dt-next small{display:block;font:600 max(11px,calc(13 * var(--u)))/1 var(--en);letter-spacing:.4em;color:var(--g1);margin-bottom:calc(20 * var(--u))}
-.dt-next strong{display:block;font:700 max(22px,calc(40 * var(--u)))/1.3 var(--ko);letter-spacing:-.02em}
-.dt-next .ar{margin-left:auto;font:500 max(22px,calc(40 * var(--u)))/1 var(--en);margin-top:calc(33 * var(--u));transition:transform .35s var(--ease)}
+.dt-next{display:flex;align-items:flex-end;gap:24px;border-top:1px solid var(--ink);padding:calc(32 * var(--u)) 0 calc(120 * var(--u))}
+.dt-next small{display:block;font:600 max(11px,calc(13 * var(--u)))/1.2 var(--ko);letter-spacing:0;color:var(--g1);margin-bottom:calc(10 * var(--u))}
+.dt-next strong{display:block;font:700 max(22px,calc(40 * var(--u)))/1.2 var(--ko);letter-spacing:0}
+.dt-next .ar{margin-left:auto;font:500 max(22px,calc(36 * var(--u)))/1.2 var(--ko);transition:transform .35s var(--ease)}
 .dt-next:hover .ar{transform:translateX(8px)}
 
 /* ---------- 덮개 (상세 팝업 · 전체 메뉴) + 블라인드 ---------- */
