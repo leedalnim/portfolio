@@ -162,7 +162,13 @@ span.chip{cursor:default}
 .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:calc(32 * var(--u));padding:calc(44 * var(--u)) calc(16 * var(--u)) 140px}
 .card{position:relative;display:block;aspect-ratio:1/1;overflow:hidden;background:#EEF0F6}
 .card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
-.card .px{image-rendering:pixelated;opacity:0;transition:opacity .25s}
+.card .th>img:not(.px),.card>.th picture img{transition:filter .5s var(--ease),transform .7s var(--ease)}
+.card .px{image-rendering:pixelated;opacity:0;transform:scale(1.02);transition:opacity .35s var(--ease),transform .6s var(--ease)}
+/* 호버: 원본이 살짝 흐려지고 → 잘게 쪼갠 모자이크 → 큰 모자이크 순서로 겹쳐짐 (나갈 때는 반대로 빠르게) */
+.card:hover .th img:not(.px),.card:focus-visible .th img:not(.px){filter:blur(4px);transform:scale(1.03)}
+.card:hover .px2,.card:focus-visible .px2{transition-delay:.05s}
+.card:hover .px:not(.px2),.card:focus-visible .px:not(.px2){transition-delay:.22s}
+.card:hover .px,.card:focus-visible .px{transform:none}
 .card .ov{position:absolute;inset:0;background:rgba(0,0,0,.4);color:#fff;padding:calc(24 * var(--u));display:flex;flex-direction:column;justify-content:flex-end;opacity:0;transition:opacity .25s}
 .card .ov strong{font:700 max(16px,calc(24 * var(--u)))/1.3 var(--ko)}
 .card .ov small{display:block;margin:6px 0 0;font:600 max(11px,calc(14 * var(--u)))/1.5 var(--ko);opacity:.85}

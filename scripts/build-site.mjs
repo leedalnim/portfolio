@@ -65,7 +65,7 @@ async function image(p) {
   if (done.has(p)) return done.get(p);
   const id = crypto.createHash('sha1').update(p).digest('hex').slice(0, 16);
   await fs.mkdir(CACHE, { recursive: true });
-  const files = [...WIDTHS.map((w) => `${id}-${w}.webp`), `${id}-px.webp`];
+  const files = [...WIDTHS.map((w) => `${id}-${w}.webp`), `${id}-px.webp`, `${id}-px2.webp`];
   const cached = await Promise.all(files.map((f) => fs.stat(path.join(CACHE, f)).then(() => true, () => false)));
   if (!cached.every(Boolean)) {
     let buf;
@@ -82,7 +82,9 @@ async function image(p) {
     }
     for (const w of WIDTHS) await sharp(buf).resize({ width: w, withoutEnlargement: true }).webp({ quality: 82 }).toFile(path.join(CACHE, `${id}-${w}.webp`));
     // 모자이크용: 가로 28칸으로 줄인 아주 작은 이미지 (화면에서 키우면 칸이 보임)
-    await sharp(buf).resize({ width: 28, height: 20, fit: 'cover', position: 'top' }).webp({ quality: 90 }).toFile(path.join(CACHE, `${id}-px.webp`));
+    // 정사각 썸네일에 맞춰 큰 칸(24칸)과 잘게 쪼갠 칸(56칸) 두 단계 → 호버 때 차례로 겹쳐 자연스럽게 모자이크로 바뀜
+    await sharp(buf).resize({ width: 24, height: 24, fit: 'cover', position: 'top' }).webp({ quality: 90 }).toFile(path.join(CACHE, `${id}-px.webp`));
+    await sharp(buf).resize({ width: 56, height: 56, fit: 'cover', position: 'top' }).webp({ quality: 90 }).toFile(path.join(CACHE, `${id}-px2.webp`));
   }
   const meta = await sharp(path.join(CACHE, `${id}-${WIDTHS[1]}.webp`)).metadata();
   await fs.mkdir(path.join(DIST, 'img'), { recursive: true });
@@ -220,7 +222,7 @@ function projectsPage(projects, s, counts) {
 <div class="cards" data-list="cards">${projects
     .map(
       (p, i) => `<a class="card rv" href="${href(p)}" data-detail data-kind="${esc(p.kind)}" data-f="${(p.filters || []).map((f) => FILTER_KEYS[f]).join(' ')}" style="--d:${i % 4}">
-<span class="th">${p._thumb ? `${pic(p._thumb, '', '(max-width: 1023px) 50vw, 25vw')}<img class="px" src="${BASE}img/${p._thumb.id}-px.webp" alt="" aria-hidden="true" loading="lazy">` : '<span class="ph">이미지 넣기</span>'}</span>
+<span class="th">${p._thumb ? `${pic(p._thumb, '', '(max-width: 1023px) 50vw, 25vw')}<img class="px px2" src="${BASE}img/${p._thumb.id}-px2.webp" alt="" aria-hidden="true" loading="lazy"><img class="px" src="${BASE}img/${p._thumb.id}-px.webp" alt="" aria-hidden="true" loading="lazy">` : '<span class="ph">이미지 넣기</span>'}</span>
 <span class="ov"><strong>${esc(p.title)}</strong><small>${tagLine(p).map(nb).join(' · ')}</small><em class="go">자세히 보기<i aria-hidden="true">↗</i></em></span>
 <span class="cap"><strong>${esc(p.title)}</strong><small>${tagLine(p).map(nb).join(' · ')}</small></span></a>`,
     )
