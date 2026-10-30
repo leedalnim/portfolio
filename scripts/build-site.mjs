@@ -244,7 +244,8 @@ function detail(p, next) {
 <dl class="dt-meta">${meta.map(([k, v]) => `<div${wide.has(k) ? ' class="w2"' : ''}><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('')}
 ${(p.filters || []).length ? `<div class="w2"><dt>필터</dt><dd class="fl">${p.filters.map((f) => `<a href="${BASE}projects/?f=${FILTER_KEYS[f]}" data-nav>${esc(f)}</a>`).join('')}</dd></div>` : ''}</dl>
 <a class="dt-close" href="${BASE}projects/" data-close>Close <span class="x" aria-hidden="true"></span></a></aside>
-<div class="dt-main">${p.description || p.summary ? `<div class="dt-intro"><h2>OVERVIEW</h2><p>${esc(p.description || p.summary)}</p></div>` : ''}
+<div class="dt-main">${p.description || p.summary ? `<div class="dt-intro"><h2>PROJECT
+OVERVIEW.</h2><p>${esc(p.description || p.summary)}</p></div>` : ''}
 ${!(p.sections || []).length && p._thumb ? `<div class="dt-sec">${pic(p._thumb, p.title, '(max-width: 1023px) 100vw, 70vw', true)}</div>` : ''}
 ${(p.sections || [])
     .map((sec, i) => {

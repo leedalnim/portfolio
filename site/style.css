@@ -195,7 +195,7 @@ span.chip{cursor:default}
 .dt{display:grid;grid-template-columns:calc(576 * var(--u)) 1fr;min-height:100vh;background:var(--paper)}
 .dt-side{position:sticky;top:0;height:100vh;padding:calc(40 * var(--u)) calc(24 * var(--u)) calc(36 * var(--u));display:flex;flex-direction:column;overflow:auto}
 .dt-kind{font:500 max(13px,calc(15 * var(--u)))/1.5 var(--ko);color:var(--g2)}
-.dt-ttl{margin:calc(22 * var(--u)) 0 calc(56 * var(--u));font:800 max(40px,calc(80 * var(--u)))/1.1 var(--ko);letter-spacing:-.03em;max-width:calc(480 * var(--u));word-break:keep-all}
+.dt-ttl{margin:0 0 calc(96 * var(--u));font:800 max(40px,calc(80 * var(--u)))/1.19 var(--ko);letter-spacing:0;max-width:calc(480 * var(--u));word-break:keep-all}
 .dt-meta{margin:0;display:flex;flex-direction:column;gap:calc(26 * var(--u))}
 .dt-meta dt{font:700 max(13px,calc(15 * var(--u)))/1.2 var(--ko)}
 .dt-meta dd{margin:calc(8 * var(--u)) 0 0;font:500 max(13px,calc(15 * var(--u)))/1.55 var(--ko);color:var(--g2);white-space:pre-line}
@@ -209,7 +209,7 @@ span.chip{cursor:default}
 .dt-close:hover .x{transform:rotate(90deg);transition:transform .4s var(--ease)}
 .dt-main{padding:calc(80 * var(--u)) calc(16 * var(--u)) 0 0;min-width:0}
 .dt-intro{display:grid;grid-template-columns:calc(644 * var(--u)) 1fr;gap:0;margin-bottom:calc(120 * var(--u))}
-.dt-intro h2{margin:0;font:700 max(24px,calc(36 * var(--u)))/1.35 var(--ko);letter-spacing:-.02em;white-space:pre-line;word-break:keep-all}
+.dt-intro h2{margin:0;font:700 max(24px,calc(36 * var(--u)))/1.35 var(--ko);letter-spacing:0;white-space:pre-line;word-break:keep-all}
 .dt-intro p{margin:4px 0 0;font:500 max(14px,calc(17 * var(--u)))/1.7 var(--ko);color:var(--g2);white-space:pre-line;max-width:684px}
 .dt-sec{margin-bottom:calc(120 * var(--u))}
 .dt-sec .lb{display:flex;align-items:baseline;margin-bottom:calc(20 * var(--u))}
@@ -396,7 +396,7 @@ body.locked .to-top{opacity:0;pointer-events:none}
   .dt{display:block}
   .dt-side{position:relative;height:auto;padding:22px 16px 0;overflow:visible}
   .dt-close{position:absolute;top:16px;right:16px;margin:0;padding:0;border:0;font-size:14px;gap:8px}
-  .dt-ttl{margin:16px 0 32px;font-size:40px;max-width:none}
+  .dt-ttl{margin:0 0 32px;font-size:40px;max-width:none}
   .dt-meta{display:grid;grid-template-columns:1fr 1fr;gap:20px 16px}
   .dt-meta div.w2{grid-column:1/-1}
   .dt-meta dt,.dt-meta dd{font-size:13px}
