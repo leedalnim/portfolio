@@ -4,8 +4,8 @@ export const DEFAULT_SETTINGS = {
   hero: {
     intro_title: '의도를 읽어 문제를 해결하는\nUI/UX 디자이너 이달님입니다.',
     intro_sub: '궁금한 점은 AI에게 먼저 물어보셔도 돼요.\n제 작업 기록을 바탕으로 답해 드려요.',
-    wall_note: '디자인은 사용자가\n만나는 가장 쉬운\n언어라고 생각합니다.',
-    wall_note2: '공공기관과 문화재단의\n웹을 주로 만들어\n왔습니다.',
+    wall_note: '다양한 경험을\n결과물로\n완성합니다.',
+    wall_note2: 'AI와 함께\n스펙트럼을\n넓힙니다.',
     wall_year: '2026\n이달님',
   },
   about: {
