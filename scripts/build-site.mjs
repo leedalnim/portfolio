@@ -229,6 +229,9 @@ function projectsPage(projects, s, counts) {
     .join('')}<p class="empty" hidden data-empty>이 조건에 맞는 작업이 아직 없어요.</p></div>`;
 }
 
+
+// 단락은 빈 줄(\n\n), 단락 안 줄바꿈(\n)은 PC에서만 적용 (태블릿·모바일은 자연 줄바꿈)
+const brText = (t) => String(t || '').split(/\n{2,}/).map((par) => par.split('\n').map(esc).join('<br class="pc-br"> ')).join('<br><br>');
 function detail(p, next) {
   const meta = [
     ['플랫폼', p.platform],
@@ -245,12 +248,12 @@ function detail(p, next) {
 ${(p.filters || []).length ? `<div class="w2"><dt>필터</dt><dd class="fl">${p.filters.map((f) => `<a href="${BASE}projects/?f=${FILTER_KEYS[f]}" data-nav>${esc(f)}</a>`).join('')}</dd></div>` : ''}</dl>
 <a class="dt-close" href="${BASE}projects/" data-close>Close <span class="x" aria-hidden="true"></span></a></aside>
 <div class="dt-main">${p.description || p.summary ? `<div class="dt-intro"><h2>PROJECT
-OVERVIEW.</h2><p>${esc(p.description || p.summary)}</p></div>` : ''}
+OVERVIEW.</h2><p>${brText(p.description || p.summary)}</p></div>` : ''}
 ${!(p.sections || []).length && p._thumb ? `<div class="dt-sec">${pic(p._thumb, p.title, '(max-width: 1023px) 100vw, 70vw', true)}</div>` : ''}
 ${(p.sections || [])
     .map((sec, i) => {
       const numbered = sec.label || sec.heading;
-      const head = numbered ? `<div class="lb">${sec.label ? `<span>${esc(sec.label)}</span>` : ''}</div><div class="tx">${sec.heading ? `<h3>${esc(sec.heading)}</h3>` : '<span></span>'}${sec.body ? `<p>${esc(sec.body)}</p>` : ''}</div>` : '';
+      const head = numbered ? `<div class="lb">${sec.label ? `<span>${esc(sec.label)}</span>` : ''}</div><div class="tx">${sec.heading ? `<h3>${esc(sec.heading)}</h3>` : '<span></span>'}${sec.body ? `<p>${brText(sec.body)}</p>` : ''}</div>` : '';
       if (sec.type === 'code') return `<section class="dt-sec dt-code">${head}${codeHtml(sec)}</section>`;
       return `<section class="dt-sec">${head}
 ${(sec.points || []).filter(([k, v]) => k || v).length ? `<div class="dt-pts">${sec.points.filter(([k, v]) => k || v).map(([k, v]) => `<div><b>${esc(k)}</b><span>${esc(v)}</span></div>`).join('')}</div>` : ''}
@@ -277,7 +280,7 @@ function about(s) {
   const pos = { 'UX DESIGN': [910, 110], 'VISUAL DESIGN': [1019, 162], 'AI WORKFLOW': [300, 270], 'SOLO BUILD': [150, 322] };
   const lines = (arr) => `<ul class="lines">${arr.map((r) => `<li><span class="p">${esc(r.period)}</span><b>${esc(r.place)}</b><span>${esc(r.role)}</span><em>${esc(r.note)}</em></li>`).join('')}</ul>`;
   return `<section class="hero grid" style="${cs({ hh: 480, mh: 253, mtop: 102, mfs: 104, mlh: 96, mtt: 72, mtb: 184, mbl: 16 })}">${imgTitle('about', 'ABOUT')}${chips(pos, null)}</section>
-<section class="a-intro"><h2 class="rv">${esc(a.title)}</h2><p class="rv" style="--d:2">${String(a.body||'').split(/\n{2,}/).map(par => par.split('\n').map(esc).join('<br class="pc-br"> ')).join('<br><br>')}</p></section>
+<section class="a-intro"><h2 class="rv">${esc(a.title)}</h2><p class="rv" style="--d:2">${brText(a.body)}</p></section>
 <section class="a-sec"><h2 class="h-en">HOW I WORK</h2><div class="how">${a.how.map((h, i) => `<div class="rv" style="--d:${i}"><span class="tag">${esc(h.chip)}</span><h3>${esc(h.title)}</h3><p>${esc(h.desc)}</p></div>`).join('')}</div></section>
 <section class="a-sec"><h2 class="h-en">EXPERIENCE</h2>${lines(a.experience)}</section>
 <section class="a-sec"><h2 class="h-en">EDUCATION</h2>${lines(a.education)}</section>
