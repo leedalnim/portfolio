@@ -91,7 +91,7 @@ export default function ProjectEditor({ initial, onBack, onSaved, onDelete, onEr
       <div className="page-head">
         <div>
           <button className="link back" onClick={back}>
-            ‹ 프로젝트 목록
+            <span aria-hidden="true">←</span> 프로젝트 목록
           </button>
           <h1>{p.title || (p.id ? '제목 없음' : '새 프로젝트')}</h1>
           <p className="muted">{p.updated_at ? '마지막 저장 ' + fmtDate(p.updated_at) : '아직 저장하지 않았어요'}</p>
