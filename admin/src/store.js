@@ -26,6 +26,14 @@ export function withDefaults(data) {
   return d;
 }
 
+// 피그마에서 복사해 온 글에 섞인 '줄바꿈 금지' 보이지 않는 문자(U+2060)를 지운다
+export function clean(v) {
+  if (typeof v === 'string') return v.replace(/\u2060/g, '');
+  if (Array.isArray(v)) return v.map(clean);
+  if (v && typeof v === 'object') return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, clean(x)]));
+  return v;
+}
+
 export function emptyProject() {
   return {
     id: null,
@@ -84,6 +92,7 @@ function supabaseStore() {
       return data;
     },
     async save(p) {
+      p = clean(p);
       const row = { ...p, updated_at: new Date().toISOString() };
       if (!row.id) delete row.id;
       const { data, error } = await sb.from('projects').upsert(row).select().single();
@@ -113,6 +122,7 @@ function supabaseStore() {
       return withDefaults(data?.data);
     },
     async saveSettings(next) {
+      next = clean(next);
       const { error } = await sb.from('site_settings').upsert({ id: 1, data: next, updated_at: new Date().toISOString() });
       if (error) throw new Error('설정을 저장하지 못했어요: ' + error.message);
       return next;
@@ -176,6 +186,7 @@ function demoStore() {
       return read(KEY_P, []).sort((a, b) => a.sort_order - b.sort_order);
     },
     async save(p) {
+      p = clean(p);
       const all = read(KEY_P, []);
       if (p.slug && all.some((x) => x.slug === p.slug && x.id !== p.id)) throw new Error('같은 주소(slug)를 쓰는 프로젝트가 이미 있어요.');
       const row = { ...p, id: p.id || crypto.randomUUID(), updated_at: new Date().toISOString() };
@@ -211,6 +222,7 @@ function demoStore() {
       return withDefaults(read('pf-demo-settings', null));
     },
     async saveSettings(next) {
+      next = clean(next);
       if (!write('pf-demo-settings', next)) throw new Error('브라우저 저장 공간이 부족해요.');
       return next;
     },

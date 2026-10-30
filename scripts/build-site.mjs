@@ -22,7 +22,7 @@ const BUCKET = 'portfolio';
 const FILTERS = Object.keys(FILTER_KEYS);
 const V = Date.now().toString(36); // 캐시 무효화용
 
-const esc = (s = '') => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+const esc = (s = '') => String(s ?? '').replace(/\u2060/g, '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 const nb = (s = '') => esc(s).replace(/ /g, '&nbsp;'); // 태그 안에서 줄이 끊기지 않게
 const cs = (o) => Object.entries(o).map(([k, v]) => `--${k}:${v}`).join(';');
 
