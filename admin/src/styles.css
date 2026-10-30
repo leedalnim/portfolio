@@ -239,3 +239,8 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent); box-sha
 .list-fields { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 12px; }
 .list-row .section-tools { display: flex; gap: 4px; }
 @media (max-width: 720px) { .list-fields { grid-template-columns: 1fr; } .list-row { flex-direction: column; } }
+
+/* 줄바꿈 규칙 (사이트와 같게) */
+body { word-break: keep-all; overflow-wrap: break-word; text-wrap: pretty; }
+h1, h2, h3 { word-break: keep-all; text-wrap: balance; }
+button, .btn, .chip, .tag, .check, .seg button { white-space: nowrap; }
