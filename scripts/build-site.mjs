@@ -288,8 +288,8 @@ function about(s) {
 function askPage(s) {
   const pos = { 'UX DESIGN': [1502, 100], 'VISUAL DESIGN': [1611, 152], 'AI WORKFLOW': [300, 250], 'SOLO BUILD': [150, 302] };
   const words = s.chat.title.split(' ');
-  return `<section class="hero grid" style="${cs({ hh: 470, mh: 380, mtop: 72, mfs: 104, mlh: 96, mfs2: 92, mlh2: 88, mtt: 100, mtb: 242, mbl: 16 })}">${s.chat.title === 'ASK DALNIM' ? imgTitle('ask', 'ASK DALNIM') : title([s.chat.title], { fs: ['84%'] }).replace('class="ttl"', 'class="ttl k-pc"') + title(words, { fs: ['70%', '78%'] }).replace('class="ttl"', 'class="ttl k-mo"')}${chips(pos, null)}<p class="k-sub">${esc(s.chat.subtitle)}</p></section>
-<div class="chat-wrap"><section class="chat" aria-live="polite"><div class="chat-log" data-log></div>
+  return `<section class="hero grid" style="${cs({ hh: 494, mh: 380, mtop: 72, mfs: 104, mlh: 96, mfs2: 92, mlh2: 88, mtt: 100, mtb: 242, mbl: 16 })}">${s.chat.title === 'ASK DALNIM' ? imgTitle('ask', 'ASK DALNIM') : title([s.chat.title], { fs: ['84%'] }).replace('class="ttl"', 'class="ttl k-pc"') + title(words, { fs: ['70%', '78%'] }).replace('class="ttl"', 'class="ttl k-mo"')}${chips(pos, null)}<p class="k-sub">${esc(s.chat.subtitle)}</p></section>
+<div class="chat-wrap grid"><section class="chat" aria-live="polite"><div class="chat-log" data-log></div>
 <div class="chat-in">${askBox(s, { id: 'ask', placeholder: '이어서 물어보세요', live: true })}</div></section></div>`;
 }
 
