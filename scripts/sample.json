@@ -29,12 +29,12 @@
   },
   {
     "slug": "jungwon",
-    "title": "정원처방",
-    "summary": "",
-    "description": "",
+    "title": "서울형 정원처방",
+    "summary": "정원과 자연으로 마음을 돌보는 정원도시서울의 사이트",
+    "description": "서울형 정원처방은 정원도시서울에서 운영하는 사이트로, 정원과 자연 속에서 마음의 안정을 찾고 스트레스를 덜어낼 수 있도록 서울의 정원에서 열리는 다양한 프로그램을 소개합니다. 핵심 기능은 '나의 마음건강 체크'와 '정원처방 기관 찾기'입니다. 정서상태·우울함·스트레스·외로움 네 가지 척도로 지금 내 마음을 살펴보고, 자치구별로 가까운 정원처방 기관을 찾을 수 있습니다.\n\n'정원처방'이 낯선 사람도 설명을 읽다 지치지 않도록, 메인에서 바로 두 핵심 기능에 닿을 수 있게 구성했습니다. 숲의 초록을 바탕으로 꽃 분홍을 포인트로 주었고, 나무·사람·꽃 모양의 그래픽을 활용해 디자인했습니다.",
     "category": "",
     "client": "",
-    "role": "",
+    "role": "기획 · UX/UI 디자인\nAI를 활용한 인터랙션·퍼블리싱",
     "period": "",
     "type": "구축",
     "tags": [],
@@ -49,11 +49,65 @@
     "contribution": "",
     "show_on_wall": true,
     "show_on_archive": true,
-    "thumbnail": "local:scripts/sample-img/t-jungwon.webp",
-    "sections": [],
+    "thumbnail": "local:scripts/sample-img/jw3-thumb.webp",
+    "sections": [
+      {
+        "id": "lap",
+        "type": "code",
+        "label": "",
+        "heading": "",
+        "body": "",
+        "layout": "1",
+        "points": [],
+        "html": "<div class=\"lap\">\n  <img class=\"lap-bg\" src=\"{{1}}\" alt=\"\">\n  <div class=\"lap-scr\"><img src=\"{{2}}\" alt=\"서울형 정원처방 메인 화면\"></div>\n</div>\n<style>\n  .lap { position: relative; aspect-ratio: 1328 / 747; overflow: hidden; }\n  .lap-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }\n  .lap-scr { position: absolute; left: 29.443%; top: 24.632%; width: 41.114%; height: 45.917%; overflow: hidden; background: #fff; }\n  .lap-scr img { display: block; width: 100%; height: auto; animation: lapScroll 24s ease-in-out infinite; }\n  @keyframes lapScroll {\n    0%, 8% { transform: translateY(0); }\n    46%, 58% { transform: translateY(-74.7%); }\n    96%, 100% { transform: translateY(0); }\n  }\n  @media (prefers-reduced-motion: reduce) { .lap-scr img { animation: none; } }\n</style>",
+        "images": [
+          {
+            "path": "local:scripts/sample-img/jw3-hero.webp",
+            "caption": ""
+          },
+          {
+            "path": "local:scripts/sample-img/jw2-mainlong.webp",
+            "caption": ""
+          }
+        ]
+      },
+      {
+        "id": "s1",
+        "type": "basic",
+        "label": "설계와 구현",
+        "heading": "AI와 함께\n설계부터 구현까지 진행했습니다.",
+        "body": "구조화된 기획서 없이 전달받은 내용만으로 디자인을 시작했습니다. 화면 구조와 카피는 직접 설계했습니다. 퍼블리싱은 AI에게 맡기고, 검증은 제가 직접 했습니다.\n\n'나의 마음건강 체크'는 따로 받은 점수표나 결과 구간이 없어, 전달받은 문항을 기준으로 점수를 계산하는 방식을 AI와 함께 정리해 검사부터 결과 페이지까지 이어지게 만들었습니다. '정원처방 기관 찾기'의 자치구 지도는 받은 데이터를 SVG로 그려 구현했습니다.\n\n모바일 화면은 AI가 알아서 맞추도록 했고, 예외 상황과 접근성 검사는 자동화해 반복해서 확인할 수 있게 했습니다. 메인 디자인이 확정된 뒤에는 AI가 메인 시안의 컬러·타이포·카드 구조를 읽어 디자인 가이드로 정리하게 했고, 그 기준으로 서브 페이지를 짧은 기간 안에 일관된 톤으로 완성했습니다.",
+        "layout": "1",
+        "points": [],
+        "html": "",
+        "images": [
+          {
+            "path": "local:scripts/sample-img/jw3-mock.webp",
+            "caption": ""
+          },
+          {
+            "path": "local:scripts/sample-img/jw3-row1.webp",
+            "caption": ""
+          },
+          {
+            "path": "local:scripts/sample-img/jw3-row2.webp",
+            "caption": ""
+          },
+          {
+            "path": "local:scripts/sample-img/jw3-iso.webp",
+            "caption": ""
+          },
+          {
+            "path": "local:scripts/sample-img/jw3-color.webp",
+            "caption": ""
+          }
+        ]
+      }
+    ],
     "published": true,
     "sort_order": 1,
-    "wall_order": 7
+    "wall_order": 7,
+    "custom_css": ""
   },
   {
     "slug": "gungjung",
