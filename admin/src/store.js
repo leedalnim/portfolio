@@ -56,6 +56,7 @@ export function emptyProject() {
     show_on_archive: true,
     thumbnail: null,
     sections: [],
+    custom_css: '',
     published: false,
     sort_order: 0,
     updated_at: null,
@@ -63,7 +64,7 @@ export function emptyProject() {
 }
 
 export function newSection() {
-  return { id: crypto.randomUUID(), label: '', heading: '', body: '', layout: '1', images: [] };
+  return { id: crypto.randomUUID(), type: 'basic', label: '', heading: '', body: '', layout: '1', images: [], points: [], html: '' };
 }
 
 /* ---------------- Supabase ---------------- */
@@ -114,6 +115,7 @@ function supabaseStore() {
     },
     imageUrl(path) {
       if (!path) return '';
+      if (/^(https?:|data:)/.test(path)) return path;
       return sb.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
     },
     async getSettings() {
@@ -216,6 +218,7 @@ function demoStore() {
     },
     imageUrl(path) {
       if (!path) return '';
+      if (/^(https?:|data:)/.test(path)) return path;
       return memImages[path] || read(KEY_I, {})[path] || '';
     },
     async getSettings() {

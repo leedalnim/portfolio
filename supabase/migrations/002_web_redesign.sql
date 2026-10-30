@@ -10,6 +10,7 @@ alter table public.projects add column if not exists description   text    not n
 alter table public.projects add column if not exists contribution  text    not null default '';      -- 기여도 (예: 100%)
 alter table public.projects add column if not exists show_on_wall    boolean not null default true;  -- 메인 썸네일 벽에 보이기
 alter table public.projects add column if not exists show_on_archive boolean not null default true;  -- 메인 아카이브(10줄)에 보이기
+alter table public.projects add column if not exists custom_css    text    not null default '';      -- 이 프로젝트 상세에만 쓰는 CSS
 
 -- 2. 사이트 설정 (메인 문구, 어바웃, 챗봇, PDF) — 한 줄짜리 표
 create table if not exists public.site_settings (

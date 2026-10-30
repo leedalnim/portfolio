@@ -245,18 +245,32 @@ function detail(p, next) {
 <dl class="dt-meta">${meta.map(([k, v]) => `<div${wide.has(k) ? ' class="w2"' : ''}><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('')}
 ${(p.filters || []).length ? `<div class="w2"><dt>필터</dt><dd class="fl">${p.filters.map((f) => `<a href="${BASE}projects/?f=${FILTER_KEYS[f]}" data-nav>${esc(f)}</a>`).join('')}</dd></div>` : ''}</dl>
 <a class="dt-close" href="${BASE}projects/" data-close>Close <span class="x" aria-hidden="true"></span></a></aside>
-<div class="dt-main">${p.summary || p.description ? `<div class="dt-intro"><h2>${esc(p.summary)}</h2><p>${esc(p.description)}</p></div>` : ''}
+<div class="dt-main">${p.summary || p.description ? `<div class="dt-intro">${p.summary ? `<h2>${esc(p.summary)}</h2>` : ''}${p.description ? `<p>${esc(p.description)}</p>` : ''}</div>` : ''}
 ${!(p.sections || []).length && p._thumb ? `<div class="dt-sec">${pic(p._thumb, p.title, '(max-width: 1023px) 100vw, 70vw', true)}</div>` : ''}
 ${(p.sections || [])
     .map((sec, i) => {
       const numbered = sec.label || sec.heading;
       const n = (p.sections.slice(0, i + 1).filter((x) => x.label || x.heading).length + '').padStart(2, '0');
-      return `<section class="dt-sec">${numbered ? `<div class="lb"><b>${n}</b><span>${esc(sec.label || '')}</span></div><div class="tx"><h3>${esc(sec.heading)}</h3><p>${esc(sec.body)}</p></div>` : ''}
-${(sec.points || []).length ? `<div class="dt-pts">${sec.points.map(([k, v]) => `<div><b>${esc(k)}</b><span>${esc(v)}</span></div>`).join('')}</div>` : ''}
+      const head = numbered ? `<div class="lb"><b>${n}</b><span>${esc(sec.label || '')}</span></div><div class="tx">${sec.heading ? `<h3>${esc(sec.heading)}</h3>` : '<span></span>'}${sec.body ? `<p>${esc(sec.body)}</p>` : ''}</div>` : '';
+      if (sec.type === 'code') return `<section class="dt-sec dt-code">${head}${codeHtml(sec)}</section>`;
+      return `<section class="dt-sec">${head}
+${(sec.points || []).filter(([k, v]) => k || v).length ? `<div class="dt-pts">${sec.points.filter(([k, v]) => k || v).map(([k, v]) => `<div><b>${esc(k)}</b><span>${esc(v)}</span></div>`).join('')}</div>` : ''}
 <div class="gal c${esc(sec.layout || '1')}">${(sec.images || []).map((im) => (im._img ? `<figure>${pic(im._img, im.caption, '(max-width: 1023px) 100vw, 70vw', i === 0)}${im.caption ? `<figcaption>${esc(im.caption)}</figcaption>` : ''}</figure>` : '')).join('')}</div></section>`;
     })
     .join('')}
+${p.custom_css ? `<style>#detail[data-slug="${esc(p.slug)}"]{${String(p.custom_css).replace(/<\/?style/gi, '')}}</style>` : ''}
 ${next ? `<a class="dt-next" href="${href(next)}" data-detail data-replace><span><small>NEXT PROJECT</small><strong>${esc(next.title)}</strong></span><span class="ar" aria-hidden="true">→</span></a>` : ''}</div></article>`;
+}
+
+// 코드 섹션: 관리자에서 쓴 HTML·CSS를 그대로 넣는다. {{1}}, {{2}}는 그 섹션에 올린 이미지 주소로 바꾼다.
+// 상세는 팝업으로 끼워 넣어 보여주므로 스크립트는 빼고 넣는다.
+function codeHtml(sec) {
+  const imgs = (sec.images || []).map((im) => im._img);
+  return String(sec.html || '')
+    .replace(/\u2060/g, '')
+    .replace(/<script[\s\S]*?<\/script\s*>/gi, '')
+    .replace(/\son[a-z]+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, '')
+    .replace(/\{\{\s*(\d+)\s*\}\}/g, (_, k) => (imgs[k - 1] ? src(imgs[k - 1], 1920) : ''));
 }
 
 function about(s) {

@@ -245,3 +245,23 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent); box-sha
 body { word-break: keep-all; overflow-wrap: break-word; text-wrap: pretty; }
 h1, h2, h3 { word-break: keep-all; text-wrap: balance; }
 button, .btn, .chip, .tag, .check, .seg button { white-space: nowrap; }
+
+/* 코드 편집 · 코드 섹션 · 포인트 */
+.field > span em, .card h2 em { font-style: normal; font-weight: 500; font-size: 11.5px; color: var(--sub); margin-left: 4px; }
+.section-top { align-items: flex-start; }
+.section-top .l-input, .section-top .icon-btn { margin-top: 0; }
+.section-top textarea.h-input { min-height: 40px; height: auto; padding: 8px 12px; line-height: 1.45; resize: vertical; }
+.section-top .num { padding-top: 11px; }
+.kind-badge { flex: none; margin-top: 9px; padding: 3px 8px; border-radius: 6px; background: #111; color: #fff; font-size: 11.5px; font-weight: 700; }
+.card.section.is-code { border: 1px dashed var(--line-strong); }
+textarea.code { font: 12.5px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; tab-size: 2; white-space: pre; overflow-wrap: normal; word-break: normal; }
+code { font: 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--bg); padding: 1px 5px; border-radius: 4px; white-space: nowrap; }
+.code-card .row-end { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
+.code-card .err, p.err { color: #d33; }
+.points { display: grid; gap: 8px; margin: 4px 0 6px; }
+.pt-row { display: grid; grid-template-columns: 180px 1fr auto; gap: 8px; align-items: start; }
+.pt-row .icon-btn { margin-top: 6px; }
+.points > .btn { justify-self: start; }
+.add-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.gallery figure { position: relative; }
+.fig-n { position: absolute; left: 8px; top: 8px; padding: 2px 7px; border-radius: 6px; background: rgba(0, 0, 0, 0.72); color: #fff; font: 600 11.5px ui-monospace, Menlo, monospace; }
