@@ -203,7 +203,7 @@ ${imgTitle('home', 'PORTFOLIO')}${chips(pos, counts)}</section>
 ${wall
   .map((p, i) => {
     const [x, y, sz, mx, my, ms] = WALL[i];
-    return `<a class="w rv" href="${href(p)}" data-detail data-s="${sz}" style="--x:${x};--y:${y};--s:${sz};--mx:${mx};--my:${my};--ms:${ms};--d:${i}">${pic(p._thumb, p.title, `(max-width: 1023px) 50vw, ${Math.round(sz / 19.2)}vw`)}<span class="ov"><i>${esc(p.kind)}</i><span><strong>${esc(p.title)}</strong><small>${[p.platform, ...(p.filters || [])].filter(Boolean).map(nb).join(' · ')}</small></span></span></a>`;
+    return `<a class="w rv" href="${href(p)}" data-detail data-s="${sz}" style="--x:${x};--y:${y};--s:${sz};--mx:${mx};--my:${my};--ms:${ms};--d:${i}">${pic(p._thumb, p.title, `(max-width: 1023px) 50vw, ${Math.round(sz / 19.2)}vw`)}<span class="ov"><i>${esc(p.kind)}</i><span><strong>${esc(p.title)}</strong><small>${[p.platform, ...(p.filters || [])].filter(Boolean).map(nb).join(' · ')}</small><em class="go">자세히 보기<i aria-hidden="true">↗</i></em></span></span></a>`;
   })
   .join('')}
 <p class="note" style="--x:0;--y:696;--w:180">${esc(s.hero.wall_note2)}</p><p class="note" style="--x:1152;--y:204;--w:180">${esc(s.hero.wall_note)}</p></section>
@@ -221,7 +221,7 @@ function projectsPage(projects, s, counts) {
     .map(
       (p, i) => `<a class="card rv" href="${href(p)}" data-detail data-kind="${esc(p.kind)}" data-f="${(p.filters || []).map((f) => FILTER_KEYS[f]).join(' ')}" style="--d:${i % 4}">
 <span class="th">${p._thumb ? `${pic(p._thumb, '', '(max-width: 1023px) 50vw, 25vw')}<img class="px" src="${BASE}img/${p._thumb.id}-px.webp" alt="" aria-hidden="true" loading="lazy">` : '<span class="ph">이미지 넣기</span>'}</span>
-<span class="ov"><strong>${esc(p.title)}</strong><small>${tagLine(p).map(nb).join(' · ')}</small><em>자세히 보기<i aria-hidden="true">↗</i></em></span>
+<span class="ov"><strong>${esc(p.title)}</strong><small>${tagLine(p).map(nb).join(' · ')}</small><em class="go">자세히 보기<i aria-hidden="true">↗</i></em></span>
 <span class="cap"><strong>${esc(p.title)}</strong><small>${tagLine(p).map(nb).join(' · ')}</small></span></a>`,
     )
     .join('')}<p class="empty" hidden data-empty>이 조건에 맞는 작업이 아직 없어요.</p></div>`;

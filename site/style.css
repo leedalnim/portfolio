@@ -115,11 +115,11 @@ a.chip:hover{transform:translateY(-3px) rotate(-2deg)}
 .wall .w:hover img{transform:scale(1.05)}
 .wall .w .ov{position:absolute;inset:0;background:rgba(20,47,178,.9);color:#fff;padding:calc(20 * var(--u));display:flex;flex-direction:column;justify-content:space-between;opacity:0;transition:opacity .35s}
 .wall .w:hover .ov,.wall .w:focus-visible .ov{opacity:1}
-.wall .w .ov i{font:700 calc(40 * var(--u))/1 var(--en);font-style:normal;letter-spacing:-.02em;transform:translateY(-8px);transition:transform .5s var(--ease)}
+.wall .w .ov>i{font:700 calc(40 * var(--u))/1 var(--en);font-style:normal;letter-spacing:-.02em;transform:translateY(-8px);transition:transform .5s var(--ease)}
 .wall .w .ov strong{font:700 max(14px,calc(22 * var(--u)))/1.3 var(--ko);display:block}
 .wall .w .ov small{display:block;margin-top:6px;font:500 max(11px,calc(14 * var(--u)))/1.4 var(--en);opacity:.8;letter-spacing:.03em}
-.wall .w[data-s="192"] .ov i{font-size:calc(24 * var(--u))}
-.wall .w:hover .ov i{transform:none}
+.wall .w[data-s="192"] .ov>i{font-size:calc(24 * var(--u))}
+.wall .w:hover .ov>i{transform:none}
 .wall .note{position:absolute;left:calc(var(--x) * var(--u));top:calc(var(--y) * var(--u));width:calc(var(--w) * var(--u));text-align:right;white-space:pre-line;font:500 max(10px,calc(13 * var(--u)))/1.5 var(--ko)}
 
 /* ---------- 아카이브 목록 ---------- */
@@ -166,8 +166,12 @@ span.chip{cursor:default}
 .card .ov{position:absolute;inset:0;background:rgba(0,0,0,.4);color:#fff;padding:calc(24 * var(--u));display:flex;flex-direction:column;justify-content:flex-end;opacity:0;transition:opacity .25s}
 .card .ov strong{font:700 max(16px,calc(24 * var(--u)))/1.3 var(--ko)}
 .card .ov small{display:block;margin:6px 0 0;font:600 max(11px,calc(14 * var(--u)))/1.5 var(--ko);opacity:.85}
-.card .ov em{display:inline-flex;align-items:center;gap:4px;font:600 max(11px,calc(14 * var(--u)))/1 var(--ko);font-style:normal;margin-top:calc(22 * var(--u))}
-.card .ov em i{font-style:normal;font-size:1.36em;line-height:1;transform:translateY(-.04em)}
+.go{display:inline-flex;align-self:flex-start;align-items:center;gap:4px;font:600 max(11px,calc(14 * var(--u)))/1 var(--ko);font-style:normal}
+.go i{font-style:normal;font-weight:400;font-size:1.29em;line-height:.9}
+.card .ov em{margin-top:calc(38 * var(--u))}
+.wall .w .ov .go{display:flex;margin-top:calc(38 * var(--u))}
+.wall .w[data-s="192"] .ov small{display:none}
+.wall .w[data-s="192"] .ov .go{margin-top:calc(14 * var(--u))}
 .card:hover .px,.card:focus-visible .px,.card:hover .ov,.card:focus-visible .ov{opacity:1}
 .card .ov>*{transform:translateY(10px);transition:transform .45s var(--ease)}
 .card:hover .ov>*{transform:none}
@@ -351,7 +355,7 @@ body.locked .to-top{opacity:0;pointer-events:none}
   .wall{height:calc(var(--mrows,6) * 97.5 * var(--u))}
   .wall .w{left:calc(var(--mx) * var(--u));top:calc(var(--my) * var(--u));width:calc(var(--ms) * var(--u));height:calc(var(--ms) * var(--u))}
   .wall .w[data-m="0"],.wall .note{display:none}
-  .wall .w .ov i{font-size:20px}
+  .wall .w .ov>i{font-size:20px}
   .arc{padding-top:20px}
   .arc-head{flex-direction:column;gap:16px;padding:0 16px}
   .h-en{font-size:44px}
