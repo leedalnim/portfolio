@@ -183,7 +183,7 @@ export default function ProjectEditor({ initial, onBack, onSaved, onDelete, onEr
                 <small className={p.slug && !SLUG_RE.test(p.slug) ? 'err' : 'muted'}>영문 소문자, 숫자, 하이픈(-)만 쓸 수 있어요.</small>
               </label>
               <label className="field span2">
-                <span>요약 (목록 카드·검색 결과에 쓰는 한 줄)</span>
+                <span>요약 (사이트에는 안 보여요 · 검색·공유 미리보기와 AI 챗봇이 참고하는 한 줄)</span>
                 <textarea id="f-summary" rows={3} value={p.summary} onChange={(e) => set({ summary: e.target.value })} placeholder="줄바꿈 그대로 보여요" />
               </label>
               <label className="field span2">
