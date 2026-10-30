@@ -200,8 +200,8 @@ export default function ProjectEditor({ initial, onBack, onSaved, onDelete, onEr
           </div>
 
           <div className="card">
-            <h2>대표 이미지</h2>
-            <p className="muted sm">목록 카드와 상세 맨 위에 쓰여요. 가로로 긴 이미지가 잘 어울려요.</p>
+            <h2>썸네일 (정사각)</h2>
+            <p className="muted sm">메인 썸네일 벽, Projects 목록, ARCHIVE 미리보기에 쓰여요. 정사각 이미지로 올려 주세요.</p>
             <ImageSlot path={p.thumbnail} onChange={(path) => set({ thumbnail: path })} onError={onError} />
           </div>
 
