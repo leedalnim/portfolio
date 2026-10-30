@@ -231,7 +231,6 @@ function projectsPage(projects, s, counts) {
 
 function detail(p, next) {
   const meta = [
-    ['구분', [p.kind, p.type].filter(Boolean).join(' · ')],
     ['플랫폼', p.platform],
     ['역할', p.role],
     ['기여도', p.contribution],
@@ -241,17 +240,16 @@ function detail(p, next) {
   ].filter(([, v]) => v);
   const wide = new Set(['기술']);
   return `<article class="dt" id="detail" data-slug="${esc(p.slug)}">
-<aside class="dt-side"><span class="dt-kind">${esc(p.kind)}</span><h1 class="dt-ttl">${esc(p.title)}</h1>
+<aside class="dt-side"><span class="dt-kind">${esc([p.kind, p.type].filter(Boolean).join(' · '))}</span><h1 class="dt-ttl">${esc(p.title)}</h1>
 <dl class="dt-meta">${meta.map(([k, v]) => `<div${wide.has(k) ? ' class="w2"' : ''}><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('')}
 ${(p.filters || []).length ? `<div class="w2"><dt>필터</dt><dd class="fl">${p.filters.map((f) => `<a href="${BASE}projects/?f=${FILTER_KEYS[f]}" data-nav>${esc(f)}</a>`).join('')}</dd></div>` : ''}</dl>
 <a class="dt-close" href="${BASE}projects/" data-close>Close <span class="x" aria-hidden="true"></span></a></aside>
-<div class="dt-main">${p.summary || p.description ? `<div class="dt-intro">${p.summary ? `<h2>${esc(p.summary)}</h2>` : ''}${p.description ? `<p>${esc(p.description)}</p>` : ''}</div>` : ''}
+<div class="dt-main">${p.description || p.summary ? `<div class="dt-intro"><h2>OVERVIEW</h2><p>${esc(p.description || p.summary)}</p></div>` : ''}
 ${!(p.sections || []).length && p._thumb ? `<div class="dt-sec">${pic(p._thumb, p.title, '(max-width: 1023px) 100vw, 70vw', true)}</div>` : ''}
 ${(p.sections || [])
     .map((sec, i) => {
       const numbered = sec.label || sec.heading;
-      const n = (p.sections.slice(0, i + 1).filter((x) => x.label || x.heading).length + '').padStart(2, '0');
-      const head = numbered ? `<div class="lb"><b>${n}</b><span>${esc(sec.label || '')}</span></div><div class="tx">${sec.heading ? `<h3>${esc(sec.heading)}</h3>` : '<span></span>'}${sec.body ? `<p>${esc(sec.body)}</p>` : ''}</div>` : '';
+      const head = numbered ? `<div class="lb">${sec.label ? `<span>${esc(sec.label)}</span>` : ''}</div><div class="tx">${sec.heading ? `<h3>${esc(sec.heading)}</h3>` : '<span></span>'}${sec.body ? `<p>${esc(sec.body)}</p>` : ''}</div>` : '';
       if (sec.type === 'code') return `<section class="dt-sec dt-code">${head}${codeHtml(sec)}</section>`;
       return `<section class="dt-sec">${head}
 ${(sec.points || []).filter(([k, v]) => k || v).length ? `<div class="dt-pts">${sec.points.filter(([k, v]) => k || v).map(([k, v]) => `<div><b>${esc(k)}</b><span>${esc(v)}</span></div>`).join('')}</div>` : ''}

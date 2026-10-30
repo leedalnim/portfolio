@@ -183,11 +183,11 @@ export default function ProjectEditor({ initial, onBack, onSaved, onDelete, onEr
                 <small className={p.slug && !SLUG_RE.test(p.slug) ? 'err' : 'muted'}>영문 소문자, 숫자, 하이픈(-)만 쓸 수 있어요.</small>
               </label>
               <label className="field span2">
-                <span>요약 (상세 오른쪽 큰 글씨)</span>
+                <span>요약 (목록 카드·검색 결과에 쓰는 한 줄)</span>
                 <textarea id="f-summary" rows={3} value={p.summary} onChange={(e) => set({ summary: e.target.value })} placeholder="줄바꿈 그대로 보여요" />
               </label>
               <label className="field span2">
-                <span>설명 (요약 옆 작은 글씨)</span>
+                <span>오버뷰 (상세 맨 위 OVERVIEW 옆 글)</span>
                 <textarea id="f-desc" rows={3} value={p.description || ''} onChange={(e) => set({ description: e.target.value })} placeholder="어떤 작업인지 두세 문장" />
               </label>
               <label className="field">
@@ -230,7 +230,7 @@ export default function ProjectEditor({ initial, onBack, onSaved, onDelete, onEr
               </label>
               <label className="field span2">
                 <span>역할 <em>선택</em></span>
-                <input id="f-role" value={p.role || ''} onChange={(e) => set({ role: e.target.value })} placeholder="예: UI/UX 디자인 · AI 퍼블리싱" />
+                <textarea id="f-role" rows={2} value={p.role || ''} onChange={(e) => set({ role: e.target.value })} placeholder="예: 기획 · UX/UI 디자인 (줄바꿈 그대로 보여요)" />
               </label>
               <div className="field span2">
                 <span>필터 (첫 화면 칩과 프로젝트 목록 필터)</span>
