@@ -255,7 +255,7 @@ ${(p.sections || [])
       if (sec.type === 'code') return `<section class="dt-sec dt-code">${head}${codeHtml(sec)}</section>`;
       return `<section class="dt-sec">${head}
 ${(sec.points || []).filter(([k, v]) => k || v).length ? `<div class="dt-pts">${sec.points.filter(([k, v]) => k || v).map(([k, v]) => `<div><b>${esc(k)}</b><span>${esc(v)}</span></div>`).join('')}</div>` : ''}
-<div class="gal c${esc(sec.layout || '1')}">${(sec.images || []).map((im) => (im._img ? `<figure>${pic(im._img, im.caption, '(max-width: 1023px) 100vw, 70vw', i === 0)}${im.caption ? `<figcaption>${esc(im.caption)}</figcaption>` : ''}</figure>` : '')).join('')}</div></section>`;
+<div class="gal c1">${(sec.images || []).map((im) => (im._img ? `<figure>${pic(im._img, im.caption, '(max-width: 1023px) 100vw, 70vw', i === 0)}${im.caption ? `<figcaption>${esc(im.caption)}</figcaption>` : ''}</figure>` : '')).join('')}</div></section>`;
     })
     .join('')}
 ${p.custom_css ? `<style>#detail[data-slug="${esc(p.slug)}"]{${String(p.custom_css).replace(/<\/?style/gi, '')}}</style>` : ''}

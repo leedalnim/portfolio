@@ -307,21 +307,7 @@ export default function ProjectEditor({ initial, onBack, onSaved, onDelete, onEr
               ) : (
                 <>
                   <Points value={s.points || []} onChange={(v) => setSection(s.id, { points: v })} />
-                  <div className="layout-pick">
-                    <span className="muted sm">이미지 배치</span>
-                    <div className="seg">
-                      {[
-                        ['1', '1열'],
-                        ['2', '2열'],
-                        ['3', '3열'],
-                      ].map(([v, l]) => (
-                        <button key={v} className={s.layout === v ? 'on' : ''} onClick={() => setSection(s.id, { layout: v })}>
-                          {l}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                  <Gallery section={s} onChange={(v) => setSection(s.id, (sec) => ({ images: typeof v === 'function' ? v(sec.images) : v }))} onError={onError} />
+                  <Gallery section={{ ...s, layout: '1' }} onChange={(v) => setSection(s.id, (sec) => ({ images: typeof v === 'function' ? v(sec.images) : v }))} onError={onError} />
                 </>
               )}
             </div>
