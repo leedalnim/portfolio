@@ -417,7 +417,6 @@ body.locked .to-top{opacity:0;pointer-events:none}
   .dt-next strong{font-size:24px}
   .dt-next .ar{font-size:24px}
   .a-top{display:none}
-  .pc-br{display:none}
   .a-intro,.a-cta{display:block;padding:32px 16px 56px}
   .a-intro h2{font-size:28px}
   .a-intro p{margin-top:24px;font-size:15px}
@@ -456,3 +455,6 @@ body.locked .to-top{opacity:0;pointer-events:none}
 .k-mo{display:none}
 .is-detail .hd,.is-detail .ft{display:none}
 @media (max-width:1023px){.k-pc{display:none}.k-mo{display:flex}}
+
+/* 글 안 한 줄 줄바꿈(엔터 한 번)은 글자 크기가 피그마와 같아지는 넓은 화면에서만 */
+@media (max-width:1599px){.pc-br{display:none}}
