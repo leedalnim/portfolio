@@ -80,13 +80,14 @@ async function image(p) {
       }
       buf = Buffer.from(await r.arrayBuffer());
     }
-    for (const w of WIDTHS) await sharp(buf).resize({ width: w, withoutEnlargement: true }).webp({ quality: 82 }).toFile(path.join(CACHE, `${id}-${w}.webp`));
+    for (const w of WIDTHS) await sharp(buf, { animated: true }).resize({ width: w, withoutEnlargement: true }).webp({ quality: 82 }).toFile(path.join(CACHE, `${id}-${w}.webp`));
     // 모자이크용: 가로 28칸으로 줄인 아주 작은 이미지 (화면에서 키우면 칸이 보임)
     // 정사각 썸네일에 맞춰 큰 칸(24칸)과 잘게 쪼갠 칸(56칸) 두 단계 → 호버 때 차례로 겹쳐 자연스럽게 모자이크로 바뀜
     await sharp(buf).resize({ width: 24, height: 24, fit: 'cover', position: 'top' }).webp({ quality: 90 }).toFile(path.join(CACHE, `${id}-px.webp`));
     await sharp(buf).resize({ width: 56, height: 56, fit: 'cover', position: 'top' }).webp({ quality: 90 }).toFile(path.join(CACHE, `${id}-px2.webp`));
   }
   const meta = await sharp(path.join(CACHE, `${id}-${WIDTHS[1]}.webp`)).metadata();
+  if (meta.pageHeight) meta.height = meta.pageHeight; // 움직이는 webp는 전체 프레임 높이가 합쳐져 나와서 한 장 높이로
   await fs.mkdir(path.join(DIST, 'img'), { recursive: true });
   for (const f of files) await fs.copyFile(path.join(CACHE, f), path.join(DIST, 'img', f));
   const out = { id, w: meta.width, h: meta.height };
