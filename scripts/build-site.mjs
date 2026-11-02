@@ -65,7 +65,9 @@ async function image(p) {
   if (done.has(p)) return done.get(p);
   const id = crypto.createHash('sha1').update(p).digest('hex').slice(0, 16);
   await fs.mkdir(CACHE, { recursive: true });
-  const files = [...WIDTHS.map((w) => `${id}-${w}.webp`), `${id}-px.webp`, `${id}-px2.webp`];
+  // SVG(움직이는 SVG 포함)는 그대로 복사해 쓴다. 모자이크용 작은 이미지만 래스터로 만든다.
+  const isSvg = /\.svg$/i.test(p);
+  const files = isSvg ? [`${id}.svg`, `${id}-px.webp`, `${id}-px2.webp`] : [...WIDTHS.map((w) => `${id}-${w}.webp`), `${id}-px.webp`, `${id}-px2.webp`];
   const cached = await Promise.all(files.map((f) => fs.stat(path.join(CACHE, f)).then(() => true, () => false)));
   if (!cached.every(Boolean)) {
     let buf;
@@ -80,24 +82,25 @@ async function image(p) {
       }
       buf = Buffer.from(await r.arrayBuffer());
     }
-    for (const w of WIDTHS) await sharp(buf, { animated: true }).resize({ width: w, withoutEnlargement: true }).webp({ quality: 82 }).toFile(path.join(CACHE, `${id}-${w}.webp`));
+    if (isSvg) await fs.writeFile(path.join(CACHE, `${id}.svg`), buf);
+    else for (const w of WIDTHS) await sharp(buf, { animated: true }).resize({ width: w, withoutEnlargement: true }).webp({ quality: 82 }).toFile(path.join(CACHE, `${id}-${w}.webp`));
     // 모자이크용: 가로 28칸으로 줄인 아주 작은 이미지 (화면에서 키우면 칸이 보임)
     // 정사각 썸네일에 맞춰 큰 칸(24칸)과 잘게 쪼갠 칸(56칸) 두 단계 → 호버 때 차례로 겹쳐 자연스럽게 모자이크로 바뀜
     await sharp(buf).resize({ width: 24, height: 24, fit: 'cover', position: 'top' }).webp({ quality: 90 }).toFile(path.join(CACHE, `${id}-px.webp`));
     await sharp(buf).resize({ width: 56, height: 56, fit: 'cover', position: 'top' }).webp({ quality: 90 }).toFile(path.join(CACHE, `${id}-px2.webp`));
   }
-  const meta = await sharp(path.join(CACHE, `${id}-${WIDTHS[1]}.webp`)).metadata();
+  const meta = await sharp(path.join(CACHE, isSvg ? `${id}.svg` : `${id}-${WIDTHS[1]}.webp`)).metadata();
   if (meta.pageHeight) meta.height = meta.pageHeight; // 움직이는 webp는 전체 프레임 높이가 합쳐져 나와서 한 장 높이로
   await fs.mkdir(path.join(DIST, 'img'), { recursive: true });
   for (const f of files) await fs.copyFile(path.join(CACHE, f), path.join(DIST, 'img', f));
-  const out = { id, w: meta.width, h: meta.height };
+  const out = { id, w: meta.width, h: meta.height, svg: isSvg };
   done.set(p, out);
   return out;
 }
-const src = (im, w = 960) => `${BASE}img/${im.id}-${w}.webp`;
+const src = (im, w = 960) => (im.svg ? `${BASE}img/${im.id}.svg` : `${BASE}img/${im.id}-${w}.webp`);
 function pic(im, alt = '', sizes = '(max-width: 1023px) 100vw, 50vw', eager = false, cls = '') {
   if (!im) return '';
-  return `<img${cls ? ` class="${cls}"` : ''} src="${src(im)}" srcset="${src(im)} 960w, ${src(im, 1920)} 1920w" sizes="${sizes}" width="${im.w}" height="${im.h}" alt="${esc(alt)}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`;
+  return `<img${cls ? ` class="${cls}"` : ''} src="${src(im)}"${im.svg ? '' : ` srcset="${src(im)} 960w, ${src(im, 1920)} 1920w" sizes="${sizes}"`} width="${im.w}" height="${im.h}" alt="${esc(alt)}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`;
 }
 
 /* ---------------- 공통 조각 ---------------- */
