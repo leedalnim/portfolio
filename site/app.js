@@ -291,6 +291,7 @@
     scroller.replaceChildren(document.importNode(node, true));
     scroller.scrollTop = 0;
     $$('.rv', scroller).forEach((el) => el.classList.add('in'));
+    autoScroll(scroller);
     if (push) history[replace ? 'replaceState' : 'pushState']({ detail: url }, '', url);
     document.title = (node.querySelector('.dt-ttl')?.textContent || '') + ' — DALNIM';
     if (blinds.classList.contains('on')) uncover(); // 덮을 때와 같은 방향으로 이어서 걷힘
@@ -339,6 +340,43 @@
   });
   // 상세 단독 페이지에서 닫기 → 목록으로
   if (standalone) document.documentElement.classList.add('is-detail');
+
+
+  /* ---------- 화면 미리보기 자동 스크롤 (상세 페이지의 PC·노트북 화면 등) ----------
+     평소에는 천천히 내려갔다 올라오고, 마우스를 올리거나 손가락으로 만지면 멈춰서 직접 스크롤할 수 있다.
+     손을 떼면 그 위치에서 다시 이어서 움직인다. data-autoscroll 값 = 끝까지 내려가는 데 걸리는 초 */
+  function autoScroll(root = document) {
+    $$('[data-autoscroll]', root).forEach((el) => {
+      if (el._as) return;
+      const st = (el._as = { dir: 1, hold: performance.now() + 1500, user: false, resume: 0, last: 0, pos: 0, vis: false });
+      const sec = parseFloat(el.dataset.autoscroll) || 10;
+      const stop = () => { st.user = true; clearTimeout(st.resume); };
+      const go = (ms) => { clearTimeout(st.resume); st.resume = setTimeout(() => { st.user = false; st.pos = el.scrollTop; st.hold = performance.now() + 400; }, ms); };
+      el.addEventListener('pointerenter', (e) => e.pointerType === 'mouse' && stop());
+      el.addEventListener('pointerleave', (e) => e.pointerType === 'mouse' && go(600));
+      el.addEventListener('touchstart', stop, { passive: true });
+      el.addEventListener('touchend', () => go(2500), { passive: true });
+      el.addEventListener('wheel', () => { stop(); if (!el.matches(':hover')) go(2500); }, { passive: true });
+      new IntersectionObserver(([en]) => { st.vis = en.isIntersecting; }).observe(el);
+      if (reduce) return;
+      const tick = (t) => {
+        if (!el.isConnected) return;
+        const dt = Math.min(64, t - (st.last || t));
+        st.last = t;
+        const max = el.scrollHeight - el.clientHeight;
+        if (st.vis && !st.user && max > 0 && t > st.hold) {
+          const v = (max / sec / 1000) * (st.dir > 0 ? 1 : 1.6);
+          st.pos = Math.min(max, Math.max(0, st.pos + st.dir * v * dt));
+          el.scrollTop = st.pos;
+          if (st.pos >= max) { st.dir = -1; st.hold = t + 2200; }
+          else if (st.pos <= 0) { st.dir = 1; st.hold = t + 1800; }
+        }
+        requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  }
+  autoScroll();
 
   /* ---------- AI 질문 ---------- */
   $$('form[data-ask]').forEach((f) => {

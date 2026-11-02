@@ -456,3 +456,7 @@ body.locked .to-top{opacity:0;pointer-events:none}
 .is-detail .hd,.is-detail .ft{display:none}
 @media (max-width:1023px){.k-pc{display:none}.k-mo{display:flex}}
 
+
+/* 화면 미리보기 자동 스크롤 창: 직접 스크롤 가능, 스크롤바는 숨김 (app.js autoScroll) */
+.dt-code [data-autoscroll]{overflow-y:auto;overscroll-behavior-y:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.dt-code [data-autoscroll]::-webkit-scrollbar{display:none}
