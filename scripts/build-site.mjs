@@ -249,7 +249,7 @@ function detail(p, next) {
   ].filter(([, v]) => v);
   const wide = new Set(['기술']);
   return `<article class="dt" id="detail" data-slug="${esc(p.slug)}">
-<aside class="dt-side"><span class="dt-kind">${esc([p.kind, p.type].filter(Boolean).join(' · '))}</span><h1 class="dt-ttl">${esc(p.title)}</h1>
+<aside class="dt-side"><span class="dt-kind">${esc([p.kind, p.type].filter(Boolean).join(' · '))}</span><h1 class="dt-ttl">${String(p.title_br || p.title).split('\n').map(esc).join('<br>')}</h1>
 <dl class="dt-meta">${meta.map(([k, v]) => `<div${wide.has(k) ? ' class="w2"' : ''}><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('')}
 ${(p.filters || []).length ? `<div class="w2"><dt>필터</dt><dd class="fl">${p.filters.map((f) => `<a href="${BASE}projects/?f=${FILTER_KEYS[f]}" data-nav>${esc(f)}</a>`).join('')}</dd></div>` : ''}</dl>
 <a class="dt-close" href="${BASE}projects/" data-close>Close <span class="x" aria-hidden="true"></span></a></aside>
