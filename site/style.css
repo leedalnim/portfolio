@@ -460,3 +460,10 @@ body.locked .to-top{opacity:0;pointer-events:none}
 /* 화면 미리보기 자동 스크롤 창: 직접 스크롤 가능, 스크롤바는 숨김 (app.js autoScroll) */
 .dt-code [data-autoscroll]{overflow-y:auto;overscroll-behavior-y:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .dt-code [data-autoscroll]::-webkit-scrollbar{display:none}
+
+/* 선택한 필터 칩의 해제(✕) 표시: 글자와 떨어진 동그란 버튼처럼 */
+.p-bar .sel .pill .x{position:relative;flex:none;width:20px;height:20px;margin:0 -8px 0 12px;border-radius:50%;background:rgba(255,255,255,.22);transition:background .2s}
+.p-bar .sel .pill .x::before,.p-bar .sel .pill .x::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:1.6px;border-radius:1px;background:currentColor;transform:translate(-50%,-50%) rotate(45deg)}
+.p-bar .sel .pill .x::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.p-bar .sel .pill:hover .x{background:rgba(255,255,255,.4)}
+.p-bar .sel .pill{align-items:center}

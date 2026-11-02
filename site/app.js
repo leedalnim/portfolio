@@ -209,7 +209,14 @@
         c.setAttribute('aria-pressed', String(c.dataset.chip === st.f));
       });
       sel.classList.toggle('on', !!st.f);
-      if (st.f) $('[data-sel-name]').textContent = NAMES[st.f] + '  ✕';
+      if (st.f) {
+        const b = $('[data-sel-name]');
+        b.textContent = NAMES[st.f];
+        const x = document.createElement('i');
+        x.className = 'x';
+        x.setAttribute('aria-hidden', 'true');
+        b.append(x);
+      }
       // 탭 숫자도 걸러진 기준으로
       const base = $$('.card', cards).filter((c) => !st.f || c.dataset.f.split(' ').includes(st.f));
       $$('[data-tabs="cards"] button').forEach((b) => {
