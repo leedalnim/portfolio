@@ -233,16 +233,16 @@
   {
     "slug": "banwol-ax",
     "title": "반월시화 AX 통합지원플랫폼",
-    "summary": "",
-    "description": "",
+    "summary": "반월시화 산업단지의 AI 전환을 돕는 플랫폼 제안시안",
+    "description": "반월시화 AX 통합지원플랫폼은 반월시화 산업단지의 AI 전환을 돕는 플랫폼 제안시안입니다.\n기업 매칭, 지원 사업, 전문가 멘토링까지 많은 정보를 한 흐름으로 정리했습니다.",
     "category": "",
-    "client": "",
-    "role": "",
+    "client": "한국산업단지공단",
+    "role": "UX/UI 디자인",
     "period": "",
-    "type": "구축",
+    "type": "제안",
     "tags": [],
     "kind": "WORK",
-    "platform": "WEB",
+    "platform": "RESPONSIVE WEB",
     "extra_tags": [],
     "filters": [
       "UX DESIGN",
@@ -251,20 +251,58 @@
     "contribution": "",
     "show_on_wall": true,
     "show_on_archive": true,
-    "thumbnail": "local:scripts/sample-img/t-banwol.webp",
-    "sections": [],
+    "thumbnail": "local:scripts/sample-img/bw-thumb.webp",
+    "sections": [
+      {
+        "id": "hero",
+        "type": "basic",
+        "label": "",
+        "heading": "",
+        "body": "",
+        "layout": "1",
+        "points": [],
+        "html": "",
+        "images": [
+          {
+            "path": "local:scripts/sample-img/bw-hero.webp",
+            "caption": ""
+          }
+        ]
+      },
+      {
+        "id": "s1",
+        "type": "code",
+        "label": "메인 제안",
+        "heading": "기업과 기술을 잇는\n산업 AI 플랫폼을 제안했습니다.",
+        "body": "첫 화면에는 AI 검색창을 크게 두어, 필요한 제조 혁신 정보를 문장으로 바로 물어볼 수 있게 했습니다.\n\n그 아래로 AX 추천 파트너링, 허브 서비스, 주치의 멘토링, 성공 사례를 차례로 배치해\n기업 매칭부터 지원 사업, 전문가 상담까지 한 화면 안에서 흐름대로 따라갈 수 있게 했습니다.",
+        "layout": "1",
+        "points": [],
+        "html": "<div class=\"bw-pc\">\n  <div class=\"bw-win\"><img src=\"{{1}}\" alt=\"반월시화 AX 통합지원플랫폼 PC 화면\"></div>\n</div>\n<img class=\"bw-mo\" src=\"{{2}}\" alt=\"반월시화 AX 통합지원플랫폼 모바일 화면\">\n<style>\n  .bw-pc { position: relative; aspect-ratio: 1328 / 756; background: #E8EDF6; overflow: hidden; }\n  .bw-win { position: absolute; left: 9.036%; top: 9.524%; width: 81.928%; height: 80.952%; overflow: hidden; border-radius: calc(12 * var(--u)); background: #fff; box-shadow: 0 calc(24 * var(--u)) calc(60 * var(--u)) rgba(20, 30, 50, .18); }\n  .bw-win img { display: block; width: 100%; height: auto; animation: bwScroll 30s ease-in-out infinite; }\n  .bw-mo { display: block; width: 100%; height: auto; margin-top: calc(20 * var(--u)); }\n  @keyframes bwScroll {\n    0%, 8% { transform: translateY(0); }\n    46%, 58% { transform: translateY(-74.64%); }\n    96%, 100% { transform: translateY(0); }\n  }\n  @media (prefers-reduced-motion: reduce) { .bw-win img { animation: none; } }\n</style>",
+        "images": [
+          {
+            "path": "local:scripts/sample-img/bw-pclong.webp",
+            "caption": ""
+          },
+          {
+            "path": "local:scripts/sample-img/bw-mo.webp",
+            "caption": ""
+          }
+        ]
+      }
+    ],
     "published": true,
     "sort_order": 3,
-    "wall_order": 11
+    "wall_order": 11,
+    "title_br": "반월시화\nAX 통합지원\n플랫폼"
   },
   {
     "slug": "jawon-maru",
     "title": "자원순환마루",
-    "summary": "",
-    "description": "",
+    "summary": "폐기물 통계와 자원순환 실천, 관련 시스템을 한곳에 모은 자원순환 정보 포털",
+    "description": "자원순환마루는 폐기물 통계와 자원순환 실천 활동, 관련 시스템을 한곳에 모은 자원순환 정보 포털입니다.\n전달받은 기획안을 바탕으로 화면 구성을 직접 정리하고, 메인 화면을 디자인했습니다.",
     "category": "",
-    "client": "",
-    "role": "",
+    "client": "한국환경공단",
+    "role": "UX/UI 디자인",
     "period": "",
     "type": "구축",
     "tags": [],
@@ -278,11 +316,49 @@
     "contribution": "",
     "show_on_wall": true,
     "show_on_archive": true,
-    "thumbnail": "local:scripts/sample-img/t-jawon.webp",
-    "sections": [],
+    "thumbnail": "local:scripts/sample-img/jw-thumb.webp",
+    "sections": [
+      {
+        "id": "hero",
+        "type": "basic",
+        "label": "",
+        "heading": "",
+        "body": "",
+        "layout": "1",
+        "points": [],
+        "html": "",
+        "images": [
+          {
+            "path": "local:scripts/sample-img/jw-hero.webp",
+            "caption": ""
+          }
+        ]
+      },
+      {
+        "id": "s1",
+        "type": "code",
+        "label": "메인 디자인",
+        "heading": "기획부터 디자인까지\n메시지를 구체화했습니다.",
+        "body": "전달받은 기획안을 바탕으로 화면 구성을 직접 정리했습니다.\n통계·실천 플랫폼·자료 바로가기가 한 흐름으로 읽히도록 섹션을 배치했습니다.\n\n첫 화면에서 주요 통계를 바로 보여 주고, 그 아래로 자원순환 실천플랫폼, 실적보고·통계,\n소식·가격·종합정보, 관련 시스템 바로가기를 차례로 두어 필요한 정보를 순서대로 찾을 수 있게 했습니다.",
+        "layout": "1",
+        "points": [],
+        "html": "<div class=\"jw-pc\">\n  <div class=\"jw-win\"><img src=\"{{1}}\" alt=\"자원순환마루 PC 화면\"></div>\n</div>\n<img class=\"jw-mo\" src=\"{{2}}\" alt=\"자원순환마루 모바일 화면\">\n<style>\n  .jw-pc { position: relative; aspect-ratio: 1328 / 756; background: #E7F1EC; overflow: hidden; }\n  .jw-win { position: absolute; left: 9.036%; top: 9.524%; width: 81.928%; height: 80.952%; overflow: hidden; border-radius: calc(12 * var(--u)); background: #fff; box-shadow: 0 calc(24 * var(--u)) calc(60 * var(--u)) rgba(20, 30, 50, .18); }\n  .jw-win img { display: block; width: 100%; height: auto; animation: jwScroll 40s ease-in-out infinite; }\n  .jw-mo { display: block; width: 100%; height: auto; margin-top: calc(20 * var(--u)); }\n  @keyframes jwScroll {\n    0%, 8% { transform: translateY(0); }\n    46%, 58% { transform: translateY(-84.29%); }\n    96%, 100% { transform: translateY(0); }\n  }\n  @media (prefers-reduced-motion: reduce) { .jw-win img { animation: none; } }\n</style>",
+        "images": [
+          {
+            "path": "local:scripts/sample-img/jw-pclong.webp",
+            "caption": ""
+          },
+          {
+            "path": "local:scripts/sample-img/jw-mo.webp",
+            "caption": ""
+          }
+        ]
+      }
+    ],
     "published": true,
     "sort_order": 4,
-    "wall_order": 5
+    "wall_order": 5,
+    "title_br": "자원순환\n마루"
   },
   {
     "slug": "junggu-main",
