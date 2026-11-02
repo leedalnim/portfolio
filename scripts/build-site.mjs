@@ -63,7 +63,9 @@ const done = new Map();
 async function image(p) {
   if (!p) return null;
   if (done.has(p)) return done.get(p);
-  const id = crypto.createHash('sha1').update(p).digest('hex').slice(0, 16);
+  // 로컬 파일은 내용까지 해시에 넣어, 같은 이름으로 파일을 바꿔도 캐시된 옛 이미지가 쓰이지 않게 한다.
+  const localBuf = p.startsWith('local:') ? await fs.readFile(path.join(ROOT, p.slice(6))) : null;
+  const id = crypto.createHash('sha1').update(p).update(localBuf || '').digest('hex').slice(0, 16);
   await fs.mkdir(CACHE, { recursive: true });
   // SVG(움직이는 SVG 포함)는 그대로 복사해 쓴다. 모자이크용 작은 이미지만 래스터로 만든다.
   const isSvg = /\.svg$/i.test(p);
@@ -71,7 +73,7 @@ async function image(p) {
   const cached = await Promise.all(files.map((f) => fs.stat(path.join(CACHE, f)).then(() => true, () => false)));
   if (!cached.every(Boolean)) {
     let buf;
-    if (p.startsWith('local:')) buf = await fs.readFile(path.join(ROOT, p.slice(6)));
+    if (localBuf) buf = localBuf;
     else {
       const url = /^https?:/.test(p) ? p : `${SB_URL}/storage/v1/object/public/${BUCKET}/${p.split('/').map(encodeURIComponent).join('/')}`;
       const r = await fetch(url);
@@ -276,6 +278,7 @@ function codeHtml(sec) {
     .replace(/\u2060/g, '')
     .replace(/<script[\s\S]*?<\/script\s*>/gi, '')
     .replace(/\son[a-z]+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, '')
+    .replace(/\{\{\s*BASE\s*\}\}/g, BASE)
     .replace(/\{\{\s*(\d+)\s*\}\}/g, (_, k) => (imgs[k - 1] ? src(imgs[k - 1], 1920) : ''));
 }
 
@@ -311,6 +314,8 @@ async function main() {
   for (const f of ['figtree-latin-wght-normal.woff2', 'figtree-latin-ext-wght-normal.woff2'])
     await fs.copyFile(path.join(ROOT, 'node_modules/@fontsource-variable/figtree/files', f), path.join(DIST, 'fonts', f));
   await fs.cp(path.join(ROOT, 'site/title'), path.join(DIST, 'assets/title'), { recursive: true, filter: (f) => !f.endsWith('.json') });
+  // 상세 페이지에 iframe으로 넣는 실제 동작 화면 (예: 중구청 AI 검색 모션)
+  await fs.cp(path.join(ROOT, 'site/embed'), path.join(DIST, 'embed'), { recursive: true });
   await fs.copyFile(path.join(ROOT, 'site/style.css'), path.join(DIST, 'assets/style.css'));
   await fs.copyFile(path.join(ROOT, 'site/app.js'), path.join(DIST, 'assets/app.js'));
 

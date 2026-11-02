@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="18 18 264 264" width="800" height="800" font-family="Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif" font-weight="300">
-  <rect x="0" y="0" width="300" height="300" fill="#fff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-22 -22 344 344" width="800" height="800" font-family="Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif" font-weight="300">
+  <rect x="-60" y="-60" width="420" height="420" fill="#fff"/>
   <defs><clipPath id="dialClip"><circle cx="150" cy="150" r="98"/></clipPath></defs>
 
   <line x1="150.00" y1="38.00" x2="150.00" y2="25.00" stroke="#C4C4CC" stroke-width="1.6" stroke-linecap="round">
