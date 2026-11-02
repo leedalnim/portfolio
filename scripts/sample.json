@@ -112,13 +112,13 @@
   {
     "slug": "gungjung",
     "title": "궁중문화축전",
-    "summary": "",
-    "description": "",
+    "summary": "궁중문화축전의 행사 정보를 한눈에 탐색하도록 설계한 마이크로사이트 제안시안",
+    "description": "궁중문화축전 마이크로사이트는 궁궐에서 열리는 축전의 다양한 행사 정보를 한눈에 탐색할 수 있도록\n설계한 제안시안입니다. 전통 궁궐 이미지와 다크 테마를 결합해 축전의 격식과 현대적 감각을 함께 담았습니다.",
     "category": "",
-    "client": "",
-    "role": "",
+    "client": "국가유산진흥원",
+    "role": "UX/UI 디자인",
     "period": "",
-    "type": "구축",
+    "type": "제안",
     "tags": [],
     "kind": "WORK",
     "platform": "RESPONSIVE WEB",
@@ -129,8 +129,45 @@
     "contribution": "",
     "show_on_wall": true,
     "show_on_archive": true,
-    "thumbnail": "local:scripts/sample-img/t-gungjung.webp",
-    "sections": [],
+    "thumbnail": "local:scripts/sample-img/gj-thumb.webp",
+    "sections": [
+      {
+        "id": "hero",
+        "type": "basic",
+        "label": "",
+        "heading": "",
+        "body": "",
+        "layout": "1",
+        "points": [],
+        "html": "",
+        "images": [
+          {
+            "path": "local:scripts/sample-img/gj-hero.webp",
+            "caption": ""
+          }
+        ]
+      },
+      {
+        "id": "s1",
+        "type": "code",
+        "label": "메인 제안",
+        "heading": "궁의 밤을\n축제의 첫 화면으로 담았습니다.",
+        "body": "축전이 열리는 궁의 밤 사진을 첫 화면 가득 담고, 다크 테마로 화면 전체의 톤을 맞췄습니다.\n전통적인 격식은 살리면서도 무겁지 않게, 축제의 분위기가 첫 화면에서 바로 전해지도록 했습니다.\n\n여러 날에 걸쳐 열리는 축전의 일정은 Day별 탭으로 나누고, 각 프로그램은 카드로 정리해\n원하는 날짜의 프로그램을 빠르게 찾을 수 있게 했습니다.",
+        "layout": "1",
+        "points": [],
+        "html": "<div class=\"gj-pc\">\n  <div class=\"gj-win\"><img src=\"{{1}}\" alt=\"궁중문화축전 PC 화면\"></div>\n</div>\n<img class=\"gj-mo\" src=\"{{2}}\" alt=\"궁중문화축전 모바일 화면\">\n<style>\n  .gj-pc { position: relative; aspect-ratio: 1328 / 756; background: #EDE6DC; overflow: hidden; }\n  .gj-win { position: absolute; left: 9.036%; top: 9.524%; width: 81.928%; height: 80.952%; overflow: hidden; border-radius: calc(12 * var(--u)); background: #000; box-shadow: 0 calc(24 * var(--u)) calc(60 * var(--u)) rgba(64, 38, 13, .22); }\n  .gj-win img { display: block; width: 100%; height: auto; animation: gjScroll 30s ease-in-out infinite; }\n  .gj-mo { display: block; width: 100%; height: auto; margin-top: calc(20 * var(--u)); }\n  @keyframes gjScroll {\n    0%, 8% { transform: translateY(0); }\n    46%, 58% { transform: translateY(-74.5%); }\n    96%, 100% { transform: translateY(0); }\n  }\n  @media (prefers-reduced-motion: reduce) { .gj-win img { animation: none; } }\n</style>",
+        "images": [
+          {
+            "path": "local:scripts/sample-img/gj-pclong.webp",
+            "caption": ""
+          },
+          {
+            "path": "local:scripts/sample-img/gj-mo.webp",
+            "caption": ""
+          }
+        ]
+      }
+    ],
     "published": true,
     "sort_order": 2,
     "wall_order": 8
