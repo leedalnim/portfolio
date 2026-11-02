@@ -42,13 +42,13 @@
       },
       {
         "id": "s1",
-        "type": "basic",
+        "type": "code",
         "label": "STRUCTURE",
         "heading": "기능 목록을\n읽히는 흐름으로 다시 짰습니다.",
         "body": "초기안은 AI 검색의 기능 네 개를 카드로 한 줄에 나열하고, 서비스를 설명하는 카피로\n채운 구성이었습니다.\n\n개편안에서는 기능을 좌우 교차 섹션으로 나눠 읽는 리듬을 만들고, 카피는 사용자의\n순간에 말을 거는 문장으로 바꿨습니다. 좌우 교차 섹션은 AI로 바로 퍼블리싱했고,\n섹션마다 다른 모션을 붙여 실제 화면에서 움직임까지 확인했습니다.",
         "layout": "1",
         "points": [],
-        "html": "",
+        "html": "<img class=\"ja-ba\" src=\"{{1}}\" alt=\"초기안과 개편안 Before/After 비교\">\n<div class=\"ja-cmp\">\n  <img src=\"{{2}}\" alt=\"초기안과 개편안 비교\">\n  <div class=\"ja-win\"><img src=\"{{3}}\" alt=\"개편안 랜딩 페이지 전체 화면\"></div>\n</div>\n<style>\n  .ja-ba, .ja-cmp > img { display: block; width: 100%; height: auto; }\n  .ja-cmp { position: relative; margin-top: calc(20 * var(--u)); }\n  /* 개편안 타일 안 화면 자리 (피그마 기준 1328×502 중 x600 y150, 608×350) */\n  .ja-win { position: absolute; left: 45.181%; top: 29.88%; width: 45.783%; height: 69.72%; overflow: hidden; background: #fff; border-radius: 1.974% 1.974% 0 0 / 3.43% 3.43% 0 0; }\n  .ja-win img { display: block; width: 100%; height: auto; animation: jaScroll 18s ease-in-out infinite; }\n  @keyframes jaScroll {\n    0%, 8% { transform: translateY(0); }\n    46%, 58% { transform: translateY(-76.04%); }\n    96%, 100% { transform: translateY(0); }\n  }\n  @media (prefers-reduced-motion: reduce) { .ja-win img { animation: none; } }\n</style>",
         "images": [
           {
             "path": "local:scripts/sample-img/jgai-s1a.webp",
@@ -56,6 +56,10 @@
           },
           {
             "path": "local:scripts/sample-img/jgai-s1b.webp",
+            "caption": ""
+          },
+          {
+            "path": "local:scripts/sample-img/jgai-afterlong.webp",
             "caption": ""
           }
         ]
