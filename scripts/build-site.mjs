@@ -230,8 +230,8 @@ function projectsPage(projects, s, counts) {
 }
 
 
-// 단락은 빈 줄(\n\n), 단락 안 줄바꿈(\n)은 PC에서만 적용 (태블릿·모바일은 자연 줄바꿈)
-const brText = (t) => String(t || '').split(/\n{2,}/).map((par) => par.split('\n').map(esc).join('<br class="pc-br"> ')).join('<br><br>');
+// 단락은 빈 줄(\n\n)로만 나눈다. 단락 안 줄바꿈(\n)은 피그마에서 보기 좋게 끊은 것이라 사이트에서는 이어 붙인다.
+const brText = (t) => String(t || '').split(/\n{2,}/).map((par) => par.split('\n').map((l) => esc(l.trim())).join(' ')).join('<br><br>');
 function detail(p, next) {
   const meta = [
     ['플랫폼', p.platform],

@@ -456,5 +456,3 @@ body.locked .to-top{opacity:0;pointer-events:none}
 .is-detail .hd,.is-detail .ft{display:none}
 @media (max-width:1023px){.k-pc{display:none}.k-mo{display:flex}}
 
-/* 글 안 한 줄 줄바꿈(엔터 한 번)은 글자 크기가 피그마와 같아지는 넓은 화면에서만 */
-@media (max-width:1599px){.pc-br{display:none}}
