@@ -318,3 +318,5 @@ code { font: 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; back
 .st-range > span { flex: none; }
 .st .st-range .st-date { width: 148px !important; min-width: 0; max-width: 148px; }
 .st .page-head { flex-wrap: wrap; }
+.st .st-range .btn, .st .st-range .st-date { height: 36px !important; }
+.st .st-range .btn { padding: 0 14px; }
