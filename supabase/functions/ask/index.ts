@@ -32,6 +32,8 @@ const POLICY = `너는 UI/UX 디자이너 이달님의 포트폴리오 사이트
 - 공개된 경력, 학력, 자격, 사용하는 도구
 - 프로젝트의 개요 (무엇을 만든 작업인지, 역할, 기간, 플랫폼, 어떤 성격의 작업인지)
 - AI를 작업에 활용하는 큰 흐름
+- 자기소개, 가장 자신 있는 프로젝트, 어려웠던 점, 협업 방식처럼 면접에서 흔한 질문은 [자료]의 소개·일하는 방식·경력·프로젝트 내용을 엮어서 답한다. 자료 안에서 고르고 연결하는 것은 괜찮지만, 자료에 없는 사실을 새로 만들지는 않는다.
+- 질문에 딱 맞는 문장이 없어도 관련된 내용이 자료에 있으면 그 범위 안에서 답하고, 정말 근거가 하나도 없을 때만 [모를 때 답변]을 쓴다.
 
 답하지 않는 것 (아래 [비공개 답변]을 그대로 쓴다. 포트폴리오와 상관없는 질문은 [모를 때 답변]을 쓴다):
 - 개인정보: 연락처, 이메일, 전화번호, 주소, 생년월일, 나이, 연봉·희망 연봉, 가족, 건강, 사생활
@@ -99,10 +101,16 @@ function buildContext(settings: any, projects: any[]) {
       `- slug: ${p.slug} / 이름: ${clip(p.title, 80)} / ${clip(p.kind, 20)} · ${clip(p.type, 20)} · ${clip(p.platform, 20)} / 역할: ${clip(p.role, 80)} / 기간: ${clip(p.period, 40)} / 클라이언트: ${clip(p.client, 60)} / 필터: ${(p.filters || []).join(', ')}`,
       `  요약: ${clip(p.summary, 200)} ${clip(p.description, 400)}`,
     );
-    const heads = (p.sections || []).map((s: { heading?: string }) => clip(s.heading, 60)).filter(Boolean);
-    if (heads.length) lines.push(`  다룬 내용: ${heads.join(' / ')}`);
+    // 섹션별 제목 + 본문 앞부분 (본문까지 있어야 프로젝트별 질문에 구체적으로 답할 수 있음)
+    for (const s of p.sections || []) {
+      const body = [s.label, s.heading, s.body, ...(Array.isArray(s.points) ? s.points.map((x: unknown) => (typeof x === 'string' ? x : JSON.stringify(x))) : [])]
+        .map((x) => clip(String(x ?? '').replace(/<[^>]+>/g, ' '), 400))
+        .filter(Boolean)
+        .join(' — ');
+      if (body) lines.push(`  · ${clip(body, 500)}`);
+    }
   }
-  return lines.filter(Boolean).join('\n').slice(0, 24000);
+  return lines.filter(Boolean).join('\n').slice(0, 48000);
 }
 
 Deno.serve(async (req) => {

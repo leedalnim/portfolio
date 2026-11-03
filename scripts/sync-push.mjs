@@ -39,3 +39,16 @@ for (const { id, ...r } of rows) {
   });
 }
 console.log(`프로젝트 ${rows.length}개 올림`);
+
+// 사이트 설정이 아직 비어 있으면 기본값(admin/src/defaults.js)으로 한 번 채운다.
+// 관리자 페이지에서 한 번이라도 저장했다면 건드리지 않는다.
+const { DEFAULT_SETTINGS } = await import('../admin/src/defaults.js');
+const cur = await (await call('/rest/v1/site_settings?id=eq.1&select=data')).json();
+if (!cur[0] || !Object.keys(cur[0].data || {}).length) {
+  await call('/rest/v1/site_settings?on_conflict=id', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Prefer: 'resolution=merge-duplicates,return=minimal' },
+    body: JSON.stringify({ id: 1, data: DEFAULT_SETTINGS, updated_at: new Date().toISOString() }),
+  });
+  console.log('사이트 설정 기본값을 채움');
+} else console.log('사이트 설정은 이미 있어서 그대로 둠');
