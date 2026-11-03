@@ -316,3 +316,5 @@ code { font: 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; back
 .st-range { flex-wrap: nowrap; }
 .st-range .st-date { width: auto; flex: none; }
 .st-range > span { flex: none; }
+.st .st-range .st-date { width: 148px !important; min-width: 0; max-width: 148px; }
+.st .page-head { flex-wrap: wrap; }
