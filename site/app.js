@@ -365,6 +365,18 @@
       el.addEventListener('touchend', () => go(2500), { passive: true });
       el.addEventListener('wheel', () => { stop(); if (!el.matches(':hover')) go(2500); }, { passive: true });
       new IntersectionObserver(([en]) => { st.vis = en.isIntersecting; }).observe(el);
+      // 전체 화면 보기 버튼 (누르면 긴 화면 전체를 레이어 팝업으로)
+      const img = el.querySelector('img');
+      const host = el.parentElement;
+      if (img && host && !host.querySelector(':scope > .fv-btn')) {
+        if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'fv-btn';
+        b.textContent = '전체 화면 보기 ↗';
+        b.addEventListener('click', () => fullView(img));
+        el.after(b);
+      }
       if (reduce) return;
       const tick = (t) => {
         if (!el.isConnected) return;
@@ -384,6 +396,28 @@
     });
   }
   autoScroll();
+
+  /* ---------- 전체 화면 보기 레이어 팝업 ---------- */
+  function fullView(img) {
+    let d = $('dialog.fv');
+    if (!d) {
+      d = document.createElement('dialog');
+      d.className = 'fv';
+      d.setAttribute('aria-label', '전체 화면 보기');
+      d.innerHTML = '<div class="fv-top"><span class="fv-ttl"></span><button type="button" class="close" data-fv-close>Close <span class="x" aria-hidden="true"></span></button></div><div class="fv-body"><img alt=""></div>';
+      document.body.append(d);
+      d.addEventListener('click', (e) => { if (e.target === d || e.target.closest('[data-fv-close]')) d.close(); });
+      d.addEventListener('close', () => document.documentElement.classList.remove('fv-open'));
+    }
+    const big = (img.getAttribute('srcset') || '').split(',').map((x) => x.trim().split(' ')[0]).filter(Boolean).pop() || img.currentSrc || img.src;
+    const im = $('.fv-body img', d);
+    im.src = big;
+    im.alt = img.alt || '';
+    $('.fv-ttl', d).textContent = img.alt || '전체 화면';
+    $('.fv-body', d).scrollTop = 0;
+    document.documentElement.classList.add('fv-open');
+    d.showModal();
+  }
 
   /* ---------- AI 질문 ---------- */
   $$('form[data-ask]').forEach((f) => {
