@@ -67,7 +67,7 @@ export const DEFAULT_SETTINGS = {
         related: 'yamyamlog, jg-motion, jungwon',
       },
       {
-        keywords: '경력, 연차, 회사, 어디서 일',
+        keywords: '경력, 연차, 몇 년, 몇년, 어디서 일, 어느 회사, 다니는 회사',
         answer: '2013년부터 웹 디자인을 해 왔고, 2020년부터 이노디스에서 UX/UI 선임 디자이너로 일하고 있어요. 공공기관과 문화예술 기관의 웹사이트를 주로 만들어 왔어요.',
         related: '',
       },
