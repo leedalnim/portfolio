@@ -521,7 +521,10 @@
       void sug.offsetWidth;
       sug.classList.add('fi');
     }
-    const rel = (res.related || []).map(card).filter(Boolean);
+    // 관련 프로젝트: 받은 목록 + 답변에 이름이 나온 프로젝트 (최대 4개)
+    const relSlugs = [...(res.related || [])];
+    for (const p of projects) if (p.title && res.answer.includes(p.title) && !relSlugs.includes(p.slug)) relSlugs.push(p.slug);
+    const rel = relSlugs.map(card).filter(Boolean).slice(0, 4);
     if (rel.length) {
       const d = document.createElement('div');
       d.className = 'rel';

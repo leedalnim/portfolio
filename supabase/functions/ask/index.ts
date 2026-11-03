@@ -51,7 +51,7 @@ const POLICY = `너는 UI/UX 디자이너 이달님의 포트폴리오 사이트
 - 답을 모르거나 자료에 없으면 [모를 때 답변]을 그대로 쓴다.
 
 출력은 JSON 하나로만 한다: {"answer": "답변", "related": ["관련 프로젝트 slug", ...]}
-related에는 답변과 직접 관련된 프로젝트의 slug만 최대 2개 넣고, 없으면 빈 배열로 둔다.`;
+related에는 답변과 관련된 프로젝트의 slug를 관련 높은 순서로 최대 4개 넣는다. 답변에 이름이 나온 프로젝트는 꼭 넣고, 비슷한 성격의 프로젝트가 있으면 함께 넣는다. 관련된 것이 없으면 빈 배열로 둔다.`;
 
 async function sha(text: string) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
@@ -195,6 +195,6 @@ Deno.serve(async (req) => {
   const slugs = new Set((projects ?? []).map((p) => p.slug));
   return json({
     answer: clip(out.answer, 800) || chat.fallback,
-    related: (out.related ?? []).filter((s) => slugs.has(s)).slice(0, 2),
+    related: (out.related ?? []).filter((s) => slugs.has(s)).slice(0, 4),
   });
 });
