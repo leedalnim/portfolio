@@ -330,3 +330,6 @@ code { font: 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; back
 .pending-pop li:first-child { border-top: 0; }
 .pending-pop em { font-style: normal; color: var(--sub); white-space: nowrap; font-size: 12px; }
 .pending-pop p { margin: 8px 0 0; font-size: 12px; color: var(--sub); line-height: 1.5; }
+.wall-order { display: grid; grid-template-columns: auto 88px; align-items: center; gap: 6px 10px; font-size: 13px; margin: -2px 0 4px 46px; }
+.wall-order input { height: 32px; padding: 0 8px; border: 1px solid var(--line); border-radius: 8px; font: inherit; width: 100%; }
+.wall-order em { grid-column: 1 / -1; font-style: normal; font-size: 12px; color: var(--mute); }

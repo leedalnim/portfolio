@@ -344,6 +344,13 @@ export default function ProjectEditor({ initial, onBack, onSaved, onDelete, onEr
               <span className="track" />
               <span>첫 화면 썸네일 벽에 보이기</span>
             </label>
+            {p.show_on_wall !== false && (
+              <label className="wall-order">
+                <span>벽 자리 번호</span>
+                <input type="number" min="1" max="12" value={p.wall_order ?? ''} placeholder="비우면 맨 뒤" onChange={(e) => set({ wall_order: e.target.value === '' ? null : Number(e.target.value) })} />
+                <em>1~12, 작은 번호가 앞자리예요. 비어 있으면 맨 뒤로 가요.</em>
+              </label>
+            )}
             <label className="switch">
               <input type="checkbox" checked={p.show_on_archive !== false} onChange={(e) => set({ show_on_archive: e.target.checked })} />
               <span className="track" />
