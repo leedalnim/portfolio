@@ -16,7 +16,8 @@ for (const r of rows) {
   const p = mapImages(r, (v) => {
     if (!v || /^https?:|^local:/.test(v)) return v;
     // site/ 폴더는 원래 저장소 이름 그대로, 관리자에서 올린 건 폴더 구분을 __ 로 바꿔 이름이 겹치지 않게
-    const f = v.startsWith(SITE_DIR) ? v.slice(SITE_DIR.length) : v.replace(/\//g, '__');
+    // site/ 폴더는 올릴 때 붙인 내용 해시(-xxxxxxxx)를 떼고 원래 이름으로, 관리자에서 올린 건 폴더 구분을 __ 로
+    const f = v.startsWith(SITE_DIR) ? v.slice(SITE_DIR.length).replace(/-[0-9a-f]{8}(\.[a-z0-9]+)$/i, '$1') : v.replace(/\//g, '__');
     jobs.push([v, f]);
     return LOCAL + f;
   });

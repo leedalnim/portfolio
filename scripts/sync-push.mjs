@@ -4,24 +4,26 @@
 // - 이미지는 버킷의 site/ 폴더에 같은 이름으로 올린다
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import { SAMPLE, IMG_DIR, BUCKET, LOCAL, SITE_DIR, call, mapImages } from './sb-lib.mjs';
 
 const projects = JSON.parse(await fs.readFile(SAMPLE, 'utf8'));
 const files = new Set();
-const rows = projects.map((p) =>
-  mapImages(p, (v) => {
-    if (!v.startsWith(LOCAL)) return v;
-    const f = v.slice(LOCAL.length);
-    files.add(f);
-    return SITE_DIR + f;
-  }),
-);
+// 같은 이름으로 이미지를 바꿔도 사이트가 옛 이미지를 쓰지 않도록, 올리는 이름에 내용 해시(8자)를 붙인다
+const hashed = new Map();
+for (const p of projects) mapImages(p, (v) => (v.startsWith(LOCAL) && files.add(v.slice(LOCAL.length)), v));
+for (const f of files) {
+  const h = crypto.createHash('sha1').update(await fs.readFile(path.join(IMG_DIR, f))).digest('hex').slice(0, 8);
+  const i = f.lastIndexOf('.');
+  hashed.set(f, `${f.slice(0, i)}-${h}${f.slice(i)}`);
+}
+const rows = projects.map((p) => mapImages(p, (v) => (v.startsWith(LOCAL) ? SITE_DIR + hashed.get(v.slice(LOCAL.length)) : v)));
 
 const type = (f) => ({ webp: 'image/webp', png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg', gif: 'image/gif', svg: 'image/svg+xml' })[f.split('.').pop().toLowerCase()] || 'application/octet-stream';
 let n = 0;
 for (const f of files) {
   const buf = await fs.readFile(path.join(IMG_DIR, f));
-  await call(`/storage/v1/object/${BUCKET}/${SITE_DIR}${encodeURIComponent(f)}`, {
+  await call(`/storage/v1/object/${BUCKET}/${SITE_DIR}${encodeURIComponent(hashed.get(f))}`, {
     method: 'POST',
     headers: { 'Content-Type': type(f), 'x-upsert': 'true', 'cache-control': '3600' },
     body: buf,
