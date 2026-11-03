@@ -27,7 +27,7 @@ const nb = (s = '') => esc(s).replace(/ /g, '&nbsp;'); // 태그 안에서 줄�
 const cs = (o) => Object.entries(o).map(([k, v]) => `--${k}:${v}`).join(';');
 
 async function sb(pathQ) {
-  const r = await fetch(`${SB_URL}/rest/v1/${pathQ}`, { headers: { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}` } });
+  const r = await fetch(`${SB_URL}/rest/v1/${pathQ}`, { headers: { apikey: SB_KEY, ...(SB_KEY.startsWith('eyJ') ? { Authorization: `Bearer ${SB_KEY}` } : {}) } });
   if (!r.ok) throw new Error(`Supabase에서 읽지 못했어요: ${r.status} ${await r.text()}`);
   return r.json();
 }
