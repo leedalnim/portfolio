@@ -445,7 +445,11 @@
     const box = $('.ans', wrap);
     let res = null;
     const local = junk(q) ? { answer: S.chat?.offtopic || '포트폴리오에 관한 질문을 해 주세요.', related: [] } : faq(q);
-    if (local) res = local; // 자주 묻는 질문은 AI를 부르지 않고 바로 답한다
+    if (local) {
+      // 미리 써둔 답도 AI 답변처럼 잠깐 준비하는 시간을 둔다 (0.9~1.6초)
+      await new Promise((r) => setTimeout(r, reduce ? 300 : 900 + Math.random() * 700));
+      res = local;
+    }
     else if (S.ask && S.chat?.enabled !== false) {
       try {
         const r = await fetch(S.ask, { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: S.key, Authorization: 'Bearer ' + S.key }, body: JSON.stringify({ q, history: hist.slice(-4) }) });
