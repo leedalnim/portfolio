@@ -289,12 +289,23 @@ code { font: 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; back
 .st-bar { height: 8px; background: var(--accent-soft); border-radius: 4px; overflow: hidden; }
 .st-bar i { display: block; height: 100%; background: var(--accent); border-radius: 4px; }
 .st-bars b { text-align: right; font-variant-numeric: tabular-nums; }
+.st-grid { margin-bottom: 12px; }
+.st-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
+.st-head h2 { margin: 0; }
 .st-chats { list-style: none; margin: 0; padding: 0; }
-.st-chats li { padding: 12px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; }
+.st-chats li { padding: 14px 0; border-top: 1px solid var(--line); }
 .st-chats li:first-child { border-top: 0; }
-.st-chats .st-q { display: flex; flex-direction: column; gap: 2px; }
-.st-chats p { grid-column: 1; margin: 0; }
-.st-chats .link { grid-column: 2; grid-row: 1; align-self: start; }
+.st-q { display: flex; align-items: baseline; gap: 12px; }
+.st-q b { flex: 1; min-width: 0; font-size: 14px; }
+.st-meta { flex: none; font-size: 12.5px; color: var(--sub); white-space: nowrap; }
+.st-q .link { flex: none; font-size: 12.5px; }
+.st-a { margin: 6px 0 0; font-size: 13px; line-height: 1.6; color: var(--sub); }
+.st-modal { position: fixed; inset: 0; z-index: 50; background: rgba(17, 18, 20, 0.45); display: grid; place-items: center; padding: 24px; }
+.st-modal-box { width: min(880px, 100%); max-height: calc(100vh - 48px); background: var(--surface); border-radius: 16px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 24px 60px rgba(17, 18, 20, 0.25); }
+.st-modal-top { display: flex; align-items: center; gap: 12px; padding: 18px 20px; border-bottom: 1px solid var(--line); }
+.st-modal-top h2 { margin: 0; font-size: 16px; flex: none; }
+.st-search { flex: 1; min-width: 0; height: 36px; padding: 0 12px; border: 1px solid var(--line-strong); border-radius: 8px; font: inherit; font-size: 13px; }
+.st-modal-body { overflow: auto; padding: 4px 20px 16px; }
 @media (max-width: 900px) { .st-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } .st-grid { grid-template-columns: 1fr; } }
 
 /* '새 프로젝트'는 진한 회색, '사이트에 반영'(파랑)과 구분 */

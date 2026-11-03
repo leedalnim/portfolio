@@ -26,10 +26,38 @@ function Bars({ list, max }) {
   );
 }
 
+const SRC = { ai: 'AI 답변', junk: '장난 질문 안내', instant: '고정 답변', fallback: '대체 답변' };
+function ChatList({ list, onDel }) {
+  if (!list.length) return <p className="muted sm">아직 질문이 없어요.</p>;
+  return (
+    <ul className="st-chats">
+      {list.map((c) => (
+        <li key={c.id}>
+          <div className="st-q">
+            <b>{c.q}</b>
+            <span className="st-meta">{fmt(c.ts)} · {SRC[c.source] || c.source || ''}</span>
+            <button className="link sm" onClick={() => onDel(c.id)}>지우기</button>
+          </div>
+          {c.answer && <p className="st-a">{c.answer}</p>}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export default function StatsPage({ projects, onError }) {
   const [days, setDays] = useState(30);
   const [rows, setRows] = useState(null);
   const [chats, setChats] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [kw, setKw] = useState('');
+  const shown = useMemo(() => (kw ? chats.filter((c) => (c.q + ' ' + (c.answer || '')).includes(kw)) : chats), [chats, kw]);
+  useEffect(() => {
+    if (!open) return;
+    const f = (e) => e.key === 'Escape' && setOpen(false);
+    addEventListener('keydown', f);
+    return () => removeEventListener('keydown', f);
+  }, [open]);
 
   useEffect(() => {
     setRows(null);
@@ -101,18 +129,24 @@ export default function StatsPage({ projects, onError }) {
             <section className="st-box"><h2>기기</h2><Bars list={s.dev} /></section>
           </div>
           <section className="st-box">
-            <h2>챗봇 질문 <span className="muted sm">최근 200개</span></h2>
-            <ul className="st-chats">
-              {chats.map((c) => (
-                <li key={c.id}>
-                  <div className="st-q"><b>{c.q}</b><span className="muted sm">{fmt(c.ts)} · {c.source === 'ai' ? 'AI 답변' : c.source === 'junk' ? '장난 질문 안내' : c.source === 'instant' ? '고정 답변' : c.source || ''}</span></div>
-                  {c.answer && <p className="sm muted">{c.answer}</p>}
-                  <button className="link sm" onClick={() => del(c.id)}>지우기</button>
-                </li>
-              ))}
-              {!chats.length && <li className="muted sm">아직 질문이 없어요.</li>}
-            </ul>
+            <div className="st-head">
+              <h2>챗봇 질문 <span className="muted sm">최근 {Math.min(chats.length, 5)}개</span></h2>
+              {chats.length > 0 && <button className="btn sm ghost" onClick={() => setOpen(true)}>전체 보기 ({chats.length})</button>}
+            </div>
+            <ChatList list={chats.slice(0, 5)} onDel={del} />
           </section>
+          {open && (
+            <div className="st-modal" role="dialog" aria-modal="true" aria-label="챗봇 질문 전체" onClick={(e) => e.target === e.currentTarget && setOpen(false)}>
+              <div className="st-modal-box">
+                <div className="st-modal-top">
+                  <h2>챗봇 질문 전체 <span className="muted sm">{shown.length}개</span></h2>
+                  <input className="st-search" placeholder="질문이나 답변에서 찾기" value={kw} onChange={(e) => setKw(e.target.value)} autoFocus />
+                  <button className="icon-btn" onClick={() => setOpen(false)} aria-label="닫기">✕</button>
+                </div>
+                <div className="st-modal-body"><ChatList list={shown} onDel={del} /></div>
+              </div>
+            </div>
+          )}
         </>
       )}
     </div>
