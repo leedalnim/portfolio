@@ -30,9 +30,12 @@ for (const f of files) {
 }
 console.log(`이미지 ${n}개 올림`);
 
-await call('/rest/v1/projects?on_conflict=slug', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json', Prefer: 'resolution=merge-duplicates,return=minimal' },
-  body: JSON.stringify(rows.map(({ id, ...r }) => ({ ...r, updated_at: new Date().toISOString() }))),
-});
+// 프로젝트마다 가진 칸이 조금씩 달라서(예: title_br) 한 줄씩 올린다
+for (const { id, ...r } of rows) {
+  await call('/rest/v1/projects?on_conflict=slug', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Prefer: 'resolution=merge-duplicates,return=minimal' },
+    body: JSON.stringify({ ...r, updated_at: new Date().toISOString() }),
+  });
+}
 console.log(`프로젝트 ${rows.length}개 올림`);
