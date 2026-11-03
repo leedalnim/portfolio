@@ -46,7 +46,12 @@ function ChatList({ list, onDel }) {
 }
 
 export default function StatsPage({ projects, onError }) {
-  const [days, setDays] = useState(30);
+  const today0 = kday(Date.now());
+  const [range, setRange] = useState({ from: kday(Date.now() - 29 * DAY), to: today0 });
+  const preset = (n) => setRange({ from: kday(Date.now() - (n - 1) * DAY), to: kday(Date.now()) });
+  const days = Math.max(1, Math.round((new Date(range.to) - new Date(range.from)) / DAY) + 1);
+  const since = new Date(range.from + 'T00:00:00+09:00').toISOString();
+  const until = new Date(new Date(range.to + 'T00:00:00+09:00').getTime() + DAY).toISOString();
   const [rows, setRows] = useState(null);
   const [chats, setChats] = useState([]);
   const [open, setOpen] = useState(false);
@@ -61,35 +66,30 @@ export default function StatsPage({ projects, onError }) {
 
   useEffect(() => {
     setRows(null);
-    Promise.all([store.views(days), store.chats(200)])
+    Promise.all([store.views(since, until), store.chats(since, until)])
       .then(([v, c]) => { setRows(v); setChats(c); })
       .catch((e) => { setRows([]); onError(e.message); });
-  }, [days]);
+  }, [since, until]);
 
   const s = useMemo(() => {
     if (!rows) return null;
-    const now = Date.now();
-    const pick = (n) => rows.filter((r) => now - new Date(r.ts) < n * DAY);
     const sum = (list) => ({ v: list.length, u: new Set(list.map((r) => kday(r.ts) + r.visitor)).size });
-    const today = rows.filter((r) => kday(r.ts) === kday(now));
     const daily = [];
-    for (let i = days - 1; i >= 0; i--) {
-      const d = kday(now - i * DAY);
+    for (let i = 0; i < days; i++) {
+      const d = kday(new Date(range.from + 'T00:00:00+09:00').getTime() + i * DAY);
       const list = rows.filter((r) => kday(r.ts) === d);
       daily.push({ d, v: list.length, u: new Set(list.map((r) => r.visitor)).size });
     }
     const title = (slug) => projects.find((p) => p.slug === slug)?.title || slug;
-    const chatDays = new Map();
-    for (const c of chats) if (now - new Date(c.ts) < days * DAY) chatDays.set(kday(c.ts), (chatDays.get(kday(c.ts)) || 0) + 1);
     return {
-      today: sum(today), w: sum(pick(7)), all: sum(rows), daily,
+      all: sum(rows), daily, avg: (rows.length / days).toFixed(1),
       top: count(rows.filter((r) => r.slug), (r) => title(r.slug)).slice(0, 10),
       pages: count(rows, (r) => (r.slug ? null : r.path)).slice(0, 8),
       refs: count(rows, (r) => refName(r.ref)).slice(0, 8),
       dev: count(rows, (r) => (r.device === 'mobile' ? '모바일' : r.device === 'tablet' ? '태블릿' : 'PC')),
-      chatTotal: [...chatDays.values()].reduce((a, b) => a + b, 0),
+      chatTotal: chats.length,
     };
-  }, [rows, chats, projects, days]);
+  }, [rows, chats, projects, days, range.from]);
 
   async function del(id) {
     if (!confirm('이 질문 기록을 지울까요?')) return;
@@ -102,23 +102,29 @@ export default function StatsPage({ projects, onError }) {
       <div className="page-head">
         <h1>통계</h1>
         <div className="st-range">
-          {[7, 30, 90].map((n) => <button key={n} className={'btn sm ' + (days === n ? 'primary' : 'ghost')} onClick={() => setDays(n)}>{n}일</button>)}
+          {[7, 30, 90].map((n) => {
+            const on = range.to === today0 && days === n;
+            return <button key={n} className={'btn sm ' + (on ? 'primary' : 'ghost')} onClick={() => preset(n)}>{n}일</button>;
+          })}
+          <input type="date" className="st-date" value={range.from} max={range.to} onChange={(e) => e.target.value && setRange((r) => ({ ...r, from: e.target.value }))} aria-label="시작일" />
+          <span className="muted">~</span>
+          <input type="date" className="st-date" value={range.to} min={range.from} max={today0} onChange={(e) => e.target.value && setRange((r) => ({ ...r, to: e.target.value }))} aria-label="종료일" />
         </div>
       </div>
       <p className="muted sm">접속 주소(IP)는 저장하지 않고, 같은 날 같은 방문자는 한 명으로 셉니다. 관리자로 로그인한 브라우저의 방문은 빠집니다.</p>
       {!s ? <p className="muted">불러오는 중…</p> : (
         <>
           <div className="st-cards">
-            <div><span>오늘</span><b>{s.today.v}</b><em>방문자 {s.today.u}명</em></div>
-            <div><span>최근 7일</span><b>{s.w.v}</b><em>방문자 {s.w.u}명</em></div>
-            <div><span>최근 {days}일</span><b>{s.all.v}</b><em>방문자 {s.all.u}명</em></div>
-            <div><span>챗봇 질문 ({days}일)</span><b>{s.chatTotal}</b><em>아래에서 내용 확인</em></div>
+            <div><span>기간 조회수</span><b>{s.all.v}</b><em>{range.from.slice(5).replace('-', '.')} ~ {range.to.slice(5).replace('-', '.')} · {days}일</em></div>
+            <div><span>기간 방문자</span><b>{s.all.u}</b><em>같은 날 같은 사람은 한 명</em></div>
+            <div><span>하루 평균 조회</span><b>{s.avg}</b><em>기간 조회수 ÷ {days}일</em></div>
+            <div><span>챗봇 질문</span><b>{s.chatTotal}</b><em>아래에서 내용 확인</em></div>
           </div>
           <section className="st-box">
             <h2>날짜별 조회수</h2>
             <div className="st-chart">
               {s.daily.map((x) => (
-                <div key={x.d} title={`${x.d} · 조회 ${x.v} · 방문자 ${x.u}`}><i style={{ height: (x.v / maxV) * 100 + '%' }} /><span>{days <= 30 || x.d.endsWith('01') ? x.d.slice(8) : ''}</span></div>
+                <div key={x.d} title={`${x.d} · 조회 ${x.v} · 방문자 ${x.u}`}><i style={{ height: (x.v / maxV) * 100 + '%' }} /><span>{days <= 31 || x.d.endsWith('01') ? x.d.slice(8) : ''}</span></div>
               ))}
             </div>
           </section>
@@ -130,7 +136,7 @@ export default function StatsPage({ projects, onError }) {
           </div>
           <section className="st-box">
             <div className="st-head">
-              <h2>챗봇 질문 <span className="muted sm">최근 {Math.min(chats.length, 5)}개</span></h2>
+              <h2>챗봇 질문 <span className="muted sm">기간 내 최근 {Math.min(chats.length, 5)}개</span></h2>
               {chats.length > 0 && <button className="btn sm ghost" onClick={() => setOpen(true)}>전체 보기 ({chats.length})</button>}
             </div>
             <ChatList list={chats.slice(0, 5)} onDel={del} />

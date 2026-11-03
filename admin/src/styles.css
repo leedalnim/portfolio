@@ -311,3 +311,5 @@ code { font: 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; back
 /* '새 프로젝트'는 진한 회색, '사이트에 반영'(파랑)과 구분 */
 .btn.dark { background: var(--ink); color: #fff; }
 .btn.dark:hover:not(:disabled) { background: #2c2f35; }
+.st-range { align-items: center; flex-wrap: wrap; }
+.st-date { height: 32px; padding: 0 8px; border: 1px solid var(--line-strong); border-radius: 8px; font: inherit; font-size: 13px; background: var(--surface); }
