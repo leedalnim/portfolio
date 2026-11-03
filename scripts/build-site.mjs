@@ -158,7 +158,7 @@ function page({ title: t, body, active, settings, count, extra = '', desc }) {
     base: BASE,
     ask: SB_URL ? `${SB_URL}/functions/v1/ask` : '',
     key: SB_KEY || '',
-    chat: { fallback: settings.chat.fallback, limit: settings.chat.limit_message, faq: settings.chat.faq, enabled: settings.chat.enabled, followups: settings.chat.followups || [] },
+    chat: { fallback: settings.chat.fallback, offtopic: settings.chat.offtopic, limit: settings.chat.limit_message, faq: settings.chat.faq, enabled: settings.chat.enabled, followups: settings.chat.followups || [] },
   };
   const html = `<!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">

@@ -412,10 +412,16 @@
       const s = String(item.keywords || '')
         .split(',')
         .map((k) => k.trim().toLowerCase())
-        .filter((k) => k && t.includes(k)).length;
+        .filter((k) => k && t.includes(k))
+        .reduce((n, k) => n + k.length, 0); // 더 길고 구체적인 키워드가 맞을수록 높은 점수
       if (s > score) (best = item), (score = s);
     }
     return best ? { answer: best.answer, related: String(best.related || '').split(',').map((x) => x.trim()).filter(Boolean) } : null;
+  }
+  // 장난·테스트·너무 짧은 질문은 AI를 부르지 않고 안내만 한다
+  function junk(q) {
+    const t = q.replace(/[\s?!.~,]/g, '').toLowerCase();
+    return t.length < 3 || /^[ㄱ-ㅎㅏ-ㅣ]+$/.test(t) || /^(test|테스트|ㅌㅅㅌ|hi|hello|안녕|하이|ㅎㅇ|asdf|1234|뭐야|모야)/.test(t) || /^[ㅋㅎㅠㅜ]+/.test(t);
   }
   function card(slug) {
     const p = projects.find((x) => x.slug === slug);
@@ -438,7 +444,7 @@
     wrap.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
     const box = $('.ans', wrap);
     let res = null;
-    const local = faq(q);
+    const local = junk(q) ? { answer: S.chat?.offtopic || '포트폴리오에 관한 질문을 해 주세요.', related: [] } : faq(q);
     if (local) res = local; // 자주 묻는 질문은 AI를 부르지 않고 바로 답한다
     else if (S.ask && S.chat?.enabled !== false) {
       try {

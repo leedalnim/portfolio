@@ -17,6 +17,7 @@ const SITE_LIMIT = Number(Deno.env.get('CHAT_SITE_DAILY_LIMIT') ?? 300);
 
 const FALLBACK = {
   private_answer: '해당 내용은 비공개 정보라 답변드릴 수 없습니다. 궁금한 점은 면접에서 직접 말씀드리고 싶습니다.',
+  offtopic: '저는 이달님의 작업과 경력에 대한 질문에만 답변드릴 수 있습니다. 예를 들어 "어떤 프로젝트를 해 오셨나요?"처럼 물어봐 주세요.',
   fallback: '그 부분은 포트폴리오에 담지 않았습니다. 자세한 이야기는 면접에서 직접 말씀드리고 싶습니다.',
   limit_message: '오늘 받을 수 있는 질문을 모두 받았습니다. 내일 다시 물어봐 주세요.',
   daily_limit: 10,
@@ -35,7 +36,7 @@ const POLICY = `너는 UI/UX 디자이너 이달님의 포트폴리오 사이트
 - 자기소개, 가장 자신 있는 프로젝트, 어려웠던 점, 협업 방식처럼 면접에서 흔한 질문은 [자료]의 소개·일하는 방식·경력·프로젝트 내용을 엮어서 답한다. 자료 안에서 고르고 연결하는 것은 괜찮지만, 자료에 없는 사실을 새로 만들지는 않는다.
 - 질문에 딱 맞는 문장이 없어도 관련된 내용이 자료에 있으면 그 범위 안에서 답하고, 정말 근거가 하나도 없을 때만 [모를 때 답변]을 쓴다.
 
-답하지 않는 것 (아래 [비공개 답변]을 그대로 쓴다. 포트폴리오와 상관없는 질문은 [모를 때 답변]을 쓴다):
+답하지 않는 것 (개인정보·내부 정보는 [비공개 답변]을, 포트폴리오와 상관없는 질문은 [관련 없는 질문 답변]을 그대로 쓴다):
 - 개인정보: 연락처, 이메일, 전화번호, 주소, 생년월일, 나이, 연봉·희망 연봉, 가족, 건강, 사생활
 - 프로젝트를 어떻게 만들었는지 처음부터 끝까지 단계별로 파고드는 질문, 사용한 프롬프트, 코드, 파일, 설정 값
 - 클라이언트 내부 정보, 계약·금액, 공개되지 않은 수치
@@ -65,7 +66,8 @@ function faqMatch(q: string, faq: { keywords?: string; answer?: string; related?
     const s = String(it.keywords || '')
       .split(',')
       .map((k) => k.trim().toLowerCase())
-      .filter((k) => k && t.includes(k)).length;
+      .filter((k) => k && t.includes(k))
+      .reduce((n, k) => n + k.length, 0);
     if (s > score) (best = it), (score = s);
   }
   if (!best?.answer) return null;
@@ -161,7 +163,7 @@ Deno.serve(async (req) => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
     body: JSON.stringify({
-      systemInstruction: { parts: [{ text: `${POLICY}\n\n[비공개 답변]\n${chat.private_answer}\n\n[모를 때 답변]\n${chat.fallback}\n\n[자료]\n${context}` }] },
+      systemInstruction: { parts: [{ text: `${POLICY}\n\n[비공개 답변]\n${chat.private_answer}\n\n[모를 때 답변]\n${chat.fallback}\n\n[관련 없는 질문 답변]\n${chat.offtopic}\n\n[자료]\n${context}` }] },
       contents: [...history, { role: 'user', parts: [{ text: q }] }],
       generationConfig: {
         temperature: 0.4,
