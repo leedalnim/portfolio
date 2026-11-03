@@ -448,7 +448,7 @@
         else if (r.ok && j.answer) res = j;
       } catch {}
     }
-    if (!res) res = local || { answer: S.chat?.fallback || '지금은 답변을 드릴 수 없어요.' };
+    if (!res) res = local || { answer: S.chat?.fallback || '지금은 답변을 드릴 수 없습니다.' };
     box.classList.remove('wait');
     box.textContent = res.answer;
     hist.push({ role: 'user', text: q }, { role: 'model', text: res.answer });
