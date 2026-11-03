@@ -50,6 +50,8 @@ const POLICY = `너는 UI/UX 디자이너 이달님의 포트폴리오 사이트
 - 첫 문장에서 질문이 묻는 것에 바로 답한다. 질문과 상관없이 "10년 넘게", "2013년부터" 같은 경력 소개나 자기소개로 시작하지 않는다. 경력 연수는 경력을 물을 때만 말한다.
 - 프로젝트를 묻는 질문에는 프로젝트 이름만 나열하지 말고, 각 프로젝트에서 무엇을 했는지 한 가지씩 구체적으로 짚는다.
 - 같은 대화에서 앞 답변과 같은 문장을 되풀이하지 않는다.
+- [자료]나 [본인 답변]의 문장을 그대로 옮기지 않는다. 내용과 사실은 지키되, 질문의 단어와 맥락을 받아 실제 면접에서 말하듯 자연스럽게 다시 말한다.
+- 질문이 짧거나 반말이어도 정중한 합니다체로 답하고, 질문이 무엇을 궁금해하는지(경험, 방법, 이유, 예시)에 맞춰 답의 초점을 정한다.
 - 과장하거나 홍보 문구처럼 쓰지 않는다. 자료에 있는 표현을 우선 쓴다.
 - 답을 모르거나 자료에 없으면 [모를 때 답변]을 그대로 쓴다.
 
@@ -74,7 +76,7 @@ function faqMatch(q: string, faq: { keywords?: string; answer?: string; related?
     if (s > score) (best = it), (score = s);
   }
   if (!best?.answer) return null;
-  return { answer: best.answer, related: String(best.related || '').split(',').map((x) => x.trim()).filter(Boolean) };
+  return { answer: best.answer, instant: !!(best as { instant?: boolean }).instant, related: String(best.related || '').split(',').map((x) => x.trim()).filter(Boolean) };
 }
 
 const clip = (s: unknown, n: number) => String(s ?? '').replace(/\s+/g, ' ').trim().slice(0, n);
@@ -141,8 +143,9 @@ Deno.serve(async (req) => {
   const chat = { ...FALLBACK, ...(settings.chat ?? {}) };
 
   // 자주 묻는 질문은 AI를 부르지 않고 바로 답한다 (질문 수에도 넣지 않음)
+  // 고정 답변(instant)만 그대로 돌려주고, 나머지 미리 써둔 답은 AI가 질문에 맞게 다시 말하도록 참고로만 넘긴다
   const hit = faqMatch(q, chat.faq);
-  if (hit) return json(hit);
+  if (hit?.instant) return json(hit);
   if (chat.enabled === false) return json({ answer: chat.fallback, related: [] });
 
   const key = Deno.env.get('GEMINI_API_KEY');
@@ -166,10 +169,10 @@ Deno.serve(async (req) => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
     body: JSON.stringify({
-      systemInstruction: { parts: [{ text: `${POLICY}\n\n[비공개 답변]\n${chat.private_answer}\n\n[모를 때 답변]\n${chat.fallback}\n\n[관련 없는 질문 답변]\n${chat.offtopic}\n\n[자료]\n${context}` }] },
+      systemInstruction: { parts: [{ text: `${POLICY}\n\n[비공개 답변]\n${chat.private_answer}\n\n[모를 때 답변]\n${chat.fallback}\n\n[관련 없는 질문 답변]\n${chat.offtopic}\n\n[자료]\n${context}${hit ? `\n\n[이 질문과 가장 가까운 본인 답변 — 내용은 따르되 문장은 질문에 맞게 새로 쓴다]\n${hit.answer}\n관련 slug: ${hit.related.join(', ')}` : ''}` }] },
       contents: [...history, { role: 'user', parts: [{ text: q }] }],
       generationConfig: {
-        temperature: 0.4,
+        temperature: 0.7,
         maxOutputTokens: 600,
         responseMimeType: 'application/json',
         responseSchema: {

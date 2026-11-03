@@ -450,7 +450,7 @@
         .reduce((n, k) => n + k.length, 0); // 더 길고 구체적인 키워드가 맞을수록 높은 점수
       if (s > score) (best = item), (score = s);
     }
-    return best ? { answer: best.answer, related: String(best.related || '').split(',').map((x) => x.trim()).filter(Boolean) } : null;
+    return best ? { answer: best.answer, instant: !!best.instant, related: String(best.related || '').split(',').map((x) => x.trim()).filter(Boolean) } : null;
   }
   // 장난·테스트·너무 짧은 질문은 AI를 부르지 않고 안내만 한다
   function junk(q) {
@@ -478,7 +478,9 @@
     wrap.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
     const box = $('.ans', wrap);
     let res = null;
-    const local = junk(q) ? { answer: S.chat?.offtopic || '포트폴리오에 관한 질문을 해 주세요.', related: [] } : faq(q);
+    // 장난 질문과 고정 답변(연락처 등)만 바로 답하고, 나머지는 AI가 질문 맥락에 맞게 답한다
+    const f = faq(q);
+    const local = junk(q) ? { answer: S.chat?.offtopic || '포트폴리오에 관한 질문을 해 주세요.', related: [] } : f && f.instant ? f : null;
     if (local) {
       // 미리 써둔 답도 AI 답변처럼 잠깐 준비하는 시간을 둔다 (0.9~1.6초)
       await new Promise((r) => setTimeout(r, reduce ? 300 : 900 + Math.random() * 700));
@@ -492,6 +494,7 @@
         else if (r.ok && j.answer) res = j;
       } catch {}
     }
+    if (!res && f && !f.instant) res = f; // AI를 못 부를 때는 미리 써둔 답으로 대신한다
     if (!res) res = local || { answer: S.chat?.fallback || '지금은 답변을 드릴 수 없습니다.' };
     box.classList.remove('wait');
     // 글자가 써지듯 보여 준다 (움직임 줄이기 설정이면 한 번에)
