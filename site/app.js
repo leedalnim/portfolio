@@ -466,10 +466,14 @@
       box.textContent = '';
       const txt = document.createTextNode('');
       box.append(txt);
-      const a = [...res.answer];
-      for (let i = 0; i < a.length; i += 2) {
-        txt.data += a[i] + (a[i + 1] || '');
-        await new Promise((r) => setTimeout(r, 22));
+      // 어절(띄어쓰기·줄바꿈 포함) 1~3개씩 덩어리로, 간격은 들쭉날쭉하게, 문장 끝에서는 조금 더 쉰다
+      const parts = res.answer.match(/\S+\s*/g) || [res.answer];
+      for (let i = 0; i < parts.length; ) {
+        const n = 1 + Math.floor(Math.random() * 3);
+        const chunk = parts.slice(i, i + n).join('');
+        i += n;
+        txt.data += chunk;
+        await new Promise((r) => setTimeout(r, (/[.?!]\s*$/.test(chunk) ? 140 : 30) + Math.random() * 50));
       }
     }
     hist.push({ role: 'user', text: q }, { role: 'model', text: res.answer });
