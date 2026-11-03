@@ -330,6 +330,37 @@ code { font: 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; back
 .pending-pop li:first-child { border-top: 0; }
 .pending-pop em { font-style: normal; color: var(--sub); white-space: nowrap; font-size: 12px; }
 .pending-pop p { margin: 8px 0 0; font-size: 12px; color: var(--sub); line-height: 1.5; }
-.wall-order { display: grid; grid-template-columns: auto 88px; align-items: center; gap: 6px 10px; font-size: 13px; margin: -2px 0 4px 46px; }
-.wall-order input { height: 32px; padding: 0 8px; border: 1px solid var(--line); border-radius: 8px; font: inherit; width: 100%; }
-.wall-order em { grid-column: 1 / -1; font-style: normal; font-size: 12px; color: var(--mute); }
+
+/* 첫 화면 배치 */
+.lay .page-head p { max-width: 640px; }
+.lay-wall { position: relative; width: 100%; aspect-ratio: 1920 / 768; background: repeating-linear-gradient(90deg, transparent 0 calc(10% - 1px), var(--line) calc(10% - 1px) 10%), repeating-linear-gradient(0deg, transparent 0 calc(25% - 1px), var(--line) calc(25% - 1px) 25%), #f6f7f9; border-radius: 10px; overflow: hidden; }
+.lay-slot { position: absolute; padding: 3px; cursor: grab; }
+.lay-slot > img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; display: block; }
+.lay-slot.empty { cursor: pointer; }
+.lay-slot.empty::before { content: ''; position: absolute; inset: 3px; border: 1.5px dashed var(--line-strong); border-radius: 6px; background: #fff; }
+.lay-slot.on > img, .lay-slot.on::before { outline: 3px solid var(--blue, #1f3cf0); outline-offset: -3px; }
+.lay-slot:hover > img { filter: brightness(.82); }
+.lay-no { position: absolute; left: 9px; top: 9px; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 11px; background: #111; color: #fff; font-size: 12px; display: grid; place-items: center; }
+.lay-name { position: absolute; left: 9px; right: 9px; bottom: 9px; color: #fff; font-size: 12px; font-weight: 600; text-shadow: 0 1px 3px rgba(0,0,0,.6); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lay-empty { position: absolute; inset: 0; display: grid; place-items: center; color: var(--mute); font-size: 12px; }
+.lay-x { position: absolute; right: 9px; top: 9px; width: 22px; height: 22px; border-radius: 11px; border: 0; background: rgba(255,255,255,.92); font-size: 11px; cursor: pointer; opacity: 0; }
+.lay-slot:hover .lay-x { opacity: 1; }
+.lay-warn { margin: 10px 0 0; font-size: 13px; color: #b26a00; }
+.lay-sub { margin: 18px 0 8px; font-size: 13px; color: var(--sub); font-weight: 600; }
+.lay-pool { display: flex; flex-wrap: wrap; gap: 8px; min-height: 52px; padding: 8px; border: 1px dashed var(--line-strong); border-radius: 10px; }
+.lay-chip { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 12px 0 4px; border: 1px solid var(--line); border-radius: 8px; background: #fff; font-size: 13px; cursor: grab; }
+.lay-chip.on { border-color: var(--blue, #1f3cf0); box-shadow: 0 0 0 2px var(--blue, #1f3cf0) inset; }
+.lay-chip.off { cursor: not-allowed; opacity: .55; }
+.lay-chip em { font-style: normal; font-size: 12px; color: var(--mute); }
+.lay-ct { width: 32px; height: 32px; border-radius: 6px; overflow: hidden; background: #eef0f3; flex: none; }
+.lay-ct img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.lay-arc { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.lay-arc li { display: flex; align-items: center; gap: 10px; height: 48px; padding: 0 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; cursor: grab; font-size: 14px; }
+.lay-arc li > b { width: 20px; font-size: 12px; color: var(--sub); text-align: right; }
+.lay-arc li .lay-t { flex: 1; }
+.lay-arc li.over { opacity: .5; }
+.lay-arc li.dragging { border-color: var(--blue, #1f3cf0); background: #f4f6ff; }
+.lay-arc li > em { font-style: normal; font-size: 12px; color: #b26a00; }
+.lay-grip { color: var(--mute); letter-spacing: -2px; }
+.lay-tip { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); background: #111; color: #fff; padding: 10px 16px; border-radius: 10px; font-size: 13px; display: flex; gap: 12px; align-items: center; z-index: 30; }
+.lay-tip .link { color: #fff; }

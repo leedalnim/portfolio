@@ -202,7 +202,15 @@ const WALL = [
 ];
 
 function home(projects, s, counts) {
-  const wall = projects.filter((p) => p.show_on_wall && p._thumb).sort((a, b) => (a.wall_order ?? 99) - (b.wall_order ?? 99)).slice(0, WALL.length);
+  // 벽: 자리 번호(wall_order)가 있으면 그 자리에, 번호가 없으면 남은 자리를 앞에서부터 채운다. 빈 자리는 비워 둔다
+  const wall = Array(WALL.length).fill(null);
+  const extra = [];
+  for (const p of projects.filter((p) => p.show_on_wall && p._thumb).sort((a, b) => (a.wall_order ?? 99) - (b.wall_order ?? 99))) {
+    const i = (p.wall_order ?? 0) - 1;
+    if (i >= 0 && i < WALL.length && !wall[i]) wall[i] = p;
+    else extra.push(p);
+  }
+  for (const p of extra) { const i = wall.indexOf(null); if (i >= 0) wall[i] = p; }
   const arc = projects.filter((p) => p.show_on_archive).slice(0, 10);
   const pos = { 'UX DESIGN': [1101, 159], 'VISUAL DESIGN': [1210, 211], 'AI WORKFLOW': [300, 230], 'SOLO BUILD': [150, 282] };
   return `<section class="hero grid" style="${cs({ hh: 380, mh: 274, mtop: 72, mfs: 94, mlh: 88, mtt: 112, mtb: 213, mbl: 154 })}">
@@ -211,6 +219,7 @@ ${imgTitle('home', 'PORTFOLIO')}${chips(pos, counts)}</section>
 <section class="wall grid" aria-label="대표 작업" style="--rows:4;--mrows:8">
 ${wall
   .map((p, i) => {
+    if (!p) return '';
     const [x, y, sz, mx, my, ms] = WALL[i];
     return `<a class="w rv" href="${href(p)}" data-detail data-s="${sz}" style="--x:${x};--y:${y};--s:${sz};--mx:${mx};--my:${my};--ms:${ms};--d:${i}">${pic(p._thumb, p.title, `(max-width: 1023px) 50vw, ${Math.round(sz / 19.2)}vw`)}<span class="ov"><i>${esc(p.kind)}</i><span><strong>${esc(p.title)}</strong><small>${[p.platform, ...(p.filters || [])].filter(Boolean).map(nb).join(' · ')}</small><em class="go">자세히 보기<i aria-hidden="true">↗</i></em></span></span></a>`;
   })

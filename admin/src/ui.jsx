@@ -55,3 +55,9 @@ export const IconStats = () => (
     <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />
   </svg>
 );
+export const IconLayout = () => (
+  <svg {...s}>
+    <rect x="3" y="3" width="18" height="18" rx="2" />
+    <path d="M3 10h18M10 10v11" />
+  </svg>
+);

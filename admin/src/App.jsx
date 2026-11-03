@@ -5,8 +5,9 @@ import ProjectList from './ProjectList.jsx';
 import ProjectEditor from './ProjectEditor.jsx';
 import SettingsPage from './SettingsPage.jsx';
 import StatsPage from './StatsPage.jsx';
+import LayoutPage from './LayoutPage.jsx';
 import { emptyProject } from './store.js';
-import { fmtDate, IconGrid, IconOut, IconUp, IconSet, IconStats } from './ui.jsx';
+import { fmtDate, IconGrid, IconOut, IconUp, IconSet, IconStats, IconLayout } from './ui.jsx';
 
 const LAST_PUB = 'pf-last-published';
 
@@ -145,6 +146,9 @@ export default function App() {
             <IconGrid /> 프로젝트
             <em>{projects.length}</em>
           </button>
+          <button className={view === 'layout' ? 'on' : ''} onClick={() => { setView('layout'); setEditing(null); }}>
+            <IconLayout /> 첫 화면 배치
+          </button>
           <button className={view === 'settings' ? 'on' : ''} onClick={() => { setView('settings'); setEditing(null); }}>
             <IconSet /> 사이트 설정
           </button>
@@ -196,7 +200,17 @@ export default function App() {
           </button>
         </header>
 
-        {view === 'stats' ? (
+        {view === 'layout' && !loading ? (
+          <LayoutPage
+            key={projects.length}
+            projects={projects}
+            onSaved={(rows) => {
+              setProjects((l) => l.map((p) => rows.find((r) => r.id === p.id) || p).sort((a, b) => a.sort_order - b.sort_order));
+              flash(rows.length ? `${rows.length}개 프로젝트의 배치를 저장했어요.` : '바뀐 게 없어요.');
+            }}
+            onError={(m) => flash(m, 'error')}
+          />
+        ) : view === 'stats' ? (
           <StatsPage projects={projects} onError={(m) => flash(m, 'error')} />
         ) : view === 'settings' ? (
           <SettingsPage
