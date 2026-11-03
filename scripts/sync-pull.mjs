@@ -41,3 +41,10 @@ for (const r of rows) {
 }
 await fs.writeFile(SAMPLE, JSON.stringify(projects, null, 2) + '\n');
 console.log(`프로젝트 ${projects.length}개, 바뀐 이미지 ${n}개 받아옴`);
+
+// 사이트 설정도 파일로 받아둔다 (저장소에서 고친 뒤 올리기로 되돌려 보낼 수 있게)
+const st = await (await call('/rest/v1/site_settings?id=eq.1&select=data')).json();
+if (st[0]?.data && Object.keys(st[0].data).length) {
+  await fs.writeFile(path.join(path.dirname(SAMPLE), 'settings.json'), JSON.stringify(st[0].data, null, 2) + '\n');
+  console.log('사이트 설정 받아옴');
+}
