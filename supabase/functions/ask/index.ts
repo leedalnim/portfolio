@@ -145,7 +145,10 @@ Deno.serve(async (req) => {
   // 자주 묻는 질문은 AI를 부르지 않고 바로 답한다 (질문 수에도 넣지 않음)
   // 고정 답변(instant)만 그대로 돌려주고, 나머지 미리 써둔 답은 AI가 질문에 맞게 다시 말하도록 참고로만 넘긴다
   const hit = faqMatch(q, chat.faq);
-  if (hit?.instant) return json(hit);
+  if (hit?.instant) {
+    await sb.from('chat_logs').insert({ q, answer: hit.answer, source: 'instant', visitor: null }).then(() => {}, () => {});
+    return json(hit);
+  }
   if (chat.enabled === false) return json({ answer: chat.fallback, related: [] });
 
   const key = Deno.env.get('GEMINI_API_KEY');
@@ -188,6 +191,7 @@ Deno.serve(async (req) => {
     // 무료 사용량이 다 찼을 때(429)도 방문자에게는 한도 안내를 보여 준다
     if (r?.status === 429) return json({ answer: chat.limit_message }, 429);
     console.error('gemini', r?.status, r && (await r.text()).slice(0, 300));
+    await sb.from('chat_logs').insert({ q, answer: hit?.answer || chat.fallback, source: 'fallback', visitor }).then(() => {}, () => {});
     return json({ answer: chat.fallback, related: [] });
   }
   const g = await r.json();
@@ -199,8 +203,10 @@ Deno.serve(async (req) => {
     out = { answer: text };
   }
   const slugs = new Set((projects ?? []).map((p) => p.slug));
+  const answer = clip(out.answer, 800) || chat.fallback;
+  await sb.from('chat_logs').insert({ q, answer, source: 'ai', visitor }).then(() => {}, () => {});
   return json({
-    answer: clip(out.answer, 800) || chat.fallback,
+    answer,
     related: (out.related ?? []).filter((s) => slugs.has(s)).slice(0, 4),
   });
 });

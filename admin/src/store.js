@@ -139,6 +139,27 @@ function supabaseStore() {
       if (error) return null;
       return data;
     },
+    // 통계: 최근 N일 방문 기록 (많아도 몇천 줄이라 받아서 화면에서 센다)
+    async views(days = 30) {
+      const since = new Date(Date.now() - days * 864e5).toISOString();
+      const rows = [];
+      for (let from = 0; ; from += 1000) {
+        const { data, error } = await sb.from('page_views').select('ts,path,slug,ref,device,visitor').gte('ts', since).order('ts').range(from, from + 999);
+        if (error) throw new Error('통계 표가 없어요. 004_stats.sql 을 먼저 실행해 주세요.');
+        rows.push(...data);
+        if (data.length < 1000) break;
+      }
+      return rows;
+    },
+    async chats(limit = 200) {
+      const { data, error } = await sb.from('chat_logs').select('id,ts,q,answer,source').order('ts', { ascending: false }).limit(limit);
+      if (error) throw new Error('챗봇 질문 표가 없어요. 004_stats.sql 을 먼저 실행해 주세요.');
+      return data;
+    },
+    async removeChat(id) {
+      const { error } = await sb.from('chat_logs').delete().eq('id', id);
+      if (error) throw error;
+    },
   };
 }
 
@@ -236,6 +257,13 @@ function demoStore() {
     async publishStatus() {
       return null;
     },
+    async views() {
+      return [];
+    },
+    async chats() {
+      return [];
+    },
+    async removeChat() {},
   };
 }
 

@@ -157,6 +157,7 @@ function page({ title: t, body, active, settings, count, extra = '', desc }) {
   const cfg = {
     base: BASE,
     ask: SB_URL ? `${SB_URL}/functions/v1/ask` : '',
+    track: SB_URL && DATA === 'live' ? `${SB_URL}/functions/v1/track` : '',
     key: SB_KEY || '',
     chat: { fallback: settings.chat.fallback, offtopic: settings.chat.offtopic, limit: settings.chat.limit_message, faq: settings.chat.faq, enabled: settings.chat.enabled, followups: settings.chat.followups || [] },
   };

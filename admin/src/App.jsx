@@ -4,8 +4,9 @@ import Login from './Login.jsx';
 import ProjectList from './ProjectList.jsx';
 import ProjectEditor from './ProjectEditor.jsx';
 import SettingsPage from './SettingsPage.jsx';
+import StatsPage from './StatsPage.jsx';
 import { emptyProject } from './store.js';
-import { fmtDate, IconGrid, IconOut, IconUp, IconSet } from './ui.jsx';
+import { fmtDate, IconGrid, IconOut, IconUp, IconSet, IconStats } from './ui.jsx';
 
 const LAST_PUB = 'pf-last-published';
 
@@ -18,6 +19,10 @@ export default function App() {
   const [settingsAt, setSettingsAt] = useState('');
   const [toast, setToast] = useState(null);
   const [pub, setPub] = useState({ state: 'idle', at: readLastPub() });
+
+  useEffect(() => {
+    if (user) try { localStorage.setItem('pf-no-track', '1'); } catch {}
+  }, [user]);
 
   useEffect(() => {
     store.getUser().then(setUser);
@@ -131,6 +136,9 @@ export default function App() {
           <button className={view === 'settings' ? 'on' : ''} onClick={() => { setView('settings'); setEditing(null); }}>
             <IconSet /> 사이트 설정
           </button>
+          <button className={view === 'stats' ? 'on' : ''} onClick={() => { setView('stats'); setEditing(null); }}>
+            <IconStats /> 통계
+          </button>
           <a href={import.meta.env.BASE_URL.replace(/admin\/$/, '')} target="_blank" rel="noreferrer">
             <IconOut /> 사이트 보기
           </a>
@@ -169,7 +177,9 @@ export default function App() {
           </button>
         </header>
 
-        {view === 'settings' ? (
+        {view === 'stats' ? (
+          <StatsPage projects={projects} onError={(m) => flash(m, 'error')} />
+        ) : view === 'settings' ? (
           <SettingsPage
             onSaved={() => {
               setSettingsAt(new Date().toISOString());

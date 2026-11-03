@@ -300,6 +300,7 @@
     $$('.rv', scroller).forEach((el) => el.classList.add('in'));
     autoScroll(scroller);
     if (push) history[replace ? 'replaceState' : 'pushState']({ detail: url }, '', url);
+    if (push) trackView(); // 상세를 겹쳐 열 때도 한 번 기록
     document.title = (node.querySelector('.dt-ttl')?.textContent || '') + ' — DALNIM';
     if (blinds.classList.contains('on')) uncover(); // 덮을 때와 같은 방향으로 이어서 걷힘
     requestAnimationFrame(() => layer.classList.add('ready'));
@@ -397,6 +398,23 @@
   }
   autoScroll();
 
+  /* ---------- 방문 기록 (통계용) ----------
+     관리자로 로그인한 브라우저는 빼고, 페이지를 열 때마다 한 번 보낸다. 쿠키·IP는 쓰지 않는다. */
+  function track(data) {
+    if (!S.track) return;
+    try { if (localStorage.getItem('pf-no-track')) return; } catch {}
+    try { fetch(S.track, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(data), keepalive: true }).catch(() => {}); } catch {}
+  }
+  function trackView() {
+    const path = location.pathname.replace(S.base, '/') || '/';
+    const m = path.match(/^\/projects\/([^/]+)\//);
+    let ref = '';
+    try { const r = new URL(document.referrer); if (r.host !== location.host) ref = r.host.replace(/^www\./, ''); } catch {}
+    const w = window.innerWidth;
+    track({ type: 'view', path, slug: m ? decodeURIComponent(m[1]) : '', ref, device: w < 768 ? 'mobile' : w < 1024 ? 'tablet' : 'pc' });
+  }
+  trackView();
+
   /* ---------- 전체 화면 보기 레이어 팝업 ---------- */
   function fullView(img) {
     let d = $('dialog.fv');
@@ -481,6 +499,7 @@
     // 장난 질문과 고정 답변(연락처 등)만 바로 답하고, 나머지는 AI가 질문 맥락에 맞게 답한다
     const f = faq(q);
     const local = junk(q) ? { answer: S.chat?.offtopic || '포트폴리오에 관한 질문을 해 주세요.', related: [] } : f && f.instant ? f : null;
+    if (local) track({ type: 'chat', q, answer: local.answer, source: junk(q) ? 'junk' : 'instant' });
     if (local) {
       // 미리 써둔 답도 AI 답변처럼 잠깐 준비하는 시간을 둔다 (0.9~1.6초)
       await new Promise((r) => setTimeout(r, reduce ? 300 : 900 + Math.random() * 700));
