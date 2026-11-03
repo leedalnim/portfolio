@@ -296,7 +296,7 @@ body.locked{overflow:hidden}
 .q{align-self:flex-end;max-width:80%;background:var(--ink);color:#fff;border-radius:28px;padding:18px 28px;font:600 20px/1.4 var(--ko);animation:bub .5s var(--ease) both}
 .a-lb{display:flex;align-items:center;gap:8px;font:700 15px/1 var(--ko);color:var(--blue);margin-bottom:14px}
 .a-lb::before{content:'';width:10px;height:10px;border-radius:50%;background:var(--blue)}
-.ans{max-width:900px;background:var(--soft);border-radius:6px 28px 28px 28px;padding:28px 32px;font:500 19px/1.7 var(--ko);white-space:pre-line;animation:bub .5s var(--ease) both}
+.ans{max-width:900px;background:#fff;border:1px solid var(--blue);border-radius:6px 28px 28px 28px;padding:28px 32px;font:500 19px/1.7 var(--ko);white-space:pre-line;animation:bub .5s var(--ease) both}
 .ans .rel{margin-top:24px}
 .ans .rel>b{display:block;font:700 14px/1 var(--ko);color:var(--g1);margin-bottom:12px}
 .ans .rel div{display:flex;gap:16px;overflow-x:auto}
