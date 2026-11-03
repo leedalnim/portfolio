@@ -300,8 +300,8 @@ body.locked{overflow:hidden}
 .ans .rel{margin-top:24px}
 .ans .rel>b{display:block;font:700 14px/1 var(--ko);color:var(--g1);margin-bottom:12px}
 .ans .rel div{display:flex;gap:16px;overflow-x:auto}
-.ans .rel a{flex:0 0 auto;width:264px}
-.ans .rel img{width:264px;height:176px;object-fit:cover;object-position:top;background:#eee}
+.ans .rel a{flex:0 0 auto;width:176px}
+.ans .rel img{box-sizing:border-box;width:176px;height:176px;object-fit:cover;object-position:center;background:#eee;border:1px solid #E5E5E5}
 .ans .rel span{display:block;margin-top:10px;font:600 15px/1.3 var(--ko);white-space:normal}
 .ans.wait{color:var(--g1)}
 .ans.wait::after{content:'';display:inline-block;width:1.2em;text-align:left;animation:dots 1.2s steps(4) infinite}
@@ -438,7 +438,7 @@ body.locked .to-top{opacity:0;pointer-events:none}
   .chat{max-width:none;padding:32px 16px 0}
   .q{font-size:15px;padding:12px 18px;border-radius:22px}
   .ans{font-size:14px;padding:18px 20px;border-radius:4px 22px 22px 22px}
-  .ans .rel img{width:150px;height:100px}.ans .rel a{width:150px}
+  .ans .rel img{width:100px;height:100px}.ans .rel a{width:100px}
   .chat-in{padding:40px 0 24px}
   .chat-in .ask-sug{justify-content:flex-start}
   .ft{padding:28px 16px 40px;flex-wrap:wrap;gap:16px}
