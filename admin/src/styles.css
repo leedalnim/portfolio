@@ -320,3 +320,13 @@ code { font: 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; back
 .st .page-head { flex-wrap: wrap; }
 .st .st-range .btn, .st .st-range .st-date { height: 36px !important; }
 .st .st-range .btn { padding: 0 14px; }
+
+/* 반영 대기 목록 */
+.pub-state { position: relative; }
+.pending-pop { position: absolute; top: calc(100% + 10px); right: 0; z-index: 20; width: 320px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 12px 32px rgba(17, 18, 20, 0.14); color: var(--ink); }
+.pending-pop b { display: block; font-size: 13px; margin-bottom: 8px; }
+.pending-pop ul { list-style: none; margin: 0; padding: 0; max-height: 220px; overflow: auto; }
+.pending-pop li { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-top: 1px solid var(--line); font-size: 13px; }
+.pending-pop li:first-child { border-top: 0; }
+.pending-pop em { font-style: normal; color: var(--sub); white-space: nowrap; font-size: 12px; }
+.pending-pop p { margin: 8px 0 0; font-size: 12px; color: var(--sub); line-height: 1.5; }

@@ -48,8 +48,20 @@ export default function App() {
     return () => clearTimeout(t);
   }, [toast]);
 
-  const latestEdit = useMemo(() => projects.reduce((m, p) => (p.updated_at && p.updated_at > m ? p.updated_at : m), settingsAt), [projects, settingsAt]);
-  const needsPublish = latestEdit && (!pub.at || latestEdit > pub.at);
+  // 마지막으로 사이트가 만들어진 시각: 이 브라우저에서 누른 반영 + 깃헙의 최근 성공 배포(자동 배포 포함) 중 늦은 것
+  const [lastDeploy, setLastDeploy] = useState('');
+  useEffect(() => {
+    if (!user) return;
+    store.publishStatus().then((run) => run && run.conclusion === 'success' && setLastDeploy(run.created_at)).catch(() => {});
+  }, [user, pub.state]);
+  const builtAt = [pub.at, lastDeploy].filter(Boolean).sort().pop() || '';
+  const pending = useMemo(() => {
+    const list = projects.filter((p) => p.updated_at && (!builtAt || p.updated_at > builtAt)).map((p) => ({ name: p.title || '제목 없음', at: p.updated_at }));
+    if (settingsAt && (!builtAt || settingsAt > builtAt)) list.push({ name: '사이트 설정', at: settingsAt });
+    return list.sort((a, b) => (a.at < b.at ? 1 : -1));
+  }, [projects, settingsAt, builtAt]);
+  const needsPublish = pending.length > 0;
+  const [showPending, setShowPending] = useState(false);
 
   async function publish() {
     setPub((p) => ({ ...p, state: 'running' }));
@@ -167,10 +179,17 @@ export default function App() {
                 : pub.state === 'error'
                   ? '마지막 반영이 실패했어요'
               : needsPublish
-                ? '사이트에 반영하지 않은 변경이 있어요'
+                ? <>사이트에 반영하지 않은 변경이 {pending.length}건 있어요 <button className="link sm" onClick={() => setShowPending((v) => !v)}>{showPending ? '닫기' : '무엇이 바뀌었나요?'}</button></>
                 : pub.at
                   ? '최근 반영 ' + fmtDate(pub.at)
                   : '아직 반영한 적이 없어요'}
+            {needsPublish && showPending && (
+              <div className="pending-pop">
+                <b>반영 대기 중인 변경</b>
+                <ul>{pending.map((x, k) => <li key={k}><span>{x.name}</span><em>{fmtDate(x.at)}</em></li>)}</ul>
+                <p>마지막 반영 {builtAt ? fmtDate(builtAt) : '없음'} 이후에 저장된 항목이에요. '사이트에 반영'을 누르면 한 번에 반영돼요.</p>
+              </div>
+            )}
           </div>
           <button className="btn primary" onClick={publish} disabled={pub.state === 'running' || pub.state === 'building'}>
             <IconUp /> 사이트에 반영
