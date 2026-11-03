@@ -296,3 +296,7 @@ code { font: 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; back
 .st-chats p { grid-column: 1; margin: 0; }
 .st-chats .link { grid-column: 2; grid-row: 1; align-self: start; }
 @media (max-width: 900px) { .st-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } .st-grid { grid-template-columns: 1fr; } }
+
+/* '새 프로젝트'는 진한 회색, '사이트에 반영'(파랑)과 구분 */
+.btn.dark { background: var(--ink); color: #fff; }
+.btn.dark:hover:not(:disabled) { background: #2c2f35; }

@@ -28,7 +28,7 @@ export default function ProjectList({ projects, loading, onNew, onEdit, onToggle
             공개 {projects.filter((p) => p.published).length} · 비공개 {projects.filter((p) => !p.published).length}
           </p>
         </div>
-        <button className="btn primary" onClick={onNew}>
+        <button className="btn dark" onClick={onNew}>
           <IconPlus /> 새 프로젝트
         </button>
       </div>
