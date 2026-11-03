@@ -308,7 +308,7 @@ body.locked{overflow:hidden}
 @keyframes dots{0%{content:''}25%{content:'.'}50%{content:'..'}75%{content:'...'}}
 @keyframes bub{from{opacity:0;transform:translateY(16px)}}
 .a-src{margin:14px 0 0;font:500 13px/1.5 var(--ko);color:var(--g4)}
-.chat-in{position:sticky;bottom:0;background:linear-gradient(rgba(250,249,247,0),var(--paper) 30%);padding:60px 0 40px}
+.chat-in{position:sticky;bottom:0;background:repeating-linear-gradient(90deg,transparent 0 calc(var(--col) - 1px),var(--line) calc(var(--col) - 1px) var(--col)) fixed,linear-gradient(rgba(250,249,247,0),var(--paper) 30%);padding:60px 0 40px} /* 아래 입력창 영역에도 세로 격자가 이어지게 (화면 기준으로 맞춤) */
 .chat-in .ask-sug,.chat-in .ask-note{justify-content:center;text-align:center;margin-left:0}
 
 /* ---------- 푸터 ---------- */
