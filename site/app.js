@@ -439,7 +439,7 @@
     qEl.textContent = q;
     log.append(qEl);
     const wrap = document.createElement('div');
-    wrap.innerHTML = '<div class="a-lb">AI 답변</div><div class="ans wait">답변을 준비하고 있어요</div>';
+    wrap.innerHTML = '<div class="a-lb">AI 답변</div><div class="ans wait">답변을 준비하고 있습니다</div>';
     log.append(wrap);
     wrap.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
     const box = $('.ans', wrap);
@@ -460,7 +460,18 @@
     }
     if (!res) res = local || { answer: S.chat?.fallback || '지금은 답변을 드릴 수 없습니다.' };
     box.classList.remove('wait');
-    box.textContent = res.answer;
+    // 글자가 써지듯 보여 준다 (움직임 줄이기 설정이면 한 번에)
+    if (reduce) box.textContent = res.answer;
+    else {
+      box.textContent = '';
+      const txt = document.createTextNode('');
+      box.append(txt);
+      const a = [...res.answer];
+      for (let i = 0; i < a.length; i += 2) {
+        txt.data += a[i] + (a[i + 1] || '');
+        await new Promise((r) => setTimeout(r, 22));
+      }
+    }
     hist.push({ role: 'user', text: q }, { role: 'model', text: res.answer });
     // 첫 답변 뒤에는 이어서 물어볼 질문으로 바꿔 준다
     const sug = $('form[data-live] .ask-sug');
