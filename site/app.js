@@ -475,10 +475,7 @@
       d.innerHTML = `<b>관련 프로젝트</b><div>${rel.join('')}</div>`;
       box.append(d);
     }
-    const src = document.createElement('p');
-    src.className = 'a-src';
-    src.textContent = '답변은 이달님의 포트폴리오 기록을 바탕으로 만들어져요.';
-    wrap.append(src);
+    // 출처 안내는 말풍선마다 붙이지 않고 입력창 아래 안내 문구에 함께 둔다
   }
   const q0 = new URLSearchParams(location.search).get('q');
   if (log && q0) ask(q0.slice(0, 300));
