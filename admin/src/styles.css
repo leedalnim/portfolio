@@ -313,3 +313,6 @@ code { font: 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; back
 .btn.dark:hover:not(:disabled) { background: #2c2f35; }
 .st-range { align-items: center; flex-wrap: wrap; }
 .st-date { height: 32px; padding: 0 8px; border: 1px solid var(--line-strong); border-radius: 8px; font: inherit; font-size: 13px; background: var(--surface); }
+.st-range { flex-wrap: nowrap; }
+.st-range .st-date { width: auto; flex: none; }
+.st-range > span { flex: none; }
