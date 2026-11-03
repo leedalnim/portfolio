@@ -293,10 +293,10 @@ body.locked{overflow:hidden}
 .chat{max-width:calc(1152 * var(--u) + 32px);margin:0 auto;padding:calc(80 * var(--u)) 16px 0}
 .chat-wrap{border-top:1px solid var(--ink)}
 .chat-log{display:flex;flex-direction:column;gap:40px;min-height:200px}
-.q{align-self:flex-end;max-width:80%;background:var(--ink);color:#fff;border-radius:28px;padding:18px 28px;font:600 20px/1.4 var(--ko);animation:bub .5s var(--ease) both}
+.q{align-self:flex-end;max-width:80%;background:var(--ink);color:#fff;border-radius:28px;padding:18px 28px;font:600 18px/1.4 var(--ko);animation:bub .5s var(--ease) both}
 .a-lb{display:flex;align-items:center;gap:8px;font:700 15px/1 var(--ko);color:var(--blue);margin-bottom:14px}
 .a-lb::before{content:'';width:10px;height:10px;border-radius:50%;background:var(--blue)}
-.ans{max-width:900px;background:#fff;border:1px solid var(--blue);border-radius:6px 28px 28px 28px;padding:28px 32px;font:500 19px/1.7 var(--ko);white-space:pre-line;animation:bub .5s var(--ease) both}
+.ans{max-width:900px;background:#fff;border:1px solid var(--blue);border-radius:6px 28px 28px 28px;padding:28px 32px;font:500 17px/1.7 var(--ko);white-space:pre-line;animation:bub .5s var(--ease) both}
 .ans .rel{margin-top:24px}
 .ans .rel>b{display:block;font:700 14px/1 var(--ko);color:var(--g1);margin-bottom:12px}
 .ans .rel div{display:flex;gap:16px;overflow-x:auto}
@@ -439,6 +439,7 @@ body.locked .to-top{opacity:0;pointer-events:none}
   .q{font-size:15px;padding:12px 18px;border-radius:22px}
   .ans{font-size:14px;padding:18px 20px;border-radius:4px 22px 22px 22px}
   .ans .rel img{width:100px;height:100px}.ans .rel a{width:100px}
+  .a-lb{font-size:13px}.ans .rel>b{font-size:12px}.ans .rel span{font-size:12px}.a-src{font-size:11px}
   .chat-in{padding:40px 0 24px}
   .chat-in .ask-sug{justify-content:flex-start}
   .ft{padding:28px 16px 40px;flex-wrap:wrap;gap:16px}
