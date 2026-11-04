@@ -299,9 +299,10 @@
       const cols = MZ[k], rows = Math.max(1, Math.round((cols * H) / W));
       mzSmall.width = cols; mzSmall.height = rows;
       const s = mzSmall.getContext('2d');
-      const sc = Math.max(cols / iw, rows / ih); // object-fit: cover, 위쪽 기준
-      const sw = cols / sc, sh = rows / sc;
-      s.drawImage(img, (iw - sw) / 2, 0, sw, sh, 0, 0, cols, rows);
+      // object-fit: cover, 위쪽 기준. 원본 픽셀 좌표로 자르면 srcset 이미지(고해상도)에서 확대돼 보여서, 이미지 전체를 비율대로 그려 넘치는 부분을 잘라낸다
+      const sc = Math.max(cols / iw, rows / ih);
+      s.clearRect(0, 0, cols, rows);
+      s.drawImage(img, (cols - iw * sc) / 2, 0, iw * sc, ih * sc);
       const c = cv.getContext('2d');
       c.imageSmoothingEnabled = false;
       c.drawImage(mzSmall, 0, 0, cols, rows, 0, 0, W, H);
