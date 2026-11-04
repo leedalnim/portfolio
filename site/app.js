@@ -279,12 +279,24 @@
   };
   // 목록 카드 호버 모자이크: 화면에 떠 있는 썸네일을 그 자리에서 칸으로 쪼갠다 (가로 칸 수: 잘게 → 굵게)
   const MZ = [80, 52, 34, 24];
-  const mzSmall = document.createElement('canvas');
-  function mosaic(card, on) {
-    const st = card._mz || (card._mz = { k: -1, t: 0 });
-    clearTimeout(st.t);
+  // 칸 단계별 작은 그림을 미리 만들어 둔다 (화면에 보이는 카드부터, 브라우저가 한가할 때). 호버 때는 키워 그리기만 한다
+  function mzPrep(card) {
     const img = card.querySelector('.th img');
-    if (!img || !img.complete) return;
+    if (!img || !img.complete || !img.naturalWidth && !/\.svg/i.test(img.currentSrc || img.src)) return null;
+    const W = card.clientWidth, H = card.clientHeight;
+    if (!W || !H) return null;
+    const key = W + 'x' + H + (img.currentSrc || img.src);
+    if (card._mzf && card._mzf.key === key) return card._mzf;
+    const iw = img.naturalWidth || W, ih = img.naturalHeight || H;
+    const frames = MZ.map((cols) => {
+      const rows = Math.max(1, Math.round((cols * H) / W));
+      const f = document.createElement('canvas');
+      f.width = cols; f.height = rows;
+      // object-fit: cover, 위쪽 기준. 원본 픽셀 좌표로 자르면 srcset 이미지(고해상도)에서 확대돼 보여서, 이미지 전체를 비율대로 그려 넘치는 부분을 잘라낸다
+      const sc = Math.max(cols / iw, rows / ih);
+      f.getContext('2d').drawImage(img, (cols - iw * sc) / 2, 0, iw * sc, ih * sc);
+      return f;
+    });
     let cv = card.querySelector('canvas.mz');
     if (!cv) {
       cv = document.createElement('canvas');
@@ -292,35 +304,43 @@
       cv.setAttribute('aria-hidden', 'true');
       card.querySelector('.th').appendChild(cv);
     }
-    const W = card.clientWidth, H = card.clientHeight;
-    if (cv.width !== W || cv.height !== H) { cv.width = W; cv.height = H; }
-    const iw = img.naturalWidth || W, ih = img.naturalHeight || H;
-    const draw = (k) => {
-      const cols = MZ[k], rows = Math.max(1, Math.round((cols * H) / W));
-      mzSmall.width = cols; mzSmall.height = rows;
-      const s = mzSmall.getContext('2d');
-      // object-fit: cover, 위쪽 기준. 원본 픽셀 좌표로 자르면 srcset 이미지(고해상도)에서 확대돼 보여서, 이미지 전체를 비율대로 그려 넘치는 부분을 잘라낸다
-      const sc = Math.max(cols / iw, rows / ih);
-      s.clearRect(0, 0, cols, rows);
-      s.drawImage(img, (cols - iw * sc) / 2, 0, iw * sc, ih * sc);
-      const c = cv.getContext('2d');
-      c.imageSmoothingEnabled = false;
-      c.drawImage(mzSmall, 0, 0, cols, rows, 0, 0, W, H);
-    };
-    try {
-      if (on) {
-        cv.classList.add('on');
-        if (reduce) { st.k = MZ.length - 1; return draw(st.k); }
-        const up = () => { if (st.k < MZ.length - 1) { draw(++st.k); st.t = setTimeout(up, 45); } };
-        up();
-      } else {
-        const down = () => {
-          if (st.k > 0 && !reduce) { draw(--st.k); st.t = setTimeout(down, 30); }
-          else { st.k = -1; cv.classList.remove('on'); }
-        };
-        down();
-      }
-    } catch { cv.classList.remove('on'); }
+    cv.width = W; cv.height = H;
+    const ctx = cv.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
+    return (card._mzf = { key, frames, cv, ctx, W, H });
+  }
+  const idle = window.requestIdleCallback || ((f) => setTimeout(f, 60));
+  const mzIO = 'IntersectionObserver' in window && matchMedia('(hover: hover)').matches
+    ? new IntersectionObserver((es) => es.forEach((e) => {
+        if (!e.isIntersecting) return;
+        mzIO.unobserve(e.target);
+        const img = e.target.querySelector('.th img');
+        const go = () => idle(() => { try { mzPrep(e.target); } catch {} });
+        if (img && !img.complete) img.addEventListener('load', go, { once: true }); else go();
+      }), { rootMargin: '300px' })
+    : null;
+  const mzWatch = () => mzIO && $$('.card').forEach((c) => !c._mzw && (c._mzw = 1, mzIO.observe(c)));
+  mzWatch();
+  if (mzIO) new MutationObserver(mzWatch).observe(document.body, { childList: true, subtree: true });
+
+  function mosaic(card, on) {
+    const st = card._mz || (card._mz = { k: -1, t: 0 });
+    clearTimeout(st.t);
+    let m;
+    try { m = mzPrep(card); } catch { m = null; }
+    if (!m) return;
+    const draw = (k) => { const f = m.frames[k]; m.ctx.drawImage(f, 0, 0, f.width, f.height, 0, 0, m.W, m.H); };
+    if (on) {
+      if (reduce) { st.k = MZ.length - 1; draw(st.k); m.cv.classList.add('on'); return; }
+      const up = () => { if (st.k < MZ.length - 1) { draw(++st.k); m.cv.classList.add('on'); st.t = setTimeout(up, 45); } };
+      up();
+    } else {
+      const down = () => {
+        if (st.k > 0 && !reduce) { draw(--st.k); st.t = setTimeout(down, 30); }
+        else { st.k = -1; m.cv.classList.remove('on'); }
+      };
+      down();
+    }
   }
   const hoverCard = (e, on) => {
     const card = e.target.closest?.('.card');
