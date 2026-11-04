@@ -221,6 +221,10 @@ export default function ProjectEditor({ initial, onBack, onSaved, onDelete, onEr
                 <input id="f-contrib" value={p.contribution || ''} onChange={(e) => set({ contribution: e.target.value })} placeholder="예: 100%" />
               </label>
               <label className="field">
+                <span>사이트 주소 <em>선택 · 넣으면 상세에 '사이트 방문' 버튼이 생겨요</em></span>
+                <input id="f-site" type="url" value={p.site_url || ''} onChange={(e) => set({ site_url: e.target.value.trim() })} placeholder="https://" />
+              </label>
+              <label className="field">
                 <span>클라이언트 <em>선택</em></span>
                 <input id="f-client" value={p.client || ''} onChange={(e) => set({ client: e.target.value })} placeholder="예: 서울시" />
               </label>

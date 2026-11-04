@@ -5,7 +5,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { URL_, SAMPLE, IMG_DIR, BUCKET, LOCAL, SITE_DIR, call, mapImages } from './sb-lib.mjs';
 
-const ORDER = ['slug', 'title', 'title_br', 'summary', 'description', 'category', 'client', 'role', 'period', 'type', 'tags', 'kind', 'platform', 'extra_tags', 'filters', 'contribution', 'show_on_wall', 'show_on_archive', 'wall_order', 'thumbnail', 'sections', 'published', 'sort_order', 'custom_css'];
+const ORDER = ['slug', 'title', 'title_br', 'summary', 'description', 'category', 'client', 'role', 'period', 'type', 'tags', 'kind', 'platform', 'extra_tags', 'filters', 'contribution', 'site_url', 'show_on_wall', 'show_on_archive', 'wall_order', 'thumbnail', 'sections', 'published', 'sort_order', 'custom_css'];
 const rows = await (await call('/rest/v1/projects?select=*&order=sort_order.asc')).json();
 
 await fs.mkdir(IMG_DIR, { recursive: true });

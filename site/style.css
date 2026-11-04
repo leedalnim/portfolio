@@ -203,6 +203,8 @@ span.chip{cursor:default}
 .dt-meta .fl{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .dt-meta .fl a{background:var(--blue);color:#fff;border-radius:100px;padding:7px 14px;font:600 max(12px,calc(14 * var(--u)))/1 var(--en);transition:transform .3s var(--ease)}
 .dt-meta .fl a:hover{transform:translateY(-2px)}
+.dt-meta .vs a{display:inline-flex;align-items:center;gap:4px;margin-top:4px;border:1px solid var(--blue);color:var(--blue);border-radius:100px;padding:6px 14px;font:600 max(12px,calc(14 * var(--u)))/1 var(--ko);white-space:nowrap;transition:background .2s,color .2s}
+.dt-meta .vs a:hover{background:var(--blue);color:#fff}
 .dt-close{margin-top:auto;padding-top:calc(24 * var(--u));border-top:1px solid rgba(17,17,17,.12);display:flex;align-items:center;gap:12px;font:600 max(15px,calc(18 * var(--u)))/1 var(--en);align-self:stretch}
 .x{position:relative;width:18px;height:18px;display:inline-block}
 .x::before,.x::after{content:'';position:absolute;left:-1px;right:-1px;top:8px;height:2px;background:currentColor;transform:rotate(45deg)}

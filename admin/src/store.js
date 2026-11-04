@@ -55,6 +55,7 @@ export function emptyProject() {
     show_on_wall: true,
     show_on_archive: true,
     thumbnail: null,
+    site_url: '',
     sections: [],
     custom_css: '',
     published: false,
