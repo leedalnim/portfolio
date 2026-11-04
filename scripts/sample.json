@@ -19,6 +19,7 @@
       "AI WORKFLOW"
     ],
     "contribution": "",
+    "site_url": "",
     "show_on_wall": true,
     "show_on_archive": true,
     "wall_order": 7,
@@ -79,8 +80,7 @@
     ],
     "published": true,
     "sort_order": 0,
-    "custom_css": "",
-    "site_url": ""
+    "custom_css": ""
   },
   {
     "slug": "gungjung",
@@ -100,6 +100,7 @@
       "VISUAL DESIGN"
     ],
     "contribution": "",
+    "site_url": "",
     "show_on_wall": true,
     "show_on_archive": true,
     "wall_order": 8,
@@ -144,8 +145,7 @@
     ],
     "published": true,
     "sort_order": 1,
-    "custom_css": "",
-    "site_url": ""
+    "custom_css": ""
   },
   {
     "slug": "jg-motion",
@@ -169,6 +169,7 @@
       "AI WORKFLOW"
     ],
     "contribution": "",
+    "site_url": "",
     "show_on_wall": false,
     "show_on_archive": true,
     "thumbnail": "local:scripts/sample-img/jgai-clock.svg",
@@ -232,8 +233,7 @@
     ],
     "published": true,
     "sort_order": 2,
-    "custom_css": "",
-    "site_url": ""
+    "custom_css": ""
   },
   {
     "slug": "banwol-ax",
@@ -255,6 +255,7 @@
       "AI WORKFLOW"
     ],
     "contribution": "",
+    "site_url": "",
     "show_on_wall": true,
     "show_on_archive": true,
     "wall_order": 11,
@@ -303,8 +304,7 @@
     ],
     "published": true,
     "sort_order": 3,
-    "custom_css": "",
-    "site_url": ""
+    "custom_css": ""
   },
   {
     "slug": "jawon-maru",
@@ -326,6 +326,7 @@
       "VISUAL DESIGN"
     ],
     "contribution": "",
+    "site_url": "",
     "show_on_wall": true,
     "show_on_archive": true,
     "wall_order": 5,
@@ -374,8 +375,7 @@
     ],
     "published": true,
     "sort_order": 4,
-    "custom_css": "",
-    "site_url": ""
+    "custom_css": ""
   },
   {
     "slug": "junggu-main",
@@ -398,6 +398,7 @@
       "AI WORKFLOW"
     ],
     "contribution": "",
+    "site_url": "",
     "show_on_wall": true,
     "show_on_archive": true,
     "thumbnail": "local:scripts/sample-img/t-jgmain.webp",
@@ -465,8 +466,7 @@
     ],
     "published": true,
     "sort_order": 5,
-    "custom_css": "",
-    "site_url": ""
+    "custom_css": ""
   },
   {
     "slug": "youth-info",
@@ -486,6 +486,7 @@
       "UX DESIGN"
     ],
     "contribution": "",
+    "site_url": "https://youth.seoul.go.kr/index.do",
     "show_on_wall": true,
     "show_on_archive": true,
     "wall_order": 10,
@@ -554,8 +555,7 @@
     ],
     "published": true,
     "sort_order": 6,
-    "custom_css": "",
-    "site_url": "https://youth.seoul.go.kr/index.do"
+    "custom_css": ""
   },
   {
     "slug": "seoul-youngtech",
@@ -575,6 +575,7 @@
       "UX DESIGN"
     ],
     "contribution": "",
+    "site_url": "https://youth.seoul.go.kr/youngtech/main",
     "show_on_wall": true,
     "show_on_archive": true,
     "wall_order": 12,
@@ -582,8 +583,7 @@
     "sections": [],
     "published": true,
     "sort_order": 7,
-    "custom_css": "",
-    "site_url": "https://youth.seoul.go.kr/youngtech/main"
+    "custom_css": ""
   },
   {
     "slug": "yamyamlog",
@@ -612,6 +612,7 @@
       "SOLO BUILD"
     ],
     "contribution": "100%",
+    "site_url": "",
     "show_on_wall": true,
     "show_on_archive": true,
     "wall_order": 4,
@@ -677,8 +678,7 @@
     ],
     "published": true,
     "sort_order": 8,
-    "custom_css": "",
-    "site_url": ""
+    "custom_css": ""
   },
   {
     "slug": "med-tracker",
@@ -700,6 +700,7 @@
       "SOLO BUILD"
     ],
     "contribution": "",
+    "site_url": "",
     "show_on_wall": true,
     "show_on_archive": true,
     "wall_order": 6,
@@ -707,8 +708,7 @@
     "sections": [],
     "published": true,
     "sort_order": 9,
-    "custom_css": "",
-    "site_url": ""
+    "custom_css": ""
   },
   {
     "slug": "relic-workshop",
@@ -731,6 +731,7 @@
       "SOLO BUILD"
     ],
     "contribution": "",
+    "site_url": "",
     "show_on_wall": true,
     "show_on_archive": false,
     "wall_order": 1,
@@ -738,8 +739,7 @@
     "sections": [],
     "published": true,
     "sort_order": 10,
-    "custom_css": "",
-    "site_url": ""
+    "custom_css": ""
   },
   {
     "slug": "ggac",
@@ -759,6 +759,7 @@
       "VISUAL DESIGN"
     ],
     "contribution": "",
+    "site_url": "",
     "show_on_wall": true,
     "show_on_archive": false,
     "wall_order": 9,
@@ -766,8 +767,7 @@
     "sections": [],
     "published": true,
     "sort_order": 11,
-    "custom_css": "",
-    "site_url": ""
+    "custom_css": ""
   },
   {
     "slug": "sangsang-2023",
@@ -789,6 +789,7 @@
       "VISUAL DESIGN"
     ],
     "contribution": "",
+    "site_url": "",
     "show_on_wall": true,
     "show_on_archive": false,
     "wall_order": 2,
@@ -796,8 +797,7 @@
     "sections": [],
     "published": true,
     "sort_order": 12,
-    "custom_css": "",
-    "site_url": ""
+    "custom_css": ""
   },
   {
     "slug": "weekly-chest",
@@ -818,6 +818,7 @@
       "VISUAL DESIGN"
     ],
     "contribution": "",
+    "site_url": "",
     "show_on_wall": false,
     "show_on_archive": false,
     "wall_order": 3,
@@ -825,8 +826,7 @@
     "sections": [],
     "published": true,
     "sort_order": 13,
-    "custom_css": "",
-    "site_url": ""
+    "custom_css": ""
   },
   {
     "slug": "kocom-wallpad",
@@ -847,12 +847,12 @@
       "VISUAL DESIGN"
     ],
     "contribution": "",
+    "site_url": "",
     "show_on_wall": false,
     "show_on_archive": false,
     "sections": [],
     "published": true,
     "sort_order": 14,
-    "custom_css": "",
-    "site_url": ""
+    "custom_css": ""
   }
 ]
