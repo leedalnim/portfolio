@@ -857,7 +857,7 @@
     "show_on_wall": true,
     "show_on_archive": false,
     "wall_order": 2,
-    "thumbnail": "local:scripts/sample-img/t-sangsang.webp",
+    "thumbnail": "local:scripts/sample-img/t-sangsang.svg",
     "sections": [
       {
         "id": "hero",
