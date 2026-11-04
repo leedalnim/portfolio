@@ -79,7 +79,8 @@
     ],
     "published": true,
     "sort_order": 0,
-    "custom_css": ""
+    "custom_css": "",
+    "site_url": ""
   },
   {
     "slug": "gungjung",
@@ -143,7 +144,8 @@
     ],
     "published": true,
     "sort_order": 1,
-    "custom_css": ""
+    "custom_css": "",
+    "site_url": ""
   },
   {
     "slug": "jg-motion",
@@ -230,7 +232,8 @@
     ],
     "published": true,
     "sort_order": 2,
-    "custom_css": ""
+    "custom_css": "",
+    "site_url": ""
   },
   {
     "slug": "banwol-ax",
@@ -300,7 +303,8 @@
     ],
     "published": true,
     "sort_order": 3,
-    "custom_css": ""
+    "custom_css": "",
+    "site_url": ""
   },
   {
     "slug": "jawon-maru",
@@ -370,7 +374,8 @@
     ],
     "published": true,
     "sort_order": 4,
-    "custom_css": ""
+    "custom_css": "",
+    "site_url": ""
   },
   {
     "slug": "junggu-main",
@@ -460,7 +465,8 @@
     ],
     "published": true,
     "sort_order": 5,
-    "custom_css": ""
+    "custom_css": "",
+    "site_url": ""
   },
   {
     "slug": "youth-info",
@@ -548,7 +554,8 @@
     ],
     "published": true,
     "sort_order": 6,
-    "custom_css": ""
+    "custom_css": "",
+    "site_url": "https://youth.seoul.go.kr/index.do"
   },
   {
     "slug": "seoul-youngtech",
@@ -575,7 +582,8 @@
     "sections": [],
     "published": true,
     "sort_order": 7,
-    "custom_css": ""
+    "custom_css": "",
+    "site_url": "https://youth.seoul.go.kr/youngtech/main"
   },
   {
     "slug": "yamyamlog",
@@ -669,7 +677,8 @@
     ],
     "published": true,
     "sort_order": 8,
-    "custom_css": ""
+    "custom_css": "",
+    "site_url": ""
   },
   {
     "slug": "med-tracker",
@@ -698,7 +707,8 @@
     "sections": [],
     "published": true,
     "sort_order": 9,
-    "custom_css": ""
+    "custom_css": "",
+    "site_url": ""
   },
   {
     "slug": "relic-workshop",
@@ -728,7 +738,8 @@
     "sections": [],
     "published": true,
     "sort_order": 10,
-    "custom_css": ""
+    "custom_css": "",
+    "site_url": ""
   },
   {
     "slug": "ggac",
@@ -755,7 +766,8 @@
     "sections": [],
     "published": true,
     "sort_order": 11,
-    "custom_css": ""
+    "custom_css": "",
+    "site_url": ""
   },
   {
     "slug": "sangsang-2023",
@@ -784,7 +796,8 @@
     "sections": [],
     "published": true,
     "sort_order": 12,
-    "custom_css": ""
+    "custom_css": "",
+    "site_url": ""
   },
   {
     "slug": "weekly-chest",
@@ -812,7 +825,8 @@
     "sections": [],
     "published": true,
     "sort_order": 13,
-    "custom_css": ""
+    "custom_css": "",
+    "site_url": ""
   },
   {
     "slug": "kocom-wallpad",
@@ -838,6 +852,7 @@
     "sections": [],
     "published": true,
     "sort_order": 14,
-    "custom_css": ""
+    "custom_css": "",
+    "site_url": ""
   }
 ]
