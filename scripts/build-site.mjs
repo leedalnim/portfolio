@@ -67,9 +67,9 @@ async function image(p) {
   const localBuf = p.startsWith('local:') ? await fs.readFile(path.join(ROOT, p.slice(6))) : null;
   const id = crypto.createHash('sha1').update(p).update(localBuf || '').digest('hex').slice(0, 16);
   await fs.mkdir(CACHE, { recursive: true });
-  // SVG(움직이는 SVG 포함)는 그대로 복사해 쓴다. 모자이크용 작은 이미지만 래스터로 만든다.
+  // SVG(움직이는 SVG 포함)는 그대로 복사해 쓴다. (목록 호버 모자이크는 화면에서 코드로 만든다)
   const isSvg = /\.svg$/i.test(p);
-  const files = isSvg ? [`${id}.svg`, `${id}-px.webp`, `${id}-px2.webp`] : [...WIDTHS.map((w) => `${id}-${w}.webp`), `${id}-px.webp`, `${id}-px2.webp`];
+  const files = isSvg ? [`${id}.svg`] : WIDTHS.map((w) => `${id}-${w}.webp`);
   const cached = await Promise.all(files.map((f) => fs.stat(path.join(CACHE, f)).then(() => true, () => false)));
   if (!cached.every(Boolean)) {
     let buf;
@@ -86,10 +86,6 @@ async function image(p) {
     }
     if (isSvg) await fs.writeFile(path.join(CACHE, `${id}.svg`), buf);
     else for (const w of WIDTHS) await sharp(buf, { animated: true }).resize({ width: w, withoutEnlargement: true }).webp({ quality: 82 }).toFile(path.join(CACHE, `${id}-${w}.webp`));
-    // 모자이크용: 가로 28칸으로 줄인 아주 작은 이미지 (화면에서 키우면 칸이 보임)
-    // 정사각 썸네일에 맞춰 큰 칸(24칸)과 잘게 쪼갠 칸(56칸) 두 단계 → 호버 때 차례로 겹쳐 자연스럽게 모자이크로 바뀜
-    await sharp(buf).resize({ width: 24, height: 24, fit: 'cover', position: 'top' }).webp({ quality: 90 }).toFile(path.join(CACHE, `${id}-px.webp`));
-    await sharp(buf).resize({ width: 56, height: 56, fit: 'cover', position: 'top' }).webp({ quality: 90 }).toFile(path.join(CACHE, `${id}-px2.webp`));
   }
   const meta = await sharp(path.join(CACHE, isSvg ? `${id}.svg` : `${id}-${WIDTHS[1]}.webp`)).metadata();
   if (meta.pageHeight) meta.height = meta.pageHeight; // 움직이는 webp는 전체 프레임 높이가 합쳐져 나와서 한 장 높이로
@@ -238,7 +234,7 @@ function projectsPage(projects, s, counts) {
 <div class="cards" data-list="cards">${projects
     .map(
       (p, i) => `<a class="card rv" href="${href(p)}" data-detail data-kind="${esc(p.kind)}" data-f="${(p.filters || []).map((f) => FILTER_KEYS[f]).join(' ')}" style="--d:${i % 4}">
-<span class="th">${p._thumb ? `${pic(p._thumb, '', '(max-width: 1023px) 50vw, 25vw')}<img class="px px2" src="${BASE}img/${p._thumb.id}-px2.webp" alt="" aria-hidden="true" loading="lazy"><img class="px" src="${BASE}img/${p._thumb.id}-px.webp" alt="" aria-hidden="true" loading="lazy">` : '<span class="ph">이미지 넣기</span>'}</span>
+<span class="th">${p._thumb ? `${pic(p._thumb, '', '(max-width: 1023px) 50vw, 25vw')}` : '<span class="ph">이미지 넣기</span>'}</span>
 <span class="ov"><strong>${esc(p.title)}</strong><small>${tagLine(p).map(nb).join(' · ')}</small><em class="go">자세히 보기<i aria-hidden="true">↗</i></em></span>
 <span class="cap"><strong>${esc(p.title)}</strong><small>${tagLine(p).map(nb).join(' · ')}</small></span></a>`,
     )

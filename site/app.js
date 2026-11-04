@@ -277,6 +277,61 @@
       );
     return cache.get(url);
   };
+  // 목록 카드 호버 모자이크: 화면에 떠 있는 썸네일을 그 자리에서 칸으로 쪼갠다 (가로 칸 수: 잘게 → 굵게)
+  const MZ = [80, 52, 34, 24];
+  const mzSmall = document.createElement('canvas');
+  function mosaic(card, on) {
+    const st = card._mz || (card._mz = { k: -1, t: 0 });
+    clearTimeout(st.t);
+    const img = card.querySelector('.th img');
+    if (!img || !img.complete) return;
+    let cv = card.querySelector('canvas.mz');
+    if (!cv) {
+      cv = document.createElement('canvas');
+      cv.className = 'mz';
+      cv.setAttribute('aria-hidden', 'true');
+      card.querySelector('.th').appendChild(cv);
+    }
+    const W = card.clientWidth, H = card.clientHeight;
+    if (cv.width !== W || cv.height !== H) { cv.width = W; cv.height = H; }
+    const iw = img.naturalWidth || W, ih = img.naturalHeight || H;
+    const draw = (k) => {
+      const cols = MZ[k], rows = Math.max(1, Math.round((cols * H) / W));
+      mzSmall.width = cols; mzSmall.height = rows;
+      const s = mzSmall.getContext('2d');
+      const sc = Math.max(cols / iw, rows / ih); // object-fit: cover, 위쪽 기준
+      const sw = cols / sc, sh = rows / sc;
+      s.drawImage(img, (iw - sw) / 2, 0, sw, sh, 0, 0, cols, rows);
+      const c = cv.getContext('2d');
+      c.imageSmoothingEnabled = false;
+      c.drawImage(mzSmall, 0, 0, cols, rows, 0, 0, W, H);
+    };
+    try {
+      if (on) {
+        cv.classList.add('on');
+        if (reduce) { st.k = MZ.length - 1; return draw(st.k); }
+        const up = () => { if (st.k < MZ.length - 1) { draw(++st.k); st.t = setTimeout(up, 45); } };
+        up();
+      } else {
+        const down = () => {
+          if (st.k > 0 && !reduce) { draw(--st.k); st.t = setTimeout(down, 30); }
+          else { st.k = -1; cv.classList.remove('on'); }
+        };
+        down();
+      }
+    } catch { cv.classList.remove('on'); }
+  }
+  const hoverCard = (e, on) => {
+    const card = e.target.closest?.('.card');
+    if (!card || (e.relatedTarget && card.contains(e.relatedTarget))) return;
+    if (e.pointerType && e.pointerType !== 'mouse') return;
+    mosaic(card, on);
+  };
+  document.addEventListener('pointerover', (e) => hoverCard(e, true));
+  document.addEventListener('pointerout', (e) => hoverCard(e, false));
+  document.addEventListener('focusin', (e) => e.target.matches?.('.card') && mosaic(e.target, true));
+  document.addEventListener('focusout', (e) => e.target.matches?.('.card') && mosaic(e.target, false));
+
   // 마우스를 올리는 순간 미리 받아 둔다
   document.addEventListener('pointerover', (e) => {
     const a = e.target.closest('a[data-detail]');
