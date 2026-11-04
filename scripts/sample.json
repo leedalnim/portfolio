@@ -560,6 +560,7 @@
   {
     "slug": "seoul-youngtech",
     "title": "서울영테크",
+    "title_br": "서울\n영테크",
     "summary": "서울 청년 재무 상담·금융 교육 사이트 고도화 — 재무진단과 메인 핵심 서비스 개선",
     "description": "서울영테크는 서울 청년의 재무 상담과 금융 교육을 지원하는 사이트입니다. 고도화 사업으로 메인부터 서브 페이지까지 함께 진행했고, 그중 개선 효과가 가장 컸던 재무진단과 메인의 핵심 서비스 영역을 중심으로 정리했습니다. 헤더·푸터·폰트를 바꿀 수 없는 조건 안에서 진행했습니다.",
     "category": "",
@@ -599,11 +600,10 @@
       },
       {
         "id": "s1",
-        "type": "code",
-        "label": "재무진단",
-        "heading": "재무진단의\n인지 부하를 줄였습니다.",
         "body": "기존 재무진단은 두 진단 유형의 컬러와 배치가 달라 시선이 분산되고, 모든 질문이 한 페이지에 나열돼 시작하기 전부터 부담을 주는 구조였습니다. 한 페이지에 한 질문씩 답하는 방식을 먼저 제안하여 보여주었습니다. MBTI 재무진단과 기초 금융역량 진단은 같은 비중의 카드로 정리해 두 진단의 차이를 한눈에 보이게 했습니다. 상단에는 지금 몇 단계인지 진행률을 보여 주어, 끝까지 마칠 수 있다는 기대감을 주고 중간에 그만두는 일을 줄이도록 설계했습니다.",
         "html": "<img class=\"yt-img\" src=\"{{1}}\" alt=\"재무진단 개선 화면: 진단 유형 카드, 진행률 표시, 단계별 질문 구성\">\n<div class=\"yt-mo\" aria-label=\"모바일 재무진단 흐름: 안내, 진단, 결과\">\n  <div class=\"yt-cell\" style=\"left:7.982%\"><div class=\"yt-win\" data-autoscroll=\"10\"><img src=\"{{2}}\" alt=\"모바일 재무 진단 안내 화면\"></div></div>\n  <div class=\"yt-cell\" style=\"left:37.199%\"><div class=\"yt-win\" data-autoscroll=\"4\"><img src=\"{{3}}\" alt=\"모바일 MBTI 재무 진단 질문 화면\"></div></div>\n  <div class=\"yt-cell\" style=\"left:66.416%\"><div class=\"yt-win\" data-autoscroll=\"20\"><img src=\"{{4}}\" alt=\"모바일 MBTI 재무 진단 결과 화면\"></div></div>\n</div>\n<style>\n  .yt-img { display: block; width: 100%; height: auto; }\n  /* 피그마 1328×800 타일, 폰 화면 340×700 (x 106 / 494 / 882, y 50), 라운드 28 */\n  .yt-mo { position: relative; margin-top: calc(20 * var(--u)); aspect-ratio: 1328 / 800; background: #E8F3F2; }\n  .yt-cell { position: absolute; top: 6.25%; width: 25.602%; height: 87.5%; }\n  .yt-win { width: 100%; height: 100%; overflow: hidden; background: #fff; border-radius: 8.235% / 4%; box-shadow: 0 calc(16 * var(--u)) calc(40 * var(--u)) rgba(0,0,0,.14); }\n  .yt-win img { display: block; width: 100%; height: auto; }\n  @media (max-width: 1023px) { .yt-cell .fv-btn { right: 4px; bottom: 4px; height: 24px; padding: 0 8px; font-size: 10px; } }\n</style>",
+        "type": "code",
+        "label": "재무진단",
         "images": [
           {
             "path": "local:scripts/sample-img/yt-diag.webp",
@@ -623,15 +623,15 @@
           }
         ],
         "layout": "1",
-        "points": []
+        "points": [],
+        "heading": "재무진단의\n인지 부하를 줄였습니다."
       },
       {
         "id": "s2",
-        "type": "code",
-        "label": "메인",
-        "heading": "핵심 서비스를\n돋보이게 했습니다.",
         "body": "기존 메인은 핵심 서비스인 재무 상담과 영테크 클래스가 시각적으로 충분히 강조되지 않아, 첫 화면에서 서비스 정체성을 파악하기 어려웠습니다. 고도화 사업 특성상 헤더·푸터·폰트는 바꿀 수 없어, 그 안에서 할 수 있는 개선을 찾았습니다.\n\n재무 상담·영테크 클래스·영:톡스·영:클럽 네 가지 핵심 서비스를 각각의 카드로 나눠 첫 화면에서 바로 보이게 하고, 회원별 추천 교육 콘텐츠 영역을 새로 추가했습니다.",
         "html": "<img class=\"yt-img\" src=\"{{1}}\" alt=\"메인 개선 화면: 핵심 서비스 카드 4개, 회원별 추천 교육 콘텐츠\">\n<style>\n  .yt-img { display: block; width: 100%; height: auto; }\n</style>",
+        "type": "code",
+        "label": "메인",
         "images": [
           {
             "path": "local:scripts/sample-img/yt-main.webp",
@@ -639,13 +639,13 @@
           }
         ],
         "layout": "1",
-        "points": []
+        "points": [],
+        "heading": "핵심 서비스를\n돋보이게 했습니다."
       }
     ],
     "published": true,
     "sort_order": 7,
-    "custom_css": "",
-    "title_br": "서울\n영테크"
+    "custom_css": ""
   },
   {
     "slug": "yamyamlog",
