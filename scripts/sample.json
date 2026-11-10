@@ -651,10 +651,10 @@
     "slug": "yamyamlog",
     "title": "얌얌로그",
     "summary": "고양이 네 마리가\n어떤 간식을 잘 먹는지\n기록하는 앱입니다.",
-    "description": "숫자 대신 고양이 표정으로 반응을 남기도록 디자인 규칙부터 정했고, 구현은 AI와 함께 진행했습니다.\n\n폰 홈 화면에 설치해 직접 쓰고 있는 앱입니다.",
+    "description": "얌얌로그는 고양이 네 마리가 어떤 간식을 잘 먹는지 기록하는 앱입니다. 입맛이 까다로운 아이들이라 잘 먹은 간식과 남긴 간식을 적어 두고, 다시 살 때 참고하려고 만들었습니다. 반응은 숫자 대신 표정으로 남기고, 제품 사진은 이름으로 찾아 바로 넣을 수 있게 했습니다. 디자인부터 구현까지 AI와 함께 했고, 홈 화면에 설치해 유용하게 사용하고 있습니다.",
     "category": "",
     "client": "",
-    "role": "기획 · 디자인\n구현은 AI와 함께",
+    "role": "기획 · 디자인 · 개발",
     "period": "2026",
     "type": "개인 프로젝트",
     "tags": [
@@ -662,10 +662,11 @@
       "TypeScript",
       "Vite",
       "PWA",
-      "IndexedDB + Supabase"
+      "Supabase",
+      "네이버 이미지 검색 API"
     ],
     "kind": "NOT WORK",
-    "platform": "APP",
+    "platform": "APP · PWA",
     "extra_tags": [],
     "filters": [
       "UX DESIGN",
@@ -686,7 +687,7 @@
         "label": "",
         "images": [
           {
-            "path": "local:scripts/sample-img/d-mock.webp",
+            "path": "local:scripts/sample-img/ym-hero.webp",
             "caption": ""
           }
         ],
@@ -695,47 +696,37 @@
       },
       {
         "id": "s1",
-        "body": "숫자 대신 고양이 표정으로 반응을 남기도록 디자인 규칙부터 정했습니다. 잘 먹음·보통·안 먹음 3단계, 간식 종류·베이스별 색 구분, 네 마리 취향을 기록으로 남겨 함께 공유합니다.",
-        "label": "기획",
+        "label": "표정",
+        "heading": "표정 하나로\n기호도를 읽게 했습니다.",
+        "body": "한 번의 기록에는 제품 이름과 고양이별 표정이 기본으로 들어가고, 필요하면 사진·종류·원료·메모를 더 남길 수 있습니다. 종류는 습식·간식·트릿·츄르처럼 칩으로 고르고, 원료도 닭가슴살·연어·북어처럼 눌러서 고릅니다. 이렇게 모인 기록으로 고양이별 통계를 만들었습니다. 아이마다 좋아하는 것 TOP 3와 좋아하는 원료 비율, 잘 안 먹는 피하는 것 목록을 따로 보여 줘서, 다음 간식을 살 때 어떤 원료를 고르면 되는지 바로 알 수 있습니다.",
         "images": [
           {
-            "path": "local:scripts/sample-img/d-rule.webp",
+            "path": "local:scripts/sample-img/ym-panels.webp",
             "caption": ""
           },
           {
-            "path": "local:scripts/sample-img/d-v1.webp",
+            "path": "local:scripts/sample-img/ym-steps.webp",
+            "caption": ""
+          },
+          {
+            "path": "local:scripts/sample-img/ym-ds.webp",
             "caption": ""
           }
         ],
-        "layout": "1",
-        "heading": "표정 하나로\n기호도를 읽게 했습니다."
+        "layout": "1"
       },
       {
         "id": "s2",
-        "body": "디자인 가이드를 기준으로 화면을 설계하고, 구현은 AI와 함께 진행했습니다. 폰 홈 화면에 설치해 직접 쓰고 있는 앱입니다.",
-        "label": "구현",
+        "label": "개발",
+        "heading": "디자인은 직접,\n구현은 AI와 함께 했습니다.",
+        "body": "정해 둔 디자인 규칙을 Claude에 넘겨 모든 화면을 같은 기준으로 구현했습니다. 네이버 이미지 검색 API를 연결해 제품 이름만 치면 사진을 찾아올 수 있게 했고, 가져온 사진의 여백과 배경을 정리하는 기능도 함께 붙였습니다. 기록은 클라우드에 저장하고, GitHub Pages에 올려 폰 홈 화면에 설치해 쓰고 있습니다.",
         "images": [
           {
-            "path": "local:scripts/sample-img/d-v2.webp",
+            "path": "local:scripts/sample-img/ym-dev.webp",
             "caption": ""
           }
         ],
-        "layout": "1",
-        "points": [
-          [
-            "AI와 일한 방식",
-            "디자인 가이드를 기준으로 넘겨\n모든 화면을 같은 규칙으로"
-          ],
-          [
-            "구조",
-            "데이터 접근을 한 곳에 모아\n기기 저장 → 클라우드 공유로 교체 가능"
-          ],
-          [
-            "기술",
-            "React · TypeScript · Vite\nPWA, IndexedDB + Supabase"
-          ]
-        ],
-        "heading": "디자인은 직접,\n구현은 AI와 함께 했습니다."
+        "layout": "1"
       }
     ],
     "published": true,
