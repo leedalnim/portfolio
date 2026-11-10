@@ -669,7 +669,6 @@
     "site_url": "https://isum.incheon.go.kr/index.do",
     "show_on_wall": false,
     "show_on_archive": true,
-    "wall_order": null,
     "thumbnail": "local:scripts/sample-img/t-incheon.webp",
     "sections": [
       {
@@ -690,11 +689,10 @@
       },
       {
         "id": "s1",
-        "type": "code",
-        "label": "메인 · 인천의 섬",
-        "heading": "섬의 풍경이 먼저\n보이도록 했습니다.",
         "body": "첫 화면은 이달의 추천 섬 사진을 크게 보여 주고, 바로 아래에 날짜와 날씨, 기온 같은 여행 정보를 한 줄로 정리했습니다. 그 아래로 테마여행 A-Z, 섬 소식과 여행 팁, 관광지 사진 카드, 여행 영상이 이어집니다.\n\n168개 섬의 정보를 담은 '인천의 섬' 페이지는 위치와 유인·무인 섬 수, 면적, 해안선 길이, 갯벌 현황을 바닷속으로 내려가듯 이어지는 인포그래픽으로 풀어, 숫자 위주의 정보도 한 장의 그림처럼 볼 수 있게 했습니다.",
         "html": "<div class=\"ic-two\">\n  <img class=\"ic-hand\" src=\"{{1}}\" alt=\"손에 든 휴대폰 속 인천 섬 포털 모바일 메인\">\n  <div class=\"ic-pc\"><div class=\"ic-win\" data-autoscroll=\"12\"><img src=\"{{2}}\" alt=\"인천 섬 포털 PC 메인 전체 화면\"></div></div>\n</div>\n<div class=\"ic-isl\"><div class=\"ic-win2\" data-autoscroll=\"16\"><img src=\"{{3}}\" alt=\"인천의 섬 인포그래픽 페이지 전체 화면\"></div></div>\n<style>\n  .ic-two { display: grid; grid-template-columns: 1fr 1fr; gap: calc(20 * var(--u)); }\n  .ic-hand { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; }\n  .ic-pc { position: relative; aspect-ratio: 1 / 1; background: #EAF1F8; overflow: hidden; }\n  .ic-win { position: absolute; left: 6.116%; top: 6.116%; width: 87.768%; height: 87.768%; overflow: hidden; border-radius: calc(12 * var(--u)); background: #fff; box-shadow: 0 calc(12 * var(--u)) calc(32 * var(--u)) rgba(0, 0, 0, .12); }\n  .ic-isl { position: relative; aspect-ratio: 1328 / 780; background: #EAF1F8; overflow: hidden; margin-top: calc(20 * var(--u)); }\n  .ic-win2 { position: absolute; left: 9.036%; top: 8.205%; width: 81.928%; height: 83.59%; overflow: hidden; border-radius: calc(12 * var(--u)); background: #fff; box-shadow: 0 calc(12 * var(--u)) calc(32 * var(--u)) rgba(0, 0, 0, .12); }\n  .ic-win img, .ic-win2 img { display: block; width: 100%; height: auto; }\n  @media (max-width: 1023px) { .ic-two { grid-template-columns: 1fr; gap: 12px; } .ic-isl { margin-top: 12px; } }\n</style>",
+        "type": "code",
+        "label": "메인 · 인천의 섬",
         "images": [
           {
             "path": "local:scripts/sample-img/ic-hand.webp",
@@ -710,15 +708,15 @@
           }
         ],
         "layout": "1",
-        "points": []
+        "points": [],
+        "heading": "섬의 풍경이 먼저\n보이도록 했습니다."
       },
       {
         "id": "s2",
-        "type": "basic",
-        "label": "검색",
-        "heading": "문장을 완성하듯\n여행지를 찾게 했습니다.",
         "body": "검색 창에서는 '친구와 겨울에 체험을 즐기고 싶어요'처럼 누구와, 언제, 무엇을 하고 싶은지 골라 문장을 완성하면 맞춤 결과를 보여 줍니다. 선택지는 누구와 4가지, 언제 4가지, 무엇을 9가지로 나누고, 항목마다 아이콘을 붙여 한눈에 고를 수 있게 했습니다.",
         "html": "",
+        "type": "basic",
+        "label": "검색",
         "images": [
           {
             "path": "local:scripts/sample-img/ic-search.webp",
@@ -726,7 +724,8 @@
           }
         ],
         "layout": "1",
-        "points": []
+        "points": [],
+        "heading": "문장을 완성하듯\n여행지를 찾게 했습니다."
       }
     ],
     "published": true,
@@ -782,9 +781,8 @@
       },
       {
         "id": "s1",
-        "label": "표정",
-        "heading": "표정 하나로\n기호도를 읽게 했습니다.",
         "body": "한 번의 기록에는 제품 이름과 고양이별 표정이 기본으로 들어가고, 필요하면 사진·종류·원료·메모를 더 남길 수 있습니다. 종류는 습식·간식·트릿·츄르처럼 칩으로 고르고, 원료도 닭가슴살·연어·북어처럼 눌러서 고릅니다. 이렇게 모인 기록으로 고양이별 통계를 만들었습니다. 아이마다 좋아하는 것 TOP 3와 좋아하는 원료 비율, 잘 안 먹는 피하는 것 목록을 따로 보여 줘서, 다음 간식을 살 때 어떤 원료를 고르면 되는지 바로 알 수 있습니다.",
+        "label": "표정",
         "images": [
           {
             "path": "local:scripts/sample-img/ym-panels.webp",
@@ -799,20 +797,21 @@
             "caption": ""
           }
         ],
-        "layout": "1"
+        "layout": "1",
+        "heading": "표정 하나로\n기호도를 읽게 했습니다."
       },
       {
         "id": "s2",
-        "label": "개발",
-        "heading": "디자인은 직접,\n구현은 AI와 함께 했습니다.",
         "body": "정해 둔 디자인 규칙을 Claude에 넘겨 모든 화면을 같은 기준으로 구현했습니다. 네이버 이미지 검색 API를 연결해 제품 이름만 치면 사진을 찾아올 수 있게 했고, 가져온 사진의 여백과 배경을 정리하는 기능도 함께 붙였습니다. 기록은 클라우드에 저장하고, GitHub Pages에 올려 폰 홈 화면에 설치해 쓰고 있습니다.",
+        "label": "개발",
         "images": [
           {
             "path": "local:scripts/sample-img/ym-dev.webp",
             "caption": ""
           }
         ],
-        "layout": "1"
+        "layout": "1",
+        "heading": "디자인은 직접,\n구현은 AI와 함께 했습니다."
       }
     ],
     "published": true,
