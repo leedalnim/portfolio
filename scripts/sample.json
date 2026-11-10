@@ -648,6 +648,72 @@
     "custom_css": ""
   },
   {
+    "slug": "seoul-gallery",
+    "title": "서울갤러리",
+    "summary": "서울시 정책을 전시로 소개하는 갤러리의 홈페이지",
+    "description": "서울갤러리 홈페이지 구축 프로젝트로, 현재 실제로 오픈해 운영 중인 사이트입니다. PC·태블릿·모바일 반응형 화면과 국문·영문 페이지까지 함께 디자인했습니다.",
+    "category": "",
+    "client": "서울갤러리",
+    "role": "UX/UI 디자인",
+    "period": "2025",
+    "type": "구축",
+    "tags": [],
+    "kind": "WORK",
+    "platform": "RESPONSIVE WEB",
+    "extra_tags": [],
+    "filters": [
+      "VISUAL DESIGN",
+      "UX DESIGN"
+    ],
+    "contribution": "",
+    "site_url": "https://www.seoul.go.kr/seoulgallery/",
+    "show_on_wall": false,
+    "show_on_archive": true,
+    "thumbnail": "local:scripts/sample-img/t-seoulgallery.webp",
+    "sections": [
+      {
+        "id": "s0",
+        "type": "basic",
+        "label": "",
+        "heading": "",
+        "body": "",
+        "html": "",
+        "layout": "1",
+        "points": [],
+        "images": [
+          {
+            "path": "local:scripts/sample-img/sg-hero.webp",
+            "caption": ""
+          }
+        ]
+      },
+      {
+        "id": "s1",
+        "type": "basic",
+        "label": "메인 · 서브",
+        "heading": "방문 정보를 먼저,\n전시는 크게 보여 줬습니다.",
+        "body": "어두운 전시장 사진을 첫 화면에 크게 두고, 바로 아래에 관람 일정 캘린더와 운영 시간을 배치해 방문 전에 필요한 정보를 먼저 확인할 수 있게 했습니다. 이어서 전시관, 프로그램, 대관 안내, 공지사항을 차례로 두고, 같은 구성을 태블릿·모바일과 영문 페이지까지 이어 갔습니다.\n\n갤러리 소개, 공간 안내, 미래서울도시관, 프로그램 일정 같은 서브 페이지도 메인과 같은 톤과 구성 규칙으로 이어 디자인했습니다.",
+        "html": "",
+        "layout": "1",
+        "points": [],
+        "images": [
+          {
+            "path": "local:scripts/sample-img/sg-resp.webp",
+            "caption": ""
+          },
+          {
+            "path": "local:scripts/sample-img/sg-sub.webp",
+            "caption": ""
+          }
+        ]
+      }
+    ],
+    "published": true,
+    "sort_order": 8,
+    "custom_css": "",
+    "wall_order": null
+  },
+  {
     "slug": "incheon-isum",
     "title": "인천 섬 포털",
     "summary": "인천의 섬 관광 정보를 한곳에 모은 사이트",
@@ -729,7 +795,7 @@
       }
     ],
     "published": true,
-    "sort_order": 8,
+    "sort_order": 9,
     "custom_css": ""
   },
   {
@@ -815,7 +881,7 @@
       }
     ],
     "published": true,
-    "sort_order": 9,
+    "sort_order": 10,
     "custom_css": ""
   },
   {
@@ -845,7 +911,7 @@
     "thumbnail": "local:scripts/sample-img/t-bokyak.webp",
     "sections": [],
     "published": true,
-    "sort_order": 10,
+    "sort_order": 11,
     "custom_css": ""
   },
   {
@@ -876,7 +942,7 @@
     "thumbnail": "local:scripts/sample-img/t-relic.webp",
     "sections": [],
     "published": true,
-    "sort_order": 11,
+    "sort_order": 12,
     "custom_css": ""
   },
   {
@@ -904,7 +970,7 @@
     "thumbnail": "local:scripts/sample-img/t-ggac.webp",
     "sections": [],
     "published": true,
-    "sort_order": 12,
+    "sort_order": 13,
     "custom_css": ""
   },
   {
@@ -984,7 +1050,7 @@
       }
     ],
     "published": true,
-    "sort_order": 13,
+    "sort_order": 14,
     "custom_css": ""
   },
   {
@@ -1013,7 +1079,7 @@
     "thumbnail": "local:scripts/sample-img/t-wcc.webp",
     "sections": [],
     "published": true,
-    "sort_order": 14,
+    "sort_order": 15,
     "custom_css": ""
   },
   {
@@ -1040,7 +1106,7 @@
     "show_on_archive": false,
     "sections": [],
     "published": false,
-    "sort_order": 15,
+    "sort_order": 16,
     "custom_css": ""
   }
 ]
