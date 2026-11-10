@@ -358,6 +358,7 @@
     const a = e.target.closest('a[data-detail]');
     if (a) getDetail(a.href);
   });
+  let dio;
   async function openDetail(url, push = true, replace = false) {
     const node = await getDetail(url);
     if (!node) return (location.href = url);
@@ -373,7 +374,13 @@
     }
     scroller.replaceChildren(document.importNode(node, true));
     scroller.scrollTop = 0;
-    $$('.rv', scroller).forEach((el) => el.classList.add('in'));
+    // 상세 안에서도 스크롤하면 글·이미지가 차례로 떠오르게 (팝업은 자체 스크롤 영역이라 따로 관찰)
+    dio?.disconnect();
+    dio = new IntersectionObserver(
+      (en) => en.forEach((x) => { if (x.isIntersecting) { x.target.classList.add('in'); dio.unobserve(x.target); } }),
+      { root: scroller, rootMargin: '0px 0px -8% 0px' },
+    );
+    $$('.rv', scroller).forEach((el) => dio.observe(el));
     autoScroll(scroller);
     if (push) history[replace ? 'replaceState' : 'pushState']({ detail: url }, '', url);
     if (push) trackView(); // 상세를 겹쳐 열 때도 한 번 기록

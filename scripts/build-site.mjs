@@ -260,17 +260,17 @@ function detail(p, next) {
 ${/^https?:\/\//.test(p.site_url || '') ? `<div class="w2"><dt>사이트</dt><dd class="vs"><a href="${esc(p.site_url)}" target="_blank" rel="noopener">사이트 방문 <span aria-hidden="true">↗</span><span class="sr">(새 창)</span></a></dd></div>` : ''}
 ${(p.filters || []).length ? `<div class="w2"><dt>필터</dt><dd class="fl">${p.filters.map((f) => `<a href="${BASE}projects/?f=${FILTER_KEYS[f]}" data-nav>${esc(f)}</a>`).join('')}</dd></div>` : ''}</dl>
 <a class="dt-close" href="${BASE}projects/" data-close>Close <span class="x" aria-hidden="true"></span></a></aside>
-<div class="dt-main">${p.description || p.summary ? `<div class="dt-intro"><h2>PROJECT
-OVERVIEW.</h2><p>${brText(p.description || p.summary)}</p></div>` : ''}
+<div class="dt-main">${p.description || p.summary ? `<div class="dt-intro"><h2 class="rv">PROJECT
+OVERVIEW.</h2><p class="rv" style="--d:2">${brText(p.description || p.summary)}</p></div>` : ''}
 ${!(p.sections || []).length && p._thumb ? `<div class="dt-sec">${pic(p._thumb, p.title, '(max-width: 1023px) 100vw, 70vw', true)}</div>` : ''}
 ${(p.sections || [])
     .map((sec, i) => {
       const numbered = sec.label || sec.heading;
-      const head = numbered ? `<div class="lb">${sec.label ? `<span>${esc(sec.label)}</span>` : ''}</div><div class="tx">${sec.heading ? `<h3>${esc(sec.heading)}</h3>` : '<span></span>'}${sec.body ? `<p>${brText(sec.body)}</p>` : ''}</div>` : '';
+      const head = numbered ? `<div class="lb rv">${sec.label ? `<span>${esc(sec.label)}</span>` : ''}</div><div class="tx">${sec.heading ? `<h3 class="rv" style="--d:1">${esc(sec.heading)}</h3>` : '<span></span>'}${sec.body ? `<p class="rv" style="--d:3">${brText(sec.body)}</p>` : ''}</div>` : '';
       if (sec.type === 'code') return `<section class="dt-sec dt-code">${head}${codeHtml(sec)}</section>`;
       return `<section class="dt-sec">${head}
-${(sec.points || []).filter(([k, v]) => k || v).length ? `<div class="dt-pts">${sec.points.filter(([k, v]) => k || v).map(([k, v]) => `<div><b>${esc(k)}</b><span>${esc(v)}</span></div>`).join('')}</div>` : ''}
-<div class="gal c1">${(sec.images || []).map((im) => (im._img ? `<figure>${pic(im._img, im.caption, '(max-width: 1023px) 100vw, 70vw', i === 0)}${im.caption ? `<figcaption>${esc(im.caption)}</figcaption>` : ''}</figure>` : '')).join('')}</div></section>`;
+${(sec.points || []).filter(([k, v]) => k || v).length ? `<div class="dt-pts">${sec.points.filter(([k, v]) => k || v).map(([k, v], j) => `<div class="rv" style="--d:${j * 2}"><b>${esc(k)}</b><span>${esc(v)}</span></div>`).join('')}</div>` : ''}
+<div class="gal c1">${(sec.images || []).map((im) => (im._img ? `<figure class="rv">${pic(im._img, im.caption, '(max-width: 1023px) 100vw, 70vw', i === 0)}${im.caption ? `<figcaption>${esc(im.caption)}</figcaption>` : ''}</figure>` : '')).join('')}</div></section>`;
     })
     .join('')}
 ${p.custom_css ? `<style>#detail[data-slug="${esc(p.slug)}"]{${String(p.custom_css).replace(/<\/?style/gi, '')}}</style>` : ''}
