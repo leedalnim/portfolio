@@ -673,16 +673,20 @@
     "sections": [
       {
         "id": "s0",
-        "type": "basic",
+        "type": "code",
         "label": "",
         "heading": "",
         "body": "",
-        "html": "",
+        "html": "<div class=\"sg-hero\">\n  <img class=\"sg-bg\" src=\"{{1}}\" alt=\"두 손으로 든 태블릿 속 서울갤러리 PC 메인\">\n  <div class=\"sg-scr\" data-autoscroll=\"18\"><img src=\"{{2}}\" alt=\"서울갤러리 PC 메인 전체 화면\"></div>\n</div>\n<style>\n  .sg-hero { position: relative; aspect-ratio: 1328 / 747; overflow: hidden; background: #000817; }\n  .sg-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }\n  .sg-scr { position: absolute; left: 17.613%; top: 12.503%; width: 64.774%; height: 74.766%; overflow: hidden; border-radius: calc(8 * var(--u)); background: #fff; }\n  .sg-scr img { display: block; width: 100%; height: auto; }\n</style>",
         "layout": "1",
         "points": [],
         "images": [
           {
             "path": "local:scripts/sample-img/sg-hero.webp",
+            "caption": ""
+          },
+          {
+            "path": "local:scripts/sample-img/sg-pcmain.webp",
             "caption": ""
           }
         ]
