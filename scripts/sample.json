@@ -53,29 +53,29 @@
         "label": "설계와 구현",
         "images": [
           {
+            "alt": "서울형 정원처방 PC·모바일 메인 화면",
             "path": "local:scripts/sample-img/jw3-mock.webp",
-            "caption": "",
-            "alt": "서울형 정원처방 PC·모바일 메인 화면"
+            "caption": ""
           },
           {
+            "alt": "마음건강 체크 결과 화면: 긍정·부정 정서 점수와 정원처방 기관 찾기 버튼",
             "path": "local:scripts/sample-img/jw3-row1.webp",
-            "caption": "",
-            "alt": "마음건강 체크 결과 화면: 긍정·부정 정서 점수와 정원처방 기관 찾기 버튼"
+            "caption": ""
           },
           {
+            "alt": "마음건강 체크 문항 화면과 정원 일러스트",
             "path": "local:scripts/sample-img/jw3-row2.webp",
-            "caption": "",
-            "alt": "마음건강 체크 문항 화면과 정원 일러스트"
+            "caption": ""
           },
           {
+            "alt": "서울형 정원처방 서브 페이지 화면 모음",
             "path": "local:scripts/sample-img/jw3-iso.webp",
-            "caption": "",
-            "alt": "서울형 정원처방 서브 페이지 화면 모음"
+            "caption": ""
           },
           {
+            "alt": "서울형 정원처방 컬러 가이드: Base·Primary·Point·Background",
             "path": "local:scripts/sample-img/jw3-color.webp",
-            "caption": "",
-            "alt": "서울형 정원처방 컬러 가이드: Base·Primary·Point·Background"
+            "caption": ""
           }
         ],
         "layout": "1",
@@ -119,9 +119,9 @@
         "label": "",
         "images": [
           {
+            "alt": "궁중문화축전 PC·모바일 메인 화면 목업",
             "path": "local:scripts/sample-img/gj-hero.webp",
-            "caption": "",
-            "alt": "궁중문화축전 PC·모바일 메인 화면 목업"
+            "caption": ""
           }
         ],
         "layout": "1",
@@ -188,9 +188,9 @@
         "label": "",
         "images": [
           {
+            "alt": "중구청 AI 검색 첫 화면: 질문 입력 안내와 검색 시작하기 버튼",
             "path": "local:scripts/sample-img/jgai-hero.webp",
-            "caption": "",
-            "alt": "중구청 AI 검색 첫 화면: 질문 입력 안내와 검색 시작하기 버튼"
+            "caption": ""
           }
         ],
         "layout": "1",
@@ -276,9 +276,9 @@
         "label": "",
         "images": [
           {
+            "alt": "반월시화 AX 통합지원플랫폼 노트북·모바일 메인 화면 목업",
             "path": "local:scripts/sample-img/bw-hero.webp",
-            "caption": "",
-            "alt": "반월시화 AX 통합지원플랫폼 노트북·모바일 메인 화면 목업"
+            "caption": ""
           }
         ],
         "layout": "1",
@@ -348,9 +348,9 @@
         "label": "",
         "images": [
           {
+            "alt": "자원순환마루 PC·모바일 화면 모음",
             "path": "local:scripts/sample-img/jw-hero.webp",
-            "caption": "",
-            "alt": "자원순환마루 PC·모바일 화면 모음"
+            "caption": ""
           }
         ],
         "layout": "1",
@@ -410,6 +410,7 @@
     "site_url": "https://www.junggu.seoul.kr/main.do",
     "show_on_wall": true,
     "show_on_archive": true,
+    "wall_order": 7,
     "thumbnail": "local:scripts/sample-img/t-jgmain.webp",
     "sections": [
       {
@@ -420,9 +421,9 @@
         "label": "",
         "images": [
           {
+            "alt": "중구청 메인 개편 PC 메인과 모바일·서브 화면 모음",
             "path": "local:scripts/sample-img/jm-hero.webp",
-            "caption": "",
-            "alt": "중구청 메인 개편 PC 메인과 모바일·서브 화면 모음"
+            "caption": ""
           }
         ],
         "layout": "1",
@@ -510,9 +511,9 @@
         "label": "",
         "images": [
           {
+            "alt": "손에 든 휴대폰 속 청년몽땅정보통 모바일 메인",
             "path": "local:scripts/sample-img/yi-hero.webp",
-            "caption": "",
-            "alt": "손에 든 휴대폰 속 청년몽땅정보통 모바일 메인"
+            "caption": ""
           }
         ],
         "layout": "1",
@@ -527,14 +528,14 @@
         "label": "메인 개편",
         "images": [
           {
+            "alt": "메인 개편 설명: 맞춤형 정보 카드, 섹션 단위 재구성",
             "path": "local:scripts/sample-img/yi-s1a.webp",
-            "caption": "",
-            "alt": "메인 개편 설명: 맞춤형 정보 카드, 섹션 단위 재구성"
+            "caption": ""
           },
           {
+            "alt": "청년몽땅정보통 모바일 메인과 메뉴 카테고리 칩",
             "path": "local:scripts/sample-img/yi-s1b.webp",
-            "caption": "",
-            "alt": "청년몽땅정보통 모바일 메인과 메뉴 카테고리 칩"
+            "caption": ""
           }
         ],
         "layout": "1",
@@ -549,19 +550,19 @@
         "label": "정책 필터",
         "images": [
           {
+            "alt": "정책 필터 개편 설명: 필터 영역 통합, 탭 정리와 카드형 구조",
             "path": "local:scripts/sample-img/yi-s2a.webp",
-            "caption": "",
-            "alt": "정책 필터 개편 설명: 필터 영역 통합, 탭 정리와 카드형 구조"
+            "caption": ""
           },
           {
+            "alt": "정책 대상 필터 칩과 모바일 정책 검색 화면",
             "path": "local:scripts/sample-img/yi-s2b.webp",
-            "caption": "",
-            "alt": "정책 대상 필터 칩과 모바일 정책 검색 화면"
+            "caption": ""
           },
           {
+            "alt": "서울시 정책 검색 PC 화면: 선택한 필터와 정책 카드 목록",
             "path": "local:scripts/sample-img/yi-s2c.webp",
-            "caption": "",
-            "alt": "서울시 정책 검색 PC 화면: 선택한 필터와 정책 카드 목록"
+            "caption": ""
           }
         ],
         "layout": "1",
@@ -576,7 +577,6 @@
   {
     "slug": "seoul-youngtech",
     "title": "서울영테크",
-    "title_br": null,
     "summary": "서울 청년 재무 상담·금융 교육 사이트 고도화 — 재무진단과 메인 핵심 서비스 개선",
     "description": "서울영테크는 서울 청년의 재무 상담과 금융 교육을 지원하는 사이트입니다. 고도화 사업으로 메인부터 서브 페이지까지 함께 진행했고, 그중 개선 효과가 가장 컸던 재무진단과 메인의 핵심 서비스 영역을 중심으로 정리했습니다. 헤더·푸터·폰트를 바꿀 수 없는 조건 안에서 진행했습니다.",
     "category": "",
@@ -606,9 +606,9 @@
         "label": "",
         "images": [
           {
+            "alt": "서울영테크 재무진단 안내 화면 태블릿·모바일 목업",
             "path": "local:scripts/sample-img/yt-hero.webp",
-            "caption": "",
-            "alt": "서울영테크 재무진단 안내 화면 태블릿·모바일 목업"
+            "caption": ""
           }
         ],
         "layout": "1",
@@ -698,13 +698,10 @@
     "sections": [
       {
         "id": "s0",
-        "type": "code",
-        "label": "",
-        "heading": "",
         "body": "",
         "html": "<div class=\"sg-hero\">\n  <img class=\"sg-bg\" src=\"{{1}}\" alt=\"두 손으로 든 태블릿 속 서울갤러리 PC 메인\">\n  <div class=\"sg-scr\" data-autoscroll=\"18\"><img src=\"{{2}}\" alt=\"서울갤러리 PC 메인 전체 화면\"></div>\n</div>\n<style>\n  .sg-hero { position: relative; aspect-ratio: 1328 / 747; overflow: hidden; background: #000817; }\n  .sg-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }\n  .sg-scr { position: absolute; left: 17.613%; top: 12.503%; width: 64.774%; height: 74.766%; overflow: hidden; border-radius: calc(8 * var(--u)); background: #fff; }\n  .sg-scr img { display: block; width: 100%; height: auto; }\n</style>",
-        "layout": "1",
-        "points": [],
+        "type": "code",
+        "label": "",
         "images": [
           {
             "path": "local:scripts/sample-img/sg-hero.webp",
@@ -714,35 +711,37 @@
             "path": "local:scripts/sample-img/sg-pcmain.webp",
             "caption": ""
           }
-        ]
+        ],
+        "layout": "1",
+        "points": [],
+        "heading": ""
       },
       {
         "id": "s1",
-        "type": "basic",
-        "label": "메인 · 서브",
-        "heading": "방문 정보를 먼저,\n전시는 크게 보여 줬습니다.",
         "body": "어두운 전시장 사진을 첫 화면에 크게 두고, 바로 아래에 관람 일정 캘린더와 운영 시간을 배치해 방문 전에 필요한 정보를 먼저 확인할 수 있게 했습니다. 이어서 전시관, 프로그램, 대관 안내, 공지사항을 차례로 두고, 같은 구성을 태블릿·모바일과 영문 페이지까지 이어 갔습니다.\n\n갤러리 소개, 공간 안내, 미래서울도시관, 프로그램 일정 같은 서브 페이지도 메인과 같은 톤과 구성 규칙으로 이어 디자인했습니다.",
         "html": "",
-        "layout": "1",
-        "points": [],
+        "type": "basic",
+        "label": "메인 · 서브",
         "images": [
           {
+            "alt": "서울갤러리 PC·모바일 메인 화면 목업",
             "path": "local:scripts/sample-img/sg-resp.webp",
-            "caption": "",
-            "alt": "서울갤러리 PC·모바일 메인 화면 목업"
+            "caption": ""
           },
           {
+            "alt": "서울갤러리 전시 공간 사진, 3D 아이콘, 서브 페이지 화면 모음",
             "path": "local:scripts/sample-img/sg-sub.webp",
-            "caption": "",
-            "alt": "서울갤러리 전시 공간 사진, 3D 아이콘, 서브 페이지 화면 모음"
+            "caption": ""
           }
-        ]
+        ],
+        "layout": "1",
+        "points": [],
+        "heading": "방문 정보를 먼저,\n전시는 크게 보여 줬습니다."
       }
     ],
     "published": true,
     "sort_order": 8,
-    "custom_css": "",
-    "wall_order": null
+    "custom_css": ""
   },
   {
     "slug": "incheon-isum",
@@ -776,9 +775,9 @@
         "label": "",
         "images": [
           {
+            "alt": "노트북·휴대폰 속 인천 섬 포털 메인 화면 목업",
             "path": "local:scripts/sample-img/ic-hero.webp",
-            "caption": "",
-            "alt": "노트북·휴대폰 속 인천 섬 포털 메인 화면 목업"
+            "caption": ""
           }
         ],
         "layout": "1",
@@ -817,9 +816,9 @@
         "label": "검색",
         "images": [
           {
+            "alt": "맞춤 정보 검색: 누구와·언제·무엇을 골라 문장을 완성하는 검색 화면",
             "path": "local:scripts/sample-img/ic-search.webp",
-            "caption": "",
-            "alt": "맞춤 정보 검색: 누구와·언제·무엇을 골라 문장을 완성하는 검색 화면"
+            "caption": ""
           }
         ],
         "layout": "1",
@@ -871,9 +870,9 @@
         "label": "",
         "images": [
           {
+            "alt": "얌얌로그 홈·제품 상세·통계 화면",
             "path": "local:scripts/sample-img/ym-hero.webp",
-            "caption": "",
-            "alt": "얌얌로그 홈·제품 상세·통계 화면"
+            "caption": ""
           }
         ],
         "layout": "1",
@@ -885,19 +884,19 @@
         "label": "표정",
         "images": [
           {
+            "alt": "잘 먹음·보통·안 먹음 표정 선택과 좋아하는 것 TOP 3 화면",
             "path": "local:scripts/sample-img/ym-panels.webp",
-            "caption": "",
-            "alt": "잘 먹음·보통·안 먹음 표정 선택과 좋아하는 것 TOP 3 화면"
+            "caption": ""
           },
           {
+            "alt": "기록 흐름 4단계: 기록 시작, 제품 찾기, 정보 채우기, 취향 모아 보기",
             "path": "local:scripts/sample-img/ym-steps.webp",
-            "caption": "",
-            "alt": "기록 흐름 4단계: 기록 시작, 제품 찾기, 정보 채우기, 취향 모아 보기"
+            "caption": ""
           },
           {
+            "alt": "얌얌로그 디자인 시스템: 컬러 8종과 아이콘 16종",
             "path": "local:scripts/sample-img/ym-ds.webp",
-            "caption": "",
-            "alt": "얌얌로그 디자인 시스템: 컬러 8종과 아이콘 16종"
+            "caption": ""
           }
         ],
         "layout": "1",
@@ -909,9 +908,9 @@
         "label": "개발",
         "images": [
           {
+            "alt": "침대 위 휴대폰 속 얌얌로그 홈 화면과 개발 스택 정보",
             "path": "local:scripts/sample-img/ym-dev.webp",
-            "caption": "",
-            "alt": "침대 위 휴대폰 속 얌얌로그 홈 화면과 개발 스택 정보"
+            "caption": ""
           }
         ],
         "layout": "1",
@@ -955,6 +954,7 @@
   {
     "slug": "relic-workshop",
     "title": "유물 복원 공방",
+    "title_br": "유물\n복원 공방",
     "summary": "신라 유물 3D 데이터로 만든 복원 게임",
     "description": "유물 복원 공방은 좋아서 만든 3D 복원 게임입니다. 국가유산청의 실제 3D 유물 데이터를 불러와, 도구로 문지르면 때가 벗겨지고 금동의 광택이 되살아나도록 구현했습니다. 기획과 디자인부터 Three.js 구현까지 AI와 함께 혼자 만들었고, PC와 모바일에서 모두 플레이할 수 있습니다.",
     "category": "",
@@ -981,41 +981,40 @@
     "sections": [
       {
         "id": "s0",
-        "type": "basic",
-        "label": "",
-        "heading": "",
         "body": "",
         "html": "",
-        "layout": "1",
-        "points": [],
+        "type": "basic",
+        "label": "",
         "images": [
           {
+            "alt": "나무 탁자 위 휴대폰 네 대 속 유물 복원 공방 화면",
             "path": "local:scripts/sample-img/rl-hero.webp",
-            "caption": "",
-            "alt": "나무 탁자 위 휴대폰 네 대 속 유물 복원 공방 화면"
+            "caption": ""
           }
-        ]
+        ],
+        "layout": "1",
+        "points": [],
+        "heading": ""
       },
       {
         "id": "s1",
-        "type": "basic",
-        "label": "복원",
-        "heading": "닦을수록 드러나는\n천 년의 빛을 담았습니다.",
         "body": "유물 표면을 문지르면 그 자리의 녹과 먼지만 벗겨지고, 닦인 곳은 금동의 광택이 돌아와 닦기 전과 후의 경계가 또렷하게 보입니다. 블로워, 세척솔, 면봉은 도구마다 닦이는 범위가 달라 부위에 맞게 바꿔 가며 씁니다. 국가유산청이 3D로 스캔한 신라 유물 14점을 하나씩 복원하면 다음 유물이 열리고, 복원을 마칠 때마다 유물의 이름과 시대, 재질, 해설을 담은 카드가 나옵니다.",
         "html": "",
-        "layout": "1",
+        "type": "basic",
+        "label": "복원",
         "images": [
           {
+            "alt": "금동 반가사유상을 세척해 가는 3단계 화면: 오염, 세척 중, 복원 완료",
             "path": "local:scripts/sample-img/rl-a.webp",
-            "caption": "",
-            "alt": "금동 반가사유상을 세척해 가는 3단계 화면: 오염, 세척 중, 복원 완료"
+            "caption": ""
           },
           {
+            "alt": "박물관 전시실에서 든 휴대폰 속 복원 화면과 유물 도감 화면",
             "path": "local:scripts/sample-img/rl-b.webp",
-            "caption": "",
-            "alt": "박물관 전시실에서 든 휴대폰 속 복원 화면과 유물 도감 화면"
+            "caption": ""
           }
         ],
+        "layout": "1",
         "points": [
           [
             "오염",
@@ -1033,30 +1032,30 @@
             "수장고",
             "한 점을 복원하면 다음 유물이 열리고, 진행 상황은 자동으로 저장됩니다."
           ]
-        ]
+        ],
+        "heading": "닦을수록 드러나는\n천 년의 빛을 담았습니다."
       },
       {
         "id": "s2",
-        "type": "basic",
-        "label": "제작 과정",
-        "heading": "세척 규칙은 직접 정하고,\n구현은 AI와 함께 했습니다.",
         "body": "국가유산청이 공개한 신라 유물 3D 데이터를 골라 게임에 맞게 다듬었습니다. 어두운 배경에 유물만 비추는 조명, 금빛 명판과 버튼, 오염이 두 겹으로 덮여 도구마다 닦이는 범위가 다른 규칙은 먼저 직접 정했고, 구현은 이 기준에 맞춰 AI와 함께 진행했습니다.\n\n가장 까다로웠던 건 닦은 곳만 정확히 닦이고, 끝까지 닦으면 100%가 되게 하는 일이었습니다. 텍스처의 모든 점에 실제 3D 좌표를 기록해 붓 근처만 닦이게 하고, 속이 빈 유물은 붓이 닿지 않는 안쪽 면을 미리 찾아 진행률에서 뺐습니다. 오염은 색과 남은 양 두 장의 레이어를 섞어 표현해, 닦을수록 무광의 흙빛이 금속 광택으로 바뀝니다. 60만 면짜리 스캔은 5.4만 면으로 줄이고 텍스처는 WebP로 바꿔 모바일에서도 가볍게 돌아가게 했습니다.",
         "html": "",
-        "layout": "1",
-        "points": [],
+        "type": "basic",
+        "label": "제작 과정",
         "images": [
           {
+            "alt": "제작 과정: 기획·디자인 규칙, 개발 스택, 결과물 화면",
             "path": "local:scripts/sample-img/rl-flow.webp",
-            "caption": "",
-            "alt": "제작 과정: 기획·디자인 규칙, 개발 스택, 결과물 화면"
+            "caption": ""
           }
-        ]
+        ],
+        "layout": "1",
+        "points": [],
+        "heading": "세척 규칙은 직접 정하고,\n구현은 AI와 함께 했습니다."
       }
     ],
     "published": true,
     "sort_order": 12,
-    "custom_css": ".dt-pts{gap:calc(20 * var(--u));margin-bottom:calc(20 * var(--u));counter-reset:pt}\n.dt-pts div{border:1px solid #96630B;background:#fff;padding:calc(28 * var(--u));counter-increment:pt}\n.dt-pts div::before{content:counter(pt,decimal-leading-zero);display:block;margin-bottom:calc(10 * var(--u));font:500 max(12px,calc(13 * var(--u)))/1.6 var(--en);color:#96630B}\n.dt-pts b{font:700 max(16px,calc(20 * var(--u)))/1.6 var(--ko);color:#121212}\n.dt-pts span{margin-top:calc(10 * var(--u));font:500 max(13px,calc(15 * var(--u)))/1.6 var(--ko);color:#545454}\n@media (max-width:1023px){.dt-pts{gap:12px}.dt-pts div{padding:20px}}",
-    "title_br": "유물\n복원 공방"
+    "custom_css": ".dt-pts{gap:calc(20 * var(--u));margin-bottom:calc(20 * var(--u));counter-reset:pt}\n.dt-pts div{border:1px solid #96630B;background:#fff;padding:calc(28 * var(--u));counter-increment:pt}\n.dt-pts div::before{content:counter(pt,decimal-leading-zero);display:block;margin-bottom:calc(10 * var(--u));font:500 max(12px,calc(13 * var(--u)))/1.6 var(--en);color:#96630B}\n.dt-pts b{font:700 max(16px,calc(20 * var(--u)))/1.6 var(--ko);color:#121212}\n.dt-pts span{margin-top:calc(10 * var(--u));font:500 max(13px,calc(15 * var(--u)))/1.6 var(--ko);color:#545454}\n@media (max-width:1023px){.dt-pts{gap:12px}.dt-pts div{padding:20px}}"
   },
   {
     "slug": "ggac",
@@ -1085,12 +1084,10 @@
     "sections": [
       {
         "id": "s0",
+        "body": "",
+        "html": "<div class=\"gg-hero\">\n  <img class=\"gg-bg\" src=\"{{1}}\" alt=\"공연장 객석 앞 노트북 속 경기아트센터 아카이브 메인\">\n  <div class=\"gg-scr\" data-autoscroll=\"20\"><img src=\"{{2}}\" alt=\"경기아트센터 아카이브 메인 전체 화면\"></div>\n</div>\n<style>\n  .gg-hero { position: relative; aspect-ratio: 1328 / 747; overflow: hidden; background: #0a0d21; }\n  .gg-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }\n  .gg-scr { position: absolute; left: 21.439%; top: 12.182%; width: 57.123%; height: 64.014%; overflow: hidden; border-radius: calc(3 * var(--u)); background: #fff; }\n  .gg-scr img { display: block; width: 100%; height: auto; }\n</style>",
         "type": "code",
         "label": "",
-        "heading": "",
-        "body": "",
-        "layout": "1",
-        "points": [],
         "images": [
           {
             "path": "local:scripts/sample-img/gg-hero.webp",
@@ -1101,24 +1098,26 @@
             "caption": ""
           }
         ],
-        "html": "<div class=\"gg-hero\">\n  <img class=\"gg-bg\" src=\"{{1}}\" alt=\"공연장 객석 앞 노트북 속 경기아트센터 아카이브 메인\">\n  <div class=\"gg-scr\" data-autoscroll=\"20\"><img src=\"{{2}}\" alt=\"경기아트센터 아카이브 메인 전체 화면\"></div>\n</div>\n<style>\n  .gg-hero { position: relative; aspect-ratio: 1328 / 747; overflow: hidden; background: #0a0d21; }\n  .gg-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }\n  .gg-scr { position: absolute; left: 21.439%; top: 12.182%; width: 57.123%; height: 64.014%; overflow: hidden; border-radius: calc(3 * var(--u)); background: #fff; }\n  .gg-scr img { display: block; width: 100%; height: auto; }\n</style>"
+        "layout": "1",
+        "points": [],
+        "heading": ""
       },
       {
         "id": "s1",
-        "type": "basic",
-        "label": "서브 페이지",
-        "heading": "쌓인 기록을\n원하는 기준으로 골라 보게 했습니다.",
         "body": "연혁은 디자인으로 풀어내기 가장 까다로웠던 화면입니다. 연대 탭으로 시기를 고르고, 센터이슈·예술단이슈·공연·단체 카테고리와 단체 필터, 키워드 검색을 함께 써서 필요한 기록만 모아 볼 수 있게 정리했습니다.\n\n분류별 기록은 장르·단체·형태 세 가지 기준에 연도와 검색어를 더해 걸러 볼 수 있게 했고, 상세 화면은 등록번호·생산일자 같은 자료 정보와 공연 일정·장소·출연진 같은 공연 정보를 나눠 정리했습니다. 큐레이션은 기획 글과 공연 목록, 관련 기록물을 한 화면에 이어 소장 자료를 이야기처럼 읽을 수 있게 했고, 통합검색은 단체별 결과 수로 나눠 보여 줍니다.",
         "html": "",
-        "layout": "1",
-        "points": [],
+        "type": "basic",
+        "label": "서브 페이지",
         "images": [
           {
+            "alt": "경기아트센터 아카이브 서브 페이지: 분류별 기록, 큐레이션, 연혁, 통합검색",
             "path": "local:scripts/sample-img/gg-sub.webp",
-            "caption": "",
-            "alt": "경기아트센터 아카이브 서브 페이지: 분류별 기록, 큐레이션, 연혁, 통합검색"
+            "caption": ""
           }
-        ]
+        ],
+        "layout": "1",
+        "points": [],
+        "heading": "쌓인 기록을\n원하는 기준으로 골라 보게 했습니다."
       }
     ],
     "published": true,
@@ -1161,9 +1160,9 @@
         "label": "",
         "images": [
           {
+            "alt": "상상마당 제안시안 타이포그래피 키 비주얼",
             "path": "local:scripts/sample-img/ss-hero.webp",
-            "caption": "",
-            "alt": "상상마당 제안시안 타이포그래피 키 비주얼"
+            "caption": ""
           }
         ],
         "layout": "1",
