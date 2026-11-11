@@ -54,23 +54,28 @@
         "images": [
           {
             "path": "local:scripts/sample-img/jw3-mock.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "서울형 정원처방 PC·모바일 메인 화면"
           },
           {
             "path": "local:scripts/sample-img/jw3-row1.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "마음건강 체크 결과 화면: 긍정·부정 정서 점수와 정원처방 기관 찾기 버튼"
           },
           {
             "path": "local:scripts/sample-img/jw3-row2.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "마음건강 체크 문항 화면과 정원 일러스트"
           },
           {
             "path": "local:scripts/sample-img/jw3-iso.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "서울형 정원처방 서브 페이지 화면 모음"
           },
           {
             "path": "local:scripts/sample-img/jw3-color.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "서울형 정원처방 컬러 가이드: Base·Primary·Point·Background"
           }
         ],
         "layout": "1",
@@ -115,7 +120,8 @@
         "images": [
           {
             "path": "local:scripts/sample-img/gj-hero.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "궁중문화축전 PC·모바일 메인 화면 목업"
           }
         ],
         "layout": "1",
@@ -183,7 +189,8 @@
         "images": [
           {
             "path": "local:scripts/sample-img/jgai-hero.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "중구청 AI 검색 첫 화면: 질문 입력 안내와 검색 시작하기 버튼"
           }
         ],
         "layout": "1",
@@ -270,7 +277,8 @@
         "images": [
           {
             "path": "local:scripts/sample-img/bw-hero.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "반월시화 AX 통합지원플랫폼 노트북·모바일 메인 화면 목업"
           }
         ],
         "layout": "1",
@@ -341,7 +349,8 @@
         "images": [
           {
             "path": "local:scripts/sample-img/jw-hero.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "자원순환마루 PC·모바일 화면 모음"
           }
         ],
         "layout": "1",
@@ -412,7 +421,8 @@
         "images": [
           {
             "path": "local:scripts/sample-img/jm-hero.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "중구청 메인 개편 PC 메인과 모바일·서브 화면 모음"
           }
         ],
         "layout": "1",
@@ -501,7 +511,8 @@
         "images": [
           {
             "path": "local:scripts/sample-img/yi-hero.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "손에 든 휴대폰 속 청년몽땅정보통 모바일 메인"
           }
         ],
         "layout": "1",
@@ -517,11 +528,13 @@
         "images": [
           {
             "path": "local:scripts/sample-img/yi-s1a.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "메인 개편 설명: 맞춤형 정보 카드, 섹션 단위 재구성"
           },
           {
             "path": "local:scripts/sample-img/yi-s1b.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "청년몽땅정보통 모바일 메인과 메뉴 카테고리 칩"
           }
         ],
         "layout": "1",
@@ -537,15 +550,18 @@
         "images": [
           {
             "path": "local:scripts/sample-img/yi-s2a.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "정책 필터 개편 설명: 필터 영역 통합, 탭 정리와 카드형 구조"
           },
           {
             "path": "local:scripts/sample-img/yi-s2b.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "정책 대상 필터 칩과 모바일 정책 검색 화면"
           },
           {
             "path": "local:scripts/sample-img/yi-s2c.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "서울시 정책 검색 PC 화면: 선택한 필터와 정책 카드 목록"
           }
         ],
         "layout": "1",
@@ -591,7 +607,8 @@
         "images": [
           {
             "path": "local:scripts/sample-img/yt-hero.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "서울영테크 재무진단 안내 화면 태블릿·모바일 목업"
           }
         ],
         "layout": "1",
@@ -703,11 +720,13 @@
         "images": [
           {
             "path": "local:scripts/sample-img/sg-resp.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "서울갤러리 PC·모바일 메인 화면 목업"
           },
           {
             "path": "local:scripts/sample-img/sg-sub.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "서울갤러리 전시 공간 사진, 3D 아이콘, 서브 페이지 화면 모음"
           }
         ]
       }
@@ -750,7 +769,8 @@
         "images": [
           {
             "path": "local:scripts/sample-img/ic-hero.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "노트북·휴대폰 속 인천 섬 포털 메인 화면 목업"
           }
         ],
         "layout": "1",
@@ -790,7 +810,8 @@
         "images": [
           {
             "path": "local:scripts/sample-img/ic-search.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "맞춤 정보 검색: 누구와·언제·무엇을 골라 문장을 완성하는 검색 화면"
           }
         ],
         "layout": "1",
@@ -843,7 +864,8 @@
         "images": [
           {
             "path": "local:scripts/sample-img/ym-hero.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "얌얌로그 홈·제품 상세·통계 화면"
           }
         ],
         "layout": "1",
@@ -856,15 +878,18 @@
         "images": [
           {
             "path": "local:scripts/sample-img/ym-panels.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "잘 먹음·보통·안 먹음 표정 선택과 좋아하는 것 TOP 3 화면"
           },
           {
             "path": "local:scripts/sample-img/ym-steps.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "기록 흐름 4단계: 기록 시작, 제품 찾기, 정보 채우기, 취향 모아 보기"
           },
           {
             "path": "local:scripts/sample-img/ym-ds.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "얌얌로그 디자인 시스템: 컬러 8종과 아이콘 16종"
           }
         ],
         "layout": "1",
@@ -877,7 +902,8 @@
         "images": [
           {
             "path": "local:scripts/sample-img/ym-dev.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "침대 위 휴대폰 속 얌얌로그 홈 화면과 개발 스택 정보"
           }
         ],
         "layout": "1",
@@ -957,7 +983,8 @@
         "images": [
           {
             "path": "local:scripts/sample-img/rl-hero.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "나무 탁자 위 휴대폰 네 대 속 유물 복원 공방 화면"
           }
         ]
       },
@@ -972,11 +999,13 @@
         "images": [
           {
             "path": "local:scripts/sample-img/rl-a.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "금동 반가사유상을 세척해 가는 3단계 화면: 오염, 세척 중, 복원 완료"
           },
           {
             "path": "local:scripts/sample-img/rl-b.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "박물관 전시실에서 든 휴대폰 속 복원 화면과 유물 도감 화면"
           }
         ],
         "points": [
@@ -1010,7 +1039,8 @@
         "images": [
           {
             "path": "local:scripts/sample-img/rl-flow.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "제작 과정: 기획·디자인 규칙, 개발 스택, 결과물 화면"
           }
         ]
       }
@@ -1077,7 +1107,8 @@
         "images": [
           {
             "path": "local:scripts/sample-img/gg-sub.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "경기아트센터 아카이브 서브 페이지: 분류별 기록, 큐레이션, 연혁, 통합검색"
           }
         ]
       }
@@ -1123,7 +1154,8 @@
         "images": [
           {
             "path": "local:scripts/sample-img/ss-hero.webp",
-            "caption": ""
+            "caption": "",
+            "alt": "상상마당 제안시안 타이포그래피 키 비주얼"
           }
         ],
         "layout": "1",
