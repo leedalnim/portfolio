@@ -951,28 +951,66 @@
   },
   {
     "slug": "ggac",
-    "title": "경기아트센터",
-    "summary": "",
-    "description": "",
+    "title": "경기아트센터 아카이브",
+    "summary": "경기아트센터와 경기도예술단의 공연 기록을 모은 디지털 아카이브",
+    "description": "경기아트센터 디지털 아카이브는 1991년 개관 이후 경기아트센터와 경기도예술단이 쌓아 온 공연기록, 사진, 영상, 문서, 홍보물을 보존하고 공개하는 사이트로, 메뉴 구조부터 화면까지 전부 새로 짠 리뉴얼 프로젝트입니다. 아카이브인 만큼 메인에서 카테고리별로 자료를 쉽게 찾을 수 있어야 했고, 그동안의 연혁을 연도·카테고리·단체별로 보기 쉽게 정리하는 것이 중요했습니다.",
     "category": "",
-    "client": "",
-    "role": "",
+    "client": "경기아트센터",
+    "role": "UX/UI 디자인",
     "period": "2026",
-    "type": "구축",
+    "type": "개편",
     "tags": [],
     "kind": "WORK",
-    "platform": "RESPONSIVE WEB",
+    "platform": "PC WEB",
     "extra_tags": [],
     "filters": [
+      "UX DESIGN",
       "VISUAL DESIGN"
     ],
     "contribution": "",
     "site_url": "",
     "show_on_wall": true,
-    "show_on_archive": false,
+    "show_on_archive": true,
     "wall_order": 9,
-    "thumbnail": "local:scripts/sample-img/t-ggac.webp",
-    "sections": [],
+    "thumbnail": "local:scripts/sample-img/t-ggac-archive.webp",
+    "sections": [
+      {
+        "id": "s0",
+        "type": "code",
+        "label": "",
+        "heading": "",
+        "body": "",
+        "layout": "1",
+        "points": [],
+        "images": [
+          {
+            "path": "local:scripts/sample-img/gg-hero.webp",
+            "caption": ""
+          },
+          {
+            "path": "local:scripts/sample-img/gg-pcmain.webp",
+            "caption": ""
+          }
+        ],
+        "html": "<div class=\"gg-hero\">\n  <img class=\"gg-bg\" src=\"{{1}}\" alt=\"공연장 객석 앞 노트북 속 경기아트센터 아카이브 메인\">\n  <div class=\"gg-scr\" data-autoscroll=\"20\"><img src=\"{{2}}\" alt=\"경기아트센터 아카이브 메인 전체 화면\"></div>\n</div>\n<style>\n  .gg-hero { position: relative; aspect-ratio: 1328 / 747; overflow: hidden; background: #0a0d21; }\n  .gg-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }\n  .gg-scr { position: absolute; left: 21.439%; top: 12.182%; width: 57.123%; height: 64.014%; overflow: hidden; border-radius: calc(3 * var(--u)); background: #fff; }\n  .gg-scr img { display: block; width: 100%; height: auto; }\n</style>"
+      },
+      {
+        "id": "s1",
+        "type": "basic",
+        "label": "서브 페이지",
+        "heading": "쌓인 기록을\n원하는 기준으로 골라 보게 했습니다.",
+        "body": "연혁은 디자인으로 풀어내기 가장 까다로웠던 화면입니다. 연대 탭으로 시기를 고르고, 센터이슈·예술단이슈·공연·단체 카테고리와 단체 필터, 키워드 검색을 함께 써서 필요한 기록만 모아 볼 수 있게 정리했습니다.\n\n분류별 기록은 장르·단체·형태 세 가지 기준에 연도와 검색어를 더해 걸러 볼 수 있게 했고, 상세 화면은 등록번호·생산일자 같은 자료 정보와 공연 일정·장소·출연진 같은 공연 정보를 나눠 정리했습니다. 큐레이션은 기획 글과 공연 목록, 관련 기록물을 한 화면에 이어 소장 자료를 이야기처럼 읽을 수 있게 했고, 통합검색은 단체별 결과 수로 나눠 보여 줍니다.",
+        "html": "",
+        "layout": "1",
+        "points": [],
+        "images": [
+          {
+            "path": "local:scripts/sample-img/gg-sub.webp",
+            "caption": ""
+          }
+        ]
+      }
+    ],
     "published": true,
     "sort_order": 13,
     "custom_css": ""
