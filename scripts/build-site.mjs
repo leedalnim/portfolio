@@ -255,10 +255,10 @@ function detail(p, next) {
   ].filter(([, v]) => v);
   const wide = new Set(['기술']);
   return `<article class="dt" id="detail" data-slug="${esc(p.slug)}">
-<aside class="dt-side"><span class="dt-kind">${esc([p.kind, p.type].filter(Boolean).join(' · '))}</span><h1 class="dt-ttl">${String(p.title_br || p.title).split('\n').map(esc).join('<br>')}</h1>
+<aside class="dt-side"><span class="dt-kind">${esc([p.kind, p.type].filter(Boolean).join(' · '))}</span><h1 class="dt-ttl">${String(p.title_br || p.title).split('\n').map(esc).join('<br>')}</h1>${(p.filters || []).length ? `<div class="dt-fl fl">${p.filters.map((f) => `<a href="${BASE}projects/?f=${FILTER_KEYS[f]}" data-nav>${esc(f)}</a>`).join('')}</div>` : ''}
 <dl class="dt-meta">${meta.map(([k, v]) => `<div${wide.has(k) ? ' class="w2"' : ''}><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('')}
 ${/^https?:\/\//.test(p.site_url || '') ? `<div class="w2"><dt>사이트</dt><dd class="vs"><a href="${esc(p.site_url)}" target="_blank" rel="noopener">사이트 방문 <span aria-hidden="true">↗</span><span class="sr">(새 창)</span></a></dd></div>` : ''}
-${(p.filters || []).length ? `<div class="w2"><dt>필터</dt><dd class="fl">${p.filters.map((f) => `<a href="${BASE}projects/?f=${FILTER_KEYS[f]}" data-nav>${esc(f)}</a>`).join('')}</dd></div>` : ''}</dl>
+</dl>
 <a class="dt-close" href="${BASE}projects/" data-close>Close <span class="x" aria-hidden="true"></span></a></aside>
 <div class="dt-main">${p.description || p.summary ? `<div class="dt-intro"><h2 class="rv">PROJECT
 OVERVIEW.</h2><p class="rv" style="--d:2">${brText(p.description || p.summary)}</p></div>` : ''}
