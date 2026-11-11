@@ -921,16 +921,16 @@
   {
     "slug": "relic-workshop",
     "title": "유물 복원 공방",
-    "summary": "",
-    "description": "",
+    "summary": "신라 유물 3D 데이터로 만든 복원 게임",
+    "description": "유물 복원 공방은 좋아서 만든 3D 복원 게임입니다. 국가유산청의 실제 3D 유물 데이터를 불러와, 도구로 문지르면 때가 벗겨지고 금동의 광택이 되살아나도록 구현했습니다. 기획과 디자인부터 Three.js 구현까지 AI와 함께 혼자 만들었고, PC와 모바일에서 모두 플레이할 수 있습니다.",
     "category": "",
     "client": "",
-    "role": "",
+    "role": "기획 · 디자인 · 개발",
     "period": "2026",
     "type": "개인 프로젝트",
     "tags": [],
     "kind": "NOT WORK",
-    "platform": "",
+    "platform": "WEB · MOBILE",
     "extra_tags": [
       "GAME"
     ],
@@ -941,13 +941,84 @@
     "contribution": "",
     "site_url": "",
     "show_on_wall": true,
-    "show_on_archive": false,
+    "show_on_archive": true,
     "wall_order": 1,
     "thumbnail": "local:scripts/sample-img/t-relic.webp",
-    "sections": [],
+    "sections": [
+      {
+        "id": "s0",
+        "type": "basic",
+        "label": "",
+        "heading": "",
+        "body": "",
+        "html": "",
+        "layout": "1",
+        "points": [],
+        "images": [
+          {
+            "path": "local:scripts/sample-img/rl-hero.webp",
+            "caption": ""
+          }
+        ]
+      },
+      {
+        "id": "s1",
+        "type": "basic",
+        "label": "복원",
+        "heading": "닦을수록 드러나는\n천 년의 빛을 담았습니다.",
+        "body": "유물 표면을 문지르면 그 자리의 녹과 먼지만 벗겨지고, 닦인 곳은 금동의 광택이 돌아와 닦기 전과 후의 경계가 또렷하게 보입니다. 블로워, 세척솔, 면봉은 도구마다 닦이는 범위가 달라 부위에 맞게 바꿔 가며 씁니다. 국가유산청이 3D로 스캔한 신라 유물 14점을 하나씩 복원하면 다음 유물이 열리고, 복원을 마칠 때마다 유물의 이름과 시대, 재질, 해설을 담은 카드가 나옵니다.",
+        "html": "",
+        "layout": "1",
+        "images": [
+          {
+            "path": "local:scripts/sample-img/rl-a.webp",
+            "caption": ""
+          },
+          {
+            "path": "local:scripts/sample-img/rl-b.webp",
+            "caption": ""
+          }
+        ],
+        "points": [
+          [
+            "오염",
+            "초록 녹과 흙, 먼지가 겹겹이 쌓이고, 움푹한 틈에는 더 짙게 남도록 만들었습니다."
+          ],
+          [
+            "도구",
+            "블로워, 세척솔, 면봉은 Blender로 만든 3D 모델로, 도구마다 닦이는 범위가 다릅니다."
+          ],
+          [
+            "복원",
+            "다 닦으면 복원 완료 카드가 열리고, 유물의 이름과 시대, 재질, 해설을 보여 줍니다."
+          ],
+          [
+            "수장고",
+            "한 점을 복원하면 다음 유물이 열리고, 진행 상황은 자동으로 저장됩니다."
+          ]
+        ]
+      },
+      {
+        "id": "s2",
+        "type": "basic",
+        "label": "제작 과정",
+        "heading": "세척 규칙은 직접 정하고,\n구현은 AI와 함께 했습니다.",
+        "body": "국가유산청이 공개한 신라 유물 3D 데이터를 골라 게임에 맞게 다듬었습니다. 어두운 배경에 유물만 비추는 조명, 금빛 명판과 버튼, 오염이 두 겹으로 덮여 도구마다 닦이는 범위가 다른 규칙은 먼저 직접 정했고, 구현은 이 기준에 맞춰 AI와 함께 진행했습니다.\n\n가장 까다로웠던 건 닦은 곳만 정확히 닦이고, 끝까지 닦으면 100%가 되게 하는 일이었습니다. 텍스처의 모든 점에 실제 3D 좌표를 기록해 붓 근처만 닦이게 하고, 속이 빈 유물은 붓이 닿지 않는 안쪽 면을 미리 찾아 진행률에서 뺐습니다. 오염은 색과 남은 양 두 장의 레이어를 섞어 표현해, 닦을수록 무광의 흙빛이 금속 광택으로 바뀝니다. 60만 면짜리 스캔은 5.4만 면으로 줄이고 텍스처는 WebP로 바꿔 모바일에서도 가볍게 돌아가게 했습니다.",
+        "html": "",
+        "layout": "1",
+        "points": [],
+        "images": [
+          {
+            "path": "local:scripts/sample-img/rl-flow.webp",
+            "caption": ""
+          }
+        ]
+      }
+    ],
     "published": true,
     "sort_order": 12,
-    "custom_css": ""
+    "custom_css": "",
+    "title_br": "유물\n복원 공방"
   },
   {
     "slug": "ggac",

@@ -222,6 +222,7 @@ span.chip{cursor:default}
 .dt-sec h3{margin:0;font:700 max(24px,calc(40 * var(--u)))/1.35 var(--ko);letter-spacing:-.02em;white-space:pre-line;word-break:keep-all}
 .dt-sec p{margin:4px 0 0;font:500 max(14px,calc(17 * var(--u)))/1.7 var(--ko);color:var(--g2);white-space:pre-line;max-width:684px}
 .dt-pts{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(30 * var(--u));margin:0 0 calc(72 * var(--u))}
+@media (min-width:1024px){.dt-pts:has(> :nth-child(4):last-child){grid-template-columns:repeat(4,1fr)}}
 .dt-pts div{border-top:2px solid var(--ink);padding-top:calc(20 * var(--u))}
 .dt-pts b{display:block;font:700 max(13px,calc(15 * var(--u)))/1.2 var(--ko);color:var(--blue)}
 .dt-pts span{display:block;margin-top:10px;font:500 max(13px,calc(16 * var(--u)))/1.6 var(--ko);color:#333;white-space:pre-line}
