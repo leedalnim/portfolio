@@ -565,14 +565,14 @@
             "caption": ""
           },
           {
+            "alt": "",
             "path": "local:scripts/sample-img/yi-asis.webp",
-            "caption": "",
-            "alt": ""
+            "caption": ""
           },
           {
+            "alt": "",
             "path": "local:scripts/sample-img/yi-tobe.webp",
-            "caption": "",
-            "alt": ""
+            "caption": ""
           }
         ],
         "layout": "1",
@@ -910,7 +910,6 @@
           }
         ],
         "layout": "1",
-        "heading": "표정 하나로\n기호도를 읽게 했습니다.",
         "points": [
           [
             "문제",
@@ -928,7 +927,8 @@
             "결과",
             "할인하는 간식을 살 때도 기록을 보고 먹던 맛을 바로 고릅니다. 재구매를 정할 때 늘 확인하고, 취향이 바뀌면 고쳐 적습니다."
           ]
-        ]
+        ],
+        "heading": "표정 하나로\n기호도를 읽게 했습니다."
       },
       {
         "id": "s2",
