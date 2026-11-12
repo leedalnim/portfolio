@@ -1149,30 +1149,30 @@
       },
       {
         "id": "s2",
+        "body": "버튼·인풋·카드를 매번 새로 그리고, 색상 코드와 컴포넌트 이름을 매번 다시 설명해야 하는 문제를 줄이고 싶었습니다.\n\nKRDS를 참고해 컬러·타이포·간격·컴포넌트를 Figma Variables로 정리하고, Claude로 피그마 변수명과 CSS 변수명을 1:1로 맞춰 코드로 옮겼습니다. 경기아트센터에는 컬러 토큰만 브랜드 컬러로 바꾸고 구조와 접근성 규칙은 그대로 두어, 컴포넌트를 다시 만들지 않고 퍼블리싱까지 이어갔습니다.",
+        "html": "",
         "type": "basic",
         "label": "디자인 시스템 · AI 퍼블리싱",
-        "heading": "AI로 디자인 시스템을\n코드까지 연결했습니다.",
-        "body": "버튼·인풋·카드를 매번 새로 그리고, 색상 코드와 컴포넌트 이름을 매번 다시 설명해야 하는 문제를 줄이고 싶었습니다.\n\nKRDS를 참고해 컬러·타이포·간격·컴포넌트를 Figma Variables로 정리하고, Claude로 피그마 변수명과 CSS 변수명을 1:1로 맞춰 코드로 옮겼습니다. 경기아트센터에는 컬러 토큰만 브랜드 컬러로 바꾸고 구조와 접근성 규칙은 그대로 두어, 컴포넌트를 다시 만들지 않고 퍼블리싱까지 이어갔습니다.",
-        "layout": "1",
-        "points": [],
-        "html": "",
         "images": [
           {
+            "alt": "배경과 문제: 반복되던 고민과 디자인 시스템 도입 전후 비교",
             "path": "local:scripts/sample-img/gg-ds1.webp",
-            "caption": "",
-            "alt": "배경과 문제: 반복되던 고민과 디자인 시스템 도입 전후 비교"
+            "caption": ""
           },
           {
+            "alt": "토큰과 코드화: Figma Variables 설계, 코드 연결 프롬프트, CSS 변수로 변환된 토큰과 공통 컴포넌트",
             "path": "local:scripts/sample-img/gg-ds2.webp",
-            "caption": "",
-            "alt": "토큰과 코드화: Figma Variables 설계, 코드 연결 프롬프트, CSS 변수로 변환된 토큰과 공통 컴포넌트"
+            "caption": ""
           },
           {
+            "alt": "실제 적용: 경기아트센터 분류별 기록 화면에 적용된 Tag·Select·Button 토큰",
             "path": "local:scripts/sample-img/gg-ds3.webp",
-            "caption": "",
-            "alt": "실제 적용: 경기아트센터 분류별 기록 화면에 적용된 Tag·Select·Button 토큰"
+            "caption": ""
           }
-        ]
+        ],
+        "layout": "1",
+        "points": [],
+        "heading": "AI로 디자인 시스템을\n코드까지 연결했습니다."
       }
     ],
     "published": true,
