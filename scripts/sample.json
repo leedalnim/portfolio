@@ -1295,9 +1295,6 @@
     "show_on_archive": false,
     "wall_order": 3,
     "thumbnail": "local:scripts/sample-img/t-smartstroke.webp",
-    "published": true,
-    "sort_order": 15,
-    "custom_css": "",
     "sections": [
       {
         "id": "hero",
@@ -1332,7 +1329,37 @@
         "points": [],
         "heading": "사용자에 따라 메뉴를 나누고,\n환자의 매일을 기록하게."
       }
-    ]
+    ],
+    "published": true,
+    "sort_order": 15,
+    "custom_css": ""
+  },
+  {
+    "slug": "kocom-wallpad",
+    "title": "Kocom 월패드",
+    "summary": "",
+    "description": "",
+    "category": "",
+    "client": "",
+    "role": "",
+    "period": "2019",
+    "type": "개인 프로젝트",
+    "tags": [],
+    "kind": "NOT WORK",
+    "platform": "",
+    "extra_tags": [],
+    "filters": [
+      "UX DESIGN",
+      "VISUAL DESIGN"
+    ],
+    "contribution": "",
+    "site_url": "",
+    "show_on_wall": false,
+    "show_on_archive": false,
+    "sections": [],
+    "published": false,
+    "sort_order": 16,
+    "custom_css": ""
   },
   {
     "slug": "weekly-chest",
@@ -1361,33 +1388,6 @@
     "sections": [],
     "published": false,
     "sort_order": 17,
-    "custom_css": ""
-  },
-  {
-    "slug": "kocom-wallpad",
-    "title": "Kocom 월패드",
-    "summary": "",
-    "description": "",
-    "category": "",
-    "client": "",
-    "role": "",
-    "period": "2019",
-    "type": "개인 프로젝트",
-    "tags": [],
-    "kind": "NOT WORK",
-    "platform": "",
-    "extra_tags": [],
-    "filters": [
-      "UX DESIGN",
-      "VISUAL DESIGN"
-    ],
-    "contribution": "",
-    "site_url": "",
-    "show_on_wall": false,
-    "show_on_archive": false,
-    "sections": [],
-    "published": false,
-    "sort_order": 16,
     "custom_css": ""
   }
 ]
