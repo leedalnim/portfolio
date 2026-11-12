@@ -1271,6 +1271,70 @@
     "custom_css": ""
   },
   {
+    "slug": "smart-stroke",
+    "title": "Smart Stroke",
+    "title_br": "Smart\nStroke",
+    "summary": "대한뇌졸중학회 뇌졸중 예후 예측·관리 앱",
+    "description": "Smart Stroke는 대한뇌졸중학회의 뇌졸중 예후 예측·관리 앱입니다. 시민에게는 뇌졸중에 대한 올바른 인식과 위험성을 알리고, 의료진에게는 환자 관리와 처치를 돕고, 환자에게는 혈압·복용 약물 관리와 약물 알람으로 재발 관리를 돕습니다. 2018년 2~3월에 작업해 출시했고, 앱 화면 디자인을 혼자 맡았습니다.",
+    "category": "",
+    "client": "대한뇌졸중학회",
+    "role": "UI 디자인 (디자인 100%)",
+    "period": "2018",
+    "type": "구축",
+    "tags": [],
+    "kind": "WORK",
+    "platform": "APP",
+    "extra_tags": [],
+    "filters": [
+      "UX DESIGN",
+      "VISUAL DESIGN"
+    ],
+    "contribution": "",
+    "site_url": "",
+    "show_on_wall": false,
+    "show_on_archive": false,
+    "wall_order": 3,
+    "thumbnail": "local:scripts/sample-img/t-smartstroke.webp",
+    "published": true,
+    "sort_order": 15,
+    "custom_css": "",
+    "sections": [
+      {
+        "id": "hero",
+        "body": "",
+        "html": "",
+        "type": "basic",
+        "label": "",
+        "images": [
+          {
+            "alt": "Smart Stroke 주요 화면 목업: 사용자 선택, 메인, 혈압 그래프",
+            "path": "local:scripts/sample-img/sk-hero.webp",
+            "caption": ""
+          }
+        ],
+        "layout": "1",
+        "points": [],
+        "heading": ""
+      },
+      {
+        "id": "s1",
+        "body": "처음 화면에서 일반인인지 의료진인지 고르면 그에 맞는 카테고리로 메뉴가 보이도록 설계했습니다. 환자는 혈압을 기록해 그래프로 흐름을 보고, 복용하는 약을 등록해 알람을 받을 수 있습니다. 자주 쓰는 작업은 플로팅 액션 버튼으로 바로 할 수 있게 하고, 밝고 팬시한 색으로 친근한 이미지를 주도록 했습니다.",
+        "html": "<img class=\"sk-img\" src=\"{{1}}\" alt=\"Smart Stroke 화면 목업: 환자 정보, 플로팅 메뉴, 약물 리스트와 알람, 약물 추가, 약 선택\">\n<div class=\"sk-cs\" aria-label=\"컬러 시스템\">\n  <ul><li class=\"sk-c\" style=\"background:#FFFFFF\"><b>white</b><span>#FFFFFF</span></li><li class=\"sk-c\" style=\"background:#58D3EF\"><b>aqua</b><span>#58D3EF</span></li><li class=\"sk-c sk-w\" style=\"background:#8A86F5\"><b>purple</b><span>#8A86F5</span></li><li class=\"sk-c\" style=\"background:#FFE200\"><b>yellow</b><span>#FFE200</span></li><li class=\"sk-c sk-w\" style=\"background:#5499F4\"><b>blue</b><span>#5499F4</span></li><li class=\"sk-c sk-w\" style=\"background:#3B4D5B\"><b>deep gray</b><span>#3B4D5B</span></li></ul>\n</div>\n<style>\n  .sk-img { display: block; width: 100%; height: auto; }\n  .sk-cs { margin-top: calc(20 * var(--u)); padding: calc(40 * var(--u)); background: #F1F2F6; }\n  .sk-cs ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: calc(12 * var(--u)); }\n  .sk-c { display: flex; flex-direction: column; justify-content: space-between; height: calc(180 * var(--u)); padding: calc(24 * var(--u)); border-radius: calc(14 * var(--u)); box-sizing: border-box; color: #111; }\n  .sk-w { color: #fff; }\n  .sk-c b { font: 700 max(15px, calc(18 * var(--u)))/1.3 var(--ko); }\n  .sk-c span { font: 500 max(12px, calc(14 * var(--u)))/1.3 var(--ko); }\n  @media (max-width: 1023px) {\n    .sk-cs { margin-top: 12px; padding: 16px; }\n    .sk-cs ul { grid-template-columns: 1fr 1fr; gap: 8px; }\n    .sk-c { height: 104px; padding: 16px; border-radius: 12px; }\n  }\n</style>",
+        "type": "code",
+        "label": "구성",
+        "images": [
+          {
+            "path": "local:scripts/sample-img/sk-screens.webp",
+            "caption": ""
+          }
+        ],
+        "layout": "1",
+        "points": [],
+        "heading": "사용자에 따라 메뉴를 나누고,\n환자의 매일을 기록하게."
+      }
+    ]
+  },
+  {
     "slug": "weekly-chest",
     "title": "Weekly Chest Cases",
     "summary": "",
@@ -1296,7 +1360,7 @@
     "thumbnail": "local:scripts/sample-img/t-wcc.webp",
     "sections": [],
     "published": false,
-    "sort_order": 15,
+    "sort_order": 17,
     "custom_css": ""
   },
   {
