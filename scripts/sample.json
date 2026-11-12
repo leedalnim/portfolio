@@ -1295,7 +1295,7 @@
     "wall_order": 3,
     "thumbnail": "local:scripts/sample-img/t-wcc.webp",
     "sections": [],
-    "published": true,
+    "published": false,
     "sort_order": 15,
     "custom_css": ""
   },
