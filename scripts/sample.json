@@ -952,29 +952,80 @@
   {
     "slug": "med-tracker",
     "title": "복약 트래커",
-    "summary": "",
-    "description": "",
+    "summary": "다음에 먹어도 되는 시각을\n계산해 주는\n복약 기록 앱입니다.",
+    "description": "복약 트래커는 마지막으로 먹은 시각과 복용 간격으로 다음에 먹어도 되는 시각을 계산해 주는 앱입니다. 간격을 지켜야 하는 약은 카운트다운으로, 매일 먹는 약은 복용 체크로 기록하고, 정해 둔 시각에는 알림이 옵니다. 핸드폰 홈 화면에 설치해 쓰며, 아이디어와 기능은 직접 정하고 시안 없이 AI와 바로 만들어 써 보면서 고쳐 나갔습니다.",
     "category": "",
     "client": "",
-    "role": "",
+    "role": "기획 · 디자인 · 개발",
     "period": "2026",
     "type": "개인 프로젝트",
     "tags": [],
     "kind": "NOT WORK",
-    "platform": "APP",
+    "platform": "APP · PWA",
     "extra_tags": [],
     "filters": [
       "UX DESIGN",
       "AI WORKFLOW",
       "SOLO BUILD"
     ],
-    "contribution": "",
+    "contribution": "100%",
     "site_url": "",
     "show_on_wall": true,
     "show_on_archive": true,
     "wall_order": 6,
     "thumbnail": "local:scripts/sample-img/t-bokyak.webp",
-    "sections": [],
+    "sections": [
+      {
+        "id": "hero",
+        "body": "",
+        "html": "",
+        "type": "basic",
+        "label": "",
+        "images": [
+          {
+            "alt": "복약 트래커 실사 목업: 코랄 배경 위 핸드폰 두 대(홈 목록, 약 상세)",
+            "path": "local:scripts/sample-img/mt-hero.webp",
+            "caption": ""
+          }
+        ],
+        "layout": "1",
+        "points": [],
+        "heading": ""
+      },
+      {
+        "id": "s1",
+        "label": "기능",
+        "heading": "기록은 짧게,\n확인은 한눈에.",
+        "body": "다음 복용까지 남은 시간은 원형 카운트다운으로 보여 주고, 링 안에 다음 복용 시각을 함께 적었습니다. 예정 시각 3분 전부터는 미리 기록할 수 있고, 하루 최대치에 닿으면 '오늘 최대'로 바뀝니다. 기록 방식은 간격을 계산하는 간격 트래커와 먹었는지만 남기는 복용 체크 두 가지로 나누고, 달력에서 날짜별 복용 횟수를 볼 수 있게 했습니다.",
+        "html": "",
+        "type": "basic",
+        "layout": "1",
+        "points": [],
+        "images": [
+          {
+            "alt": "홈 화면과 상태 카드: 간격 트래커(남은 시간 → 지금 가능), 복용 체크",
+            "path": "local:scripts/sample-img/mt-feat1.webp",
+            "caption": ""
+          },
+          {
+            "alt": "약 추가, 복용 체크, 달력 화면",
+            "path": "local:scripts/sample-img/mt-feat2.webp",
+            "caption": ""
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "label": "만든 과정",
+        "heading": "사용하며 찾은 불편을\nAI와 함께 풀었습니다.",
+        "body": "아이디어 구상과 필요한 기능은 직접 정하고, 시안 없이 AI와 바로 화면을 만들었습니다. 핸드폰에 설치해 매일 써 보며 불편한 점을 찾았고, 그때마다 AI와 함께 고쳐 나갔습니다. 복용 중인 약의 다음 복용 시각에 맞춰 알림이 정확히 오도록, 서버가 그 시각에 알림을 보내는 구조로 만들었습니다.",
+        "html": "<div class=\"mt-dark\">\n  <h4>AI와 함께 설계한 알림 구조</h4>\n  <ol class=\"mt-flow\"><li class=\"mt-st\"><b>앱</b><span>다음 복용 시각 예약</span></li><li class=\"mt-st\"><b>Supabase</b><span>예약 저장</span></li><li class=\"mt-st\"><b>pg_cron</b><span>1분마다 확인</span></li><li class=\"mt-st\"><b>Edge Function</b><span>때가 된 알림만 발송</span></li><li class=\"mt-st mt-last\"><b>핸드폰</b><span>APNs로 알림 도착</span></li></ol>\n  <ul class=\"mt-stack\"><li><span>AI</span><b>Claude Code</b></li><li><span>프론트엔드</span><b>Vanilla JS · PWA</b></li><li><span>데이터</span><b>localStorage · Supabase 백업</b></li><li><span>배포</span><b>GitHub Pages</b></li></ul>\n</div>\n<div class=\"mt-fixes\">\n  <h4>써 보며 찾은 문제, AI와 이렇게 고쳤습니다</h4>\n  <ol><li class=\"mt-fx\"><em>01</em><div class=\"mt-q\"><small>문제</small><b>알림이 늦게 도착</b></div><i aria-hidden=\"true\">→</i><div class=\"mt-a\"><small>개선안</small><p>AI와 원인을 찾아보니, 기본 우선순위 알림은 모였다가 늦게 배달되는 경우가 있었습니다. 알림을 높은 우선순위로 보내도록 바꿨습니다.</p></div></li><li class=\"mt-fx\"><em>02</em><div class=\"mt-q\"><small>문제</small><b>매일 알림이 하루 만에 멈춤</b></div><i aria-hidden=\"true\">→</i><div class=\"mt-a\"><small>개선안</small><p>매일 알림이 다음 날로 이어지지 않는 원인을 AI와 짚고, 알림을 보낸 직후 서버가 다음 날 같은 시각으로 다시 예약하게 했습니다.</p></div></li><li class=\"mt-fx\"><em>03</em><div class=\"mt-q\"><small>문제</small><b>구독이 끊기면 복구되지 않음</b></div><i aria-hidden=\"true\">→</i><div class=\"mt-a\"><small>개선안</small><p>구독이 끊기면 다시 살아나지 않는 것을 확인하고, AI와 함께 앱을 열 때마다 구독을 확인해 끊겼으면 다시 등록하게 했습니다.</p></div></li></ol>\n</div>\n<style>\n  .mt-dark { background: #18181B; padding: calc(56 * var(--u)) calc(64 * var(--u)); color: #fff; }\n  .mt-dark h4, .mt-fixes h4 { margin: 0 0 calc(32 * var(--u)); font: 700 max(17px, calc(20 * var(--u)))/1.4 var(--ko); }\n  .mt-flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: calc(48 * var(--u)); }\n  .mt-st { position: relative; display: flex; flex-direction: column; gap: calc(8 * var(--u)); padding: calc(24 * var(--u)); min-height: calc(120 * var(--u)); box-sizing: border-box; background: #26262B; border-radius: calc(16 * var(--u)); }\n  .mt-st:not(.mt-last)::after { content: \"→\"; position: absolute; right: calc(-34 * var(--u)); top: 50%; transform: translateY(-50%); color: #71717A; font: 700 max(16px, calc(22 * var(--u)))/1 var(--ko); }\n  .mt-st b { font: 700 max(15px, calc(19 * var(--u)))/1.3 var(--ko); }\n  .mt-st span { color: #A1A1AA; font: 500 max(12px, calc(15 * var(--u)))/1.4 var(--ko); }\n  .mt-last { background: #D65B54; }\n  .mt-last span { color: #FFE9E7; }\n  .mt-stack { list-style: none; margin: calc(48 * var(--u)) 0 0; padding: calc(32 * var(--u)) 0 0; border-top: 1px solid #2E2E33; display: grid; grid-template-columns: repeat(4, 1fr); gap: calc(24 * var(--u)); }\n  .mt-stack li { display: flex; flex-direction: column; gap: calc(6 * var(--u)); }\n  .mt-stack span { color: #8B8B93; font: 500 max(12px, calc(14 * var(--u)))/1.4 var(--ko); }\n  .mt-stack b { font: 700 max(14px, calc(17 * var(--u)))/1.4 var(--ko); }\n  .mt-fixes { background: #fff; padding: calc(56 * var(--u)) calc(64 * var(--u)); }\n  .mt-fixes h4 { color: #111114; padding-bottom: calc(24 * var(--u)); margin-bottom: 0; border-bottom: 1px solid #E4E4E7; }\n  .mt-fixes ol { list-style: none; margin: 0; padding: 0; }\n  .mt-fx { display: grid; grid-template-columns: calc(60 * var(--u)) 1fr calc(48 * var(--u)) 1.7fr; align-items: center; gap: calc(16 * var(--u)); padding: calc(20 * var(--u)) 0; border-bottom: 1px solid #E4E4E7; }\n  .mt-fx:last-child { border-bottom: 0; padding-bottom: 0; }\n  .mt-fx em { font: 700 max(13px, calc(15 * var(--u)))/1 var(--ko); font-style: normal; color: #D65B54; }\n  .mt-fx small { display: block; margin-bottom: calc(6 * var(--u)); font: 700 max(11px, calc(12 * var(--u)))/1 var(--ko); color: #9A9AA2; }\n  .mt-q b { font: 700 max(15px, calc(18 * var(--u)))/1.4 var(--ko); color: #111114; }\n  .mt-fx i { font: 700 max(16px, calc(22 * var(--u)))/1 var(--ko); font-style: normal; color: #D65B54; text-align: center; }\n  .mt-a { background: #F4F4F5; border-radius: calc(12 * var(--u)); padding: calc(16 * var(--u)) calc(20 * var(--u)); }\n  .mt-a small { color: #D65B54; }\n  .mt-a p { margin: 0; font: 600 max(13px, calc(16 * var(--u)))/1.6 var(--ko); color: #26262B; }\n  @media (max-width: 1023px) {\n    .mt-dark, .mt-fixes { padding: 24px 20px; }\n    .mt-dark h4, .mt-fixes h4 { margin-bottom: 16px; }\n    .mt-fixes h4 { padding-bottom: 16px; margin-bottom: 0; }\n    .mt-flow { grid-template-columns: 1fr; gap: 28px; }\n    .mt-st { min-height: 0; padding: 16px; border-radius: 12px; }\n    .mt-st:not(.mt-last)::after { content: \"↓\"; right: auto; left: 50%; top: auto; bottom: -24px; transform: translateX(-50%); }\n    .mt-stack { grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; padding-top: 20px; }\n    .mt-fx { grid-template-columns: 1fr; gap: 10px; padding: 18px 0; }\n    .mt-fx i { display: none; }\n    .mt-a { padding: 14px 16px; border-radius: 10px; }\n  }\n</style>",
+        "type": "code",
+        "layout": "1",
+        "points": [],
+        "images": []
+      }
+    ],
     "published": true,
     "sort_order": 11,
     "custom_css": ""
