@@ -1,0 +1,22 @@
+name: 챗봇 질문 수 초기화
+
+# 오늘 쌓인 AI 챗봇 질문 수(방문자별 · 사이트 전체)를 0으로 되돌린다.
+# 점검하다 한도에 걸렸을 때 Actions 탭에서 직접 눌러 실행한다. 저장소 주인만 실행할 수 있다.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reset:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/chat-reset.mjs
+        env:
+          SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
