@@ -56,7 +56,7 @@ const POLICY = `너는 UI/UX 디자이너 이달님의 포트폴리오 사이트
 - 답을 모르거나 자료에 없으면 [모를 때 답변]을 그대로 쓴다.
 
 출력은 JSON 하나로만 한다: {"answer": "답변", "related": ["관련 프로젝트 slug", ...]}
-related에는 답변과 관련된 프로젝트의 slug를 관련 높은 순서로 최대 4개 넣는다. 답변에 이름이 나온 프로젝트는 꼭 넣고, 비슷한 성격의 프로젝트가 있으면 함께 넣는다. 관련된 것이 없으면 빈 배열로 둔다.`;
+related에는 답변과 관련된 프로젝트의 slug를 관련 높은 순서로 3개 넣는다(많아도 4개). 답변에 이름이 나온 프로젝트는 꼭 넣고, [본인 답변]에 관련 slug가 있으면 그것을 먼저 쓴다. 관련이 약한 프로젝트로 개수를 채우지 않는다. 관련된 것이 없으면 빈 배열로 둔다.`;
 
 async function sha(text: string) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
@@ -158,8 +158,10 @@ Deno.serve(async (req) => {
   const ip = (req.headers.get('x-forwarded-for') ?? '').split(',')[0].trim() || 'unknown';
   const today = new Date().toISOString().slice(0, 10);
   const visitor = await sha(`${ip}|${today}|${Deno.env.get('CHAT_SALT') ?? 'dalnim'}`);
-  const [{ data: mine }, { data: all }] = await Promise.all([sb.rpc('chat_hit', { v: visitor }), sb.rpc('chat_hit', { v: '__site__' })]);
-  if ((mine ?? 0) > Number(chat.daily_limit || 10) || (all ?? 0) > SITE_LIMIT) return json({ answer: chat.limit_message }, 429);
+  // 한도에 걸린 질문은 세지 않는다: 먼저 지금까지의 수만 확인하고, 통과할 때만 1을 더한다
+  const [{ data: seenMine }, { data: seenAll }] = await Promise.all([sb.rpc('chat_peek', { v: visitor }), sb.rpc('chat_peek', { v: '__site__' })]);
+  if ((seenMine ?? 0) >= Number(chat.daily_limit || 10) || (seenAll ?? 0) >= SITE_LIMIT) return json({ answer: chat.limit_message }, 429);
+  await Promise.all([sb.rpc('chat_hit', { v: visitor }), sb.rpc('chat_hit', { v: '__site__' })]);
   if (Math.random() < 0.02) sb.rpc('chat_usage_cleanup').then(() => {});
 
   const context = buildContext(settings, projects ?? []);
