@@ -179,7 +179,7 @@ Deno.serve(async (req) => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
     body: JSON.stringify({
-      systemInstruction: { parts: [{ text: `${POLICY}\n\n[비공개 답변]\n${chat.private_answer}\n\n[모를 때 답변]\n${chat.fallback}\n\n[관련 없는 질문 답변]\n${chat.offtopic}\n\n[자료]\n${context}${hit ? `\n\n[이 질문과 가장 가까운 본인 답변 — 이 답변의 내용만 쓴다. 문장은 질문에 맞게 다듬어도 되지만, 이 답변에 없는 프로젝트 이름, 예시, 숫자, 경험은 덧붙이지 않는다]\n${hit.answer}\n관련 slug: ${hit.related.join(', ')}` : ''}` }] },
+      systemInstruction: { parts: [{ text: `${POLICY}\n\n[비공개 답변]\n${chat.private_answer}\n\n[모를 때 답변]\n${chat.fallback}\n\n[관련 없는 질문 답변]\n${chat.offtopic}\n\n[자료]\n${context}${hit && !followUp ? `\n\n[이 질문과 가장 가까운 본인 답변 — 이 답변의 내용만 쓴다. 문장은 질문에 맞게 다듬어도 되지만, 이 답변에 없는 프로젝트 이름, 예시, 숫자, 경험은 덧붙이지 않는다]\n${hit.answer}\n관련 slug: ${hit.related.join(', ')}` : ''}` }] },
       contents: [...history, { role: 'user', parts: [{ text: q }] }],
       generationConfig: {
         temperature: 0.3,
