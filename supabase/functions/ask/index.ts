@@ -35,6 +35,7 @@ const POLICY = `너는 UI/UX 디자이너 이달님의 포트폴리오 사이트
 - AI를 작업에 활용하는 큰 흐름
 - 자기소개, 가장 자신 있는 프로젝트, 어려웠던 점, 협업 방식처럼 면접에서 흔한 질문은 [자료]에 적힌 문장의 내용 그대로 답한다.
 - 서로 다른 자료를 이어 붙여 새 사실을 만들지 않는다. 예: 일하는 방식 답변에 "○○ 프로젝트에서도 그렇게 했다"처럼 자료에 함께 적혀 있지 않은 프로젝트 예시를 붙이지 않는다.
+- 특정 분야(예: 금융, 쇼핑몰) 경험을 물으면 그 분야에 해당하는 프로젝트만 말한다. 분야가 다른 프로젝트(예: 의료 앱)를 비슷하다고 끼워 넣지 않는다. 해당하는 것이 없으면 [모를 때 답변]을 쓴다.
 - 숫자, 규칙, 직함, 역할, 성과, 수주 여부는 자료에 적힌 표현 그대로만 쓰고, 바꾸거나 부풀리지 않는다. (예: 제안 시안을 "구축했다"고 쓰지 않는다)
 - 질문에 딱 맞는 문장이 없어도 관련된 내용이 자료에 있으면 그 범위 안에서 답하고, 정말 근거가 하나도 없을 때만 [모를 때 답변]을 쓴다.
 
@@ -147,7 +148,9 @@ Deno.serve(async (req) => {
   // 자주 묻는 질문은 AI를 부르지 않고 바로 답한다 (질문 수에도 넣지 않음)
   // 고정 답변(instant)만 그대로 돌려주고, 나머지 미리 써둔 답은 AI가 질문에 맞게 다시 말하도록 참고로만 넘긴다
   const hit = faqMatch(q, chat.faq);
-  if (hit?.instant) {
+  // 앞 대화를 가리키는 이어 묻기("그 프로젝트에서…")는 고정 답 대신 AI가 앞 대화에 맞춰 답한다
+  const followUp = Array.isArray(body.history) && body.history.length > 0 && /(그|이|저)\s*(프로젝트|작업|사이트|앱|때)|거기서|그건|그거/.test(q);
+  if (hit?.instant && !followUp) {
     await sb.from('chat_logs').insert({ q, answer: hit.answer, source: 'instant', visitor: null }).then(() => {}, () => {});
     return json(hit);
   }
@@ -172,7 +175,7 @@ Deno.serve(async (req) => {
     .filter((h) => h && (h.role === 'user' || h.role === 'model'))
     .map((h) => ({ role: h.role, parts: [{ text: clip(h.text, 600) }] }));
 
-  const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`, {
+  const call = () => fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
     body: JSON.stringify({
@@ -190,12 +193,17 @@ Deno.serve(async (req) => {
       },
     }),
   }).catch(() => null);
+  let r = await call();
+  // 무료 사용량의 분당 한도 등으로 잠깐 실패하면 2초 뒤 한 번 더 시도한다
+  if (!r || !r.ok) { await new Promise((ok) => setTimeout(ok, 2000)); r = await call(); }
 
   if (!r || !r.ok) {
-    // 무료 사용량이 다 찼을 때(429)도 방문자에게는 한도 안내를 보여 준다
-    if (r?.status === 429) return json({ answer: chat.limit_message }, 429);
     console.error('gemini', r?.status, r && (await r.text()).slice(0, 300));
     await sb.from('chat_logs').insert({ q, answer: hit?.answer || chat.fallback, source: 'fallback', visitor }).then(() => {}, () => {});
+    // AI가 끝내 답하지 못해도 미리 써 둔 본인 답변이 있으면 그것을 보여 준다
+    if (hit) return json({ answer: hit.answer, related: hit.related });
+    // 무료 사용량이 다 찼을 때(429)는 방문자에게 한도 안내를 보여 준다
+    if (r?.status === 429) return json({ answer: chat.limit_message }, 429);
     return json({ answer: chat.fallback, related: [] });
   }
   const g = await r.json();
