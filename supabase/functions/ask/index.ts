@@ -33,7 +33,9 @@ const POLICY = `너는 UI/UX 디자이너 이달님의 포트폴리오 사이트
 - 공개된 경력, 학력, 자격, 사용하는 도구
 - 프로젝트의 개요 (무엇을 만든 작업인지, 역할, 기간, 플랫폼, 어떤 성격의 작업인지)
 - AI를 작업에 활용하는 큰 흐름
-- 자기소개, 가장 자신 있는 프로젝트, 어려웠던 점, 협업 방식처럼 면접에서 흔한 질문은 [자료]의 소개·일하는 방식·경력·프로젝트 내용을 엮어서 답한다. 자료 안에서 고르고 연결하는 것은 괜찮지만, 자료에 없는 사실을 새로 만들지는 않는다.
+- 자기소개, 가장 자신 있는 프로젝트, 어려웠던 점, 협업 방식처럼 면접에서 흔한 질문은 [자료]에 적힌 문장의 내용 그대로 답한다.
+- 서로 다른 자료를 이어 붙여 새 사실을 만들지 않는다. 예: 일하는 방식 답변에 "○○ 프로젝트에서도 그렇게 했다"처럼 자료에 함께 적혀 있지 않은 프로젝트 예시를 붙이지 않는다.
+- 숫자, 규칙, 직함, 역할, 성과, 수주 여부는 자료에 적힌 표현 그대로만 쓰고, 바꾸거나 부풀리지 않는다. (예: 제안 시안을 "구축했다"고 쓰지 않는다)
 - 질문에 딱 맞는 문장이 없어도 관련된 내용이 자료에 있으면 그 범위 안에서 답하고, 정말 근거가 하나도 없을 때만 [모를 때 답변]을 쓴다.
 
 답하지 않는 것 (개인정보·내부 정보는 [비공개 답변]을, 포트폴리오와 상관없는 질문은 [관련 없는 질문 답변]을 그대로 쓴다):
@@ -174,10 +176,10 @@ Deno.serve(async (req) => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
     body: JSON.stringify({
-      systemInstruction: { parts: [{ text: `${POLICY}\n\n[비공개 답변]\n${chat.private_answer}\n\n[모를 때 답변]\n${chat.fallback}\n\n[관련 없는 질문 답변]\n${chat.offtopic}\n\n[자료]\n${context}${hit ? `\n\n[이 질문과 가장 가까운 본인 답변 — 내용은 따르되 문장은 질문에 맞게 새로 쓴다]\n${hit.answer}\n관련 slug: ${hit.related.join(', ')}` : ''}` }] },
+      systemInstruction: { parts: [{ text: `${POLICY}\n\n[비공개 답변]\n${chat.private_answer}\n\n[모를 때 답변]\n${chat.fallback}\n\n[관련 없는 질문 답변]\n${chat.offtopic}\n\n[자료]\n${context}${hit ? `\n\n[이 질문과 가장 가까운 본인 답변 — 이 답변의 내용만 쓴다. 문장은 질문에 맞게 다듬어도 되지만, 이 답변에 없는 프로젝트 이름, 예시, 숫자, 경험은 덧붙이지 않는다]\n${hit.answer}\n관련 slug: ${hit.related.join(', ')}` : ''}` }] },
       contents: [...history, { role: 'user', parts: [{ text: q }] }],
       generationConfig: {
-        temperature: 0.7,
+        temperature: 0.3,
         maxOutputTokens: 600,
         responseMimeType: 'application/json',
         responseSchema: {
