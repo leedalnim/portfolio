@@ -89,11 +89,13 @@ a.chip:hover{transform:translateY(-3px) rotate(-2deg)}
 .pill.blue{background:var(--blue);border-color:var(--blue);color:#fff}
 
 /* ---------- AI 검색창 ---------- */
-.ask-box{display:flex;align-items:center;height:64px;border:2px solid var(--ink);border-radius:100px;background:#fff;padding:0 8px 0 32px;box-shadow:0 10px 28px rgba(20,46,178,.14);transition:box-shadow .3s,transform .3s}
+.ask-box{display:flex;align-items:center;height:64px;border:2px solid var(--ink);border-radius:100px;background:#fff;padding:0 8px 0 32px;box-shadow:0 10px 28px rgba(20,46,178,.14);transition:box-shadow .3s,transform .3s,border-color .25s}
+.ask-box:hover,.ask-box:focus-within{border-color:var(--blue)}
 .ask-box:focus-within{box-shadow:0 14px 36px rgba(20,46,178,.24)}
 .ask-box input{flex:1;min-width:0;border:0;outline:0;background:none;font:500 19px/1 var(--ko);color:var(--ink)}
 .ask-box input::placeholder{color:var(--g4)}
-.ask-box button{width:48px;height:48px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font:700 26px/1 var(--en);transition:transform .25s var(--ease)}
+.ask-box button{width:48px;height:48px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font:700 26px/1 var(--en);transition:transform .25s var(--ease),background-color .25s}
+.ask-box:hover button,.ask-box:focus-within button{background:var(--blue)}
 .ask-box button:hover{transform:translateY(-2px)}
 .ask-sug{display:flex;flex-wrap:wrap;gap:12px 40px;margin:28px 0 0 32px;font:500 16px/1.2 var(--ko)}
 .ask-sug button{position:relative}
